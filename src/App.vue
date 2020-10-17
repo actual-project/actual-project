@@ -1,7 +1,7 @@
 <template>
   <div>
-    APP
-    <el-button type='success' @click="alert">点击</el-button>
+   <!--路由视图,就可以显示对应的路由组件内容-->
+    <router-view></router-view>
   </div>
 </template>
 
@@ -11,9 +11,7 @@ export default {
   mounted() {
   },
   methods:{
-    alert(){
-      this.$message.success('这是一条消息提示');
-    }
+    
   }
 }
 </script>
