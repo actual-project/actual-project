@@ -3,14 +3,9 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
-
+import Like from '../../pages/Mytuan'
 
 export default [
-    // {
-	// 	path:'/home',
-	// 	component:home
-	// },
-
     //注册Login路由组件
     {
         path:'/login',
@@ -20,5 +15,10 @@ export default [
     {
         path:'/register',
         component:Register
-    }
+    },
+    //以下为我的美团路由
+    {
+		path:'/like',
+		component:Like
+	}
 ]
