@@ -9,3 +9,5 @@ export const getShopLike = ()=>ajax.get('/shopLike')
 export const getLike = ()=>ajax.get('/like')
 //获取商店列表（美食列表）
 export const getShopList = ()=>ajax.get('/getpoilist')
+
+export const getLikeList = ()=>ajax.get('/like')

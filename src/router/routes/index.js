@@ -3,15 +3,14 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
+<<<<<<< HEAD
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
+=======
+import Like from '../../pages/Mytuan'
+>>>>>>> ce4f5802abfac43a591898fa19b938a9f39ca499
 
 export default [
-    // {
-	// 	path:'/home',
-	// 	component:home
-	// },
-
     //注册Login路由组件
     {
         path:'/login',
@@ -34,5 +33,10 @@ export default [
         //         next('/food')
         //     }
         // }
-    }
+    },
+    //以下为我的美团路由
+    {
+		path:'/like',
+		component:Like
+	}
 ]
