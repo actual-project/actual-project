@@ -9,9 +9,7 @@
 export default {
   name: 'APP',
   methods:{
-    alert(){
-      this.$message.success('这是一条消息提示');
-    }
+    
   }
 }
 </script>
