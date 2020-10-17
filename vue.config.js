@@ -1,4 +1,6 @@
 module.exports = {
+   //管理eslint语法检查的信息
+   lintOnSave:false,
     devServer: {
       proxy: {
         '/api': {
