@@ -8,6 +8,8 @@
 <script>
 export default {
   name: 'APP',
+  mounted() {
+  },
   methods:{
     alert(){
       this.$message.success('这是一条消息提示');

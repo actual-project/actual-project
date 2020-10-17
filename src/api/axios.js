@@ -15,10 +15,11 @@ ajax.interceptors.request.use((config)=>{
 //响应拦截器
 ajax.interceptors.response.use((response)=>{
     Nprogress.done()
-    return response.data
+    console.log('response',response.data.data)
+    return response.data.data
 },(err)=>{//错误统一处理
     Nprogress.done()
-    console.log('错误信息:' + error.message || '未知错误')
+    console.log('错误信息:' + err.message || '未知错误')
     return Promise.reject(err)
 })
 export default ajax
