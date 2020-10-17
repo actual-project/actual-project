@@ -3,7 +3,8 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
-
+//引入美食详情
+import FoodDtaile from '@/pages/FoodDtaile'
 
 export default [
     // {
@@ -20,5 +21,18 @@ export default [
     {
         path:'/register',
         component:Register
+    },
+    //注册美食详情
+    {
+        path:"/fooddtaile/:id",
+        component:FoodDtaile,
+        //判断是否由美食页面跳转
+        // beforeEnter: (to, from, next) => {
+        //     if(from.path === '/food'){
+        //         next()
+        //     }else{
+        //         next('/food')
+        //     }
+        // }
     }
 ]
