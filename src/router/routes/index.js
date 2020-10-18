@@ -3,11 +3,8 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
-<<<<<<< HEAD
-=======
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
->>>>>>> c143d60fe9829adf207d4311d880251c880aebdb
 import Like from '../../pages/Like'
 
 export default [
