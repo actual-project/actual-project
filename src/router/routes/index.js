@@ -3,7 +3,7 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
-import Like from '../../pages/Mytuan'
+import Like from '../../pages/Like'
 
 export default [
     //注册Login路由组件
