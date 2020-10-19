@@ -251,7 +251,8 @@
               <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
             </div>
           </div>
-          <i class="iconfont zan">赞</i>
+          <i class="iconfont icon-dianzan-copy"></i>
+          <i class="zan">赞</i>
         </div>
       </div>
     </div>
