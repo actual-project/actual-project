@@ -5,7 +5,7 @@ import Login from '../../pages/Login'
 import Register from '../../pages/Register'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
-import Like from '../../pages/Like'
+import MyTuan from '@/pages/MyTuan'
 
 export default [
     //注册Login路由组件
@@ -33,7 +33,7 @@ export default [
     },
     //以下为我的美团路由
     {
-		path:'/like',
-		component:Like
+		path:'/mytuan',
+		component:MyTuan
 	}
 ]
