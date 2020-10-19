@@ -3,7 +3,8 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
-
+//引入订单组件
+import Cart from '../../pages/Cart'
 
 export default [
     // {
@@ -20,5 +21,9 @@ export default [
     {
         path:'/register',
         component:Register
+    },
+    {
+        path:'/Cart',
+        component:Cart
     }
 ]
