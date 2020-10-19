@@ -5,8 +5,16 @@ import Login from '../../pages/Login'
 import Register from '../../pages/Register'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
-import MyTuan from '@/pages/MyTuan'
 
+//以下为我的美团相关组件
+//--------------------------------------------
+import MyTuan from '@/pages/MyTuan'
+import Tuan from '@/pages/Tuan'
+import Order from '@/pages/Order'
+import Enshrine from '@/pages/Enshrine'
+import Ticket from '@/pages/Ticket'
+import User from '@/pages/User'
+// --------------------------------------------
 export default [
     //注册Login路由组件
     {
@@ -34,6 +42,29 @@ export default [
     //以下为我的美团路由
     {
 		path:'/mytuan',
-		component:MyTuan
+        component:MyTuan,
+        children:[
+            {
+                path:'/',
+                component:Tuan
+            },
+            {   //收藏
+                path:'/mytuan/enshrine',
+                component:Enshrine
+            },
+            {
+                //券
+                path:'/mytuan/ticket',
+                component:Ticket
+            },
+            {   //个人信息
+                path:'/mytuan/user',
+                component:User
+            },
+            {   //个人信息
+                path:'/mytuan/order',
+                component:Order
+            }
+        ]
 	}
 ]
