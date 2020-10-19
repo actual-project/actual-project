@@ -9,8 +9,6 @@ import router from './router'
 import './utils/element.js'
 Vue.config.productionTip = false
 
-// 声明使用插件
-Vue.use(ElementUI);
 new Vue({
   render: h => h(App),
   //注册store
