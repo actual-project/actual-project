@@ -45,7 +45,7 @@ const actions ={
     //获取食客评论列表actions
     async getCommentListActions({commit}){
         let result = await getCommentList()
-        console.log(result)
+        // console.log(result)
         commit('getCommentMutations',result)
     },
 
