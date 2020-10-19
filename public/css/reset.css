@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-@import "./iconfont.css";
- 
-/* 清除内外边距 */
-body, h1, h2, h3, h4, h5, h6, hr, p, blockquote,
-dl, dt, dd, ul, ol, li,
-pre,
-fieldset, lengend, button, input, textarea,
-th, td {
-    margin: 0;
-    padding: 0;
-    color: #666;
-=======
 /* 
  *该CSS文件，清除浏览器所有默认样式，可适用于其他网站页面，基础设置与风格设置
  * */
@@ -28,7 +15,6 @@ audio,video,input,button{
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
->>>>>>> b005067ef9f7fe9ca0a39cd57d911e835bd15cc1
 }
 /*兼容H5*/
 /*将这些元素转换为块元素*/
