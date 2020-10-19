@@ -8,7 +8,7 @@ import store from '@/store'
 import router from './router'
 import './utils/element.js'
 Vue.config.productionTip = false
-
+// console.log('store',store)
 new Vue({
   render: h => h(App),
   //注册store
