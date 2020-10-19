@@ -7,11 +7,12 @@
         <a class="site-logo" href="http://www.meituan.com">美团</a>
         <div class="login-block">
           <span class="tip">已有美团账号?</span>
-          <a
+          <!-- <a
             class="login"
             href="/account/unitivelogin?service=www&amp;continue=http%3A%2F%2Fwww.meituan.com%2Faccount%2Fsettoken"
             >登 录</a
-          >
+          > -->
+          <router-link to="/login" class="login">登陆</router-link>
         </div>
       </div>
     </div>
@@ -22,7 +23,7 @@
           <form action="" method="">
             <!-- 手机号输入 -->
             <div class="form-field form-field--mobile">
-              <label>手机号</label>
+              <label class="font-left">手机号</label>
               <input type="text" name="mobile" class="f-text J-mobile" />
               <span class="J-unitive-tip unitive-tip"
                 >注册成功后，全美团通用</span
@@ -30,17 +31,21 @@
             </div>
             <!-- 获取短信动态码 -->
             <div class="form-field form-field--vbtn">
-              <div class="verify-code">免费获取短信动态码</div>
+              <input
+                type="button"
+                class="verify-code"
+                value="免费获取短信动态码"
+              />
             </div>
             <!-- 短信动态码 -->
             <div class="form-field form-field--sms">
               <label for="">短信动态码</label>
-              <input type="text" />
+              <input type="text" class="f-text" />
             </div>
             <!-- 创建密码 -->
             <div class="form-field form-field--pwd">
               <label for="">创建密码</label>
-              <input type="text" />
+              <input type="text" class="f-text" />
               <div class="pw-strength">
                 <span>弱</span>
                 <span>中</span>
@@ -50,19 +55,42 @@
             <!-- 确认密码 -->
             <div class="form-field form-field--pwd2">
               <label for="">确认密码</label>
-              <input type="text" />
+              <input type="text" class="f-text" />
             </div>
             <!-- 注册 -->
-            <div class="form-field">
-              <input type="submit" name="commit" value="同意以下协议并注册" />
+            <div class="form-field regiter-btn">
+              <input
+                class="btn"
+                type="submit"
+                name="commit"
+                value="同意以下协议并注册"
+              />
               <a target="_blank"></a>
             </div>
           </form>
         </div>
       </div>
-      <div class="term"></div>
+      <div class="term">
+        <a
+          class="f1"
+          href="https://rules-center.meituan.com/rules-detail/4"
+          target="_blank"
+          >《美团点评用户服务协议》</a>
+        <a
+          class="f1"
+          href="https://rules-center.meituan.com/rules-detail/2"
+          target="_blank"
+          >《美团点评隐私政策》</a>
+      </div>
     </div>
-    <div class="footer"></div>
+    <div class="footer">
+      <p class="footer-item">
+          ©
+        <a class="f1" href="https://www.meituan.com">meituan.com</a> &nbsp;
+        <a class="f1" target="_blank" href="http://www.miibeian.gov.cn/">京ICP证070791号</a>&nbsp;
+        <span class="f1">京公网安备11010502025545号</span>
+      </p>
+    </div>
   </div>
 </template>
 <script>
@@ -71,6 +99,7 @@ export default {
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
+// 清除浮动
 .clearFix() {
   *zoom: 1;
   &:after {
@@ -81,11 +110,26 @@ export default {
     clear: both;
   }
 }
+// 公共样式
 .form-field() {
   position: relative;
   padding: 8px 0 8px 110px;
   zoom: 1;
 }
+//
+.font-left() {
+  
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100px;
+  padding-top: 6px;
+  font-size: 14px;
+  text-align: right;
+  color: #333;
+}
+
+//
 .registerContainer {
   background: #fff;
   .header {
@@ -148,18 +192,19 @@ export default {
     padding-top: 30px;
     width: 980px;
     min-height: 300px;
-    background: #bfa;
+    // background: #bfa;
     font: 400 14px/1.5 "Hiragino Sans GB", "WenQuanYi Micro Hei", tahoma,
       sans-serif;
     .signup-form {
       .sheet {
         display: block;
-        .form-field();
-        .form-field--mobile{
+
+        .form-field--mobile {
           width: 870px;
           height: 36px;
-          padding: 8rpx 0 8px 110px ;
-          label{
+          margin-bottom: 8px;
+          label {
+            display: block;
             position: absolute;
             left: 0;
             width: 100px;
@@ -168,7 +213,7 @@ export default {
             text-align: right;
             color: #333;
           }
-          .f-text{
+          .f-text {
             width: 248px;
             height: 24px;
             margin: -1px auto;
@@ -177,9 +222,9 @@ export default {
             line-height: 24px;
             vertical-align: top;
           }
-          .unitive-tip{
+          .unitive-tip {
             display: inline-block;
-            margin-left: 4px;
+            margin-left: 7px;
             padding: 6px 0;
             line-height: 24px;
             font-size: 12px;
@@ -188,8 +233,167 @@ export default {
             zoom: 1;
           }
         }
+        .form-field();
+        .form-field--vbtn {
+          .verify-code {
+            width: 128px;
+            height: 21px;
+            padding: 1px 5px 0;
+            font-size: 12px;
+            color: #333;
+            background-color: #dedede;
+            border: 1px solid #aaa;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            &:hover {
+              background: rgb(244, 244, 244);
+            }
+          }
+        }
+
+        .form-field--sms {
+          padding: 8px 0;
+          label {
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100px;
+            padding-top: 6px;
+            font-size: 14px;
+            text-align: right;
+            color: #333;
+          }
+          .f-text {
+            width: 248px;
+            height: 24px;
+            margin: -1px auto;
+            padding: 5px;
+            border: 1px solid #aaa;
+            line-height: 24px;
+            vertical-align: top;
+          }
+        }
+        .form-field--pwd {
+          padding: 8px 0;
+          margin-bottom: 5px;
+          label {
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100px;
+            padding-top: 6px;
+            font-size: 14px;
+            text-align: right;
+            color: #333;
+          }
+          .f-text {
+            width: 248px;
+            height: 24px;
+            margin: -1px auto;
+            padding: 5px;
+            border: 1px solid #aaa;
+            line-height: 24px;
+            vertical-align: top;
+          }
+          .pw-strength {
+            margin-top: 7px;
+            span {
+              display: block;
+              float: left;
+              width: 85px;
+              height: 20px;
+              font-size: 12px;
+              text-align: center;
+              line-height: 20px;
+              background: rgb(238, 238, 238);
+              color: #fff;
+              border-right: 2px solid #fff;
+            }
+          }
+        }
+        .form-field--pwd2 {
+          padding: 8px 0;
+          margin-top: 10px;
+          label {
+            display: block;
+            position: absolute;
+            left: 0;
+            width: 100px;
+            padding-top: 6px;
+            font-size: 14px;
+            text-align: right;
+            color: #333;
+          }
+          .f-text {
+            width: 248px;
+            height: 24px;
+            margin: px auto;
+            padding: 5px;
+            border: 1px solid #aaa;
+            line-height: 24px;
+            vertical-align: top;
+          }
+        }
+        .form-field();
+        .regiter-btn {
+          input {
+            display: block;
+            height: 100%;
+
+            border: none;
+          }
+          .btn {
+            padding: 7px 20px 6px;
+            color: #222;
+            background-color: rgb(255, 192, 1);
+            box-shadow: 0 2px 1px rgba(191, 105, 0, 0.15);
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            border-radius: 2px;
+            cursor: pointer;
+            margin-top: 10px;
+          }
+        }
       }
     }
+    .term {
+      position: relative;
+      padding: 3px 10px 3px 110px;
+      margin: 0 auto 8px;
+      zoom: 1;
+      cursor: pointer;
+      font-size: 13px;
+      &>a{
+        color: #fe8c00;
+        text-decoration: none;
+        &:hover{
+           color: #ffbd00 !important;
+        }
+      } 
+    }     
+  }
+  .footer{
+    border-top: 1px solid #EEE;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 13px;
+    .footer-item{
+      font-size: 12px;
+      font-family: initial;
+      a{
+        font-size: 13px;
+        color: #999;
+        text-decoration: none;
+        &:hover{
+          color: #999 !important;
+        }
+      }
+      span{
+        color:#999 ;
+      }
+    }
+    
   }
 }
 </style>
