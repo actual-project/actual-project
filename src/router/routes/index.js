@@ -7,6 +7,9 @@ import Register from '../../pages/Register'
 import FoodDtaile from '@/pages/FoodDtaile'
 import Like from '../../pages/Like'
 
+//美食页面
+import Food from '../../pages/Food'
+
 export default [
     //注册Login路由组件
     {
@@ -33,7 +36,13 @@ export default [
     },
     //以下为我的美团路由
     {
-		path:'/like',
-		component:Like
-	}
+      path:'/like',
+      component:Like
+    },
+    //美食页面的信息
+    {
+      path:'/food',
+      component:Food
+    }
+
 ]
