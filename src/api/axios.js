@@ -15,7 +15,7 @@ ajax.interceptors.request.use((config)=>{
 //响应拦截器
 ajax.interceptors.response.use((response)=>{
     Nprogress.done()
-    // console.log('response',response.data.data)
+    // console.log('response',response.data)
     return response.data.data
 },(err)=>{//错误统一处理
     Nprogress.done()

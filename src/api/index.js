@@ -11,3 +11,7 @@ export const getLike = ()=>ajax.get('/like')
 export const getShopList = ()=>ajax.get('/getpoilist')
 
 export const getLikeList = ()=>ajax.get('/like')
+//获取右侧猜你喜欢商家
+export const getLeftLikeList = ()=>ajax.get('/leftLike')
+//获取食客评论
+export const getCommentList = ()=>ajax.get('/pinglun')
