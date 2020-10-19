@@ -3,9 +3,12 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
+//引入订单组件
+import Cart from '../../pages/Cart'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
 import Like from '../../pages/Like'
+
 
 export default [
     //注册Login路由组件
@@ -18,6 +21,12 @@ export default [
         path:'/register',
         component:Register
     },
+
+    {
+        path:'/Cart',
+        component:Cart
+    }
+,
     //注册美食详情
     {
         path:"/fooddtaile/:id",
@@ -36,4 +45,5 @@ export default [
 		path:'/like',
 		component:Like
 	}
+
 ]
