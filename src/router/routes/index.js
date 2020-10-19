@@ -6,6 +6,8 @@ import Register from '../../pages/Register'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
 import Like from '../../pages/Like'
+//引入民宿
+import minsu from '@/pages/minsu/minsu.vue'
 
 export default [
     //注册Login路由组件
@@ -35,5 +37,11 @@ export default [
     {
 		path:'/like',
 		component:Like
-	}
+    },
+    //民宿
+    {
+        path:'/minsu',
+        component:minsu
+    }
+
 ]
