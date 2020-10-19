@@ -14,3 +14,11 @@ export const getOrderList = ()=>ajax.get('/order')
 //获取商店列表（美食列表）
 export const getShopList = ()=>ajax.get('/getpoilist')
 
+<<<<<<< HEAD
+=======
+export const getLikeList = ()=>ajax.get('/like')
+//获取右侧猜你喜欢商家
+export const getLeftLikeList = ()=>ajax.get('/leftLike')
+//获取食客评论
+export const getCommentList = ()=>ajax.get('/pinglun')
+>>>>>>> 78f0d3635648a03e1ba5e3b3d5134763796b1559

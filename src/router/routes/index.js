@@ -3,8 +3,19 @@
 import Login from '../../pages/Login'
 //引入Register组件
 import Register from '../../pages/Register'
+//引入订单组件
+import Cart from '../../pages/Cart'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
+<<<<<<< HEAD
+=======
+import Like from '../../pages/Like'
+//引入民宿
+import minsu from '@/pages/minsu/minsu.vue'
+
+//美食页面
+import Food from '../../pages/Food'
+>>>>>>> 78f0d3635648a03e1ba5e3b3d5134763796b1559
 
 //以下为我的美团相关组件
 //--------------------------------------------
@@ -26,6 +37,12 @@ export default [
         path:'/register',
         component:Register
     },
+
+    {
+        path:'/Cart',
+        component:Cart
+    }
+,
     //注册美食详情
     {
         path:"/fooddtaile/:id",
@@ -41,6 +58,7 @@ export default [
     },
     //以下为我的美团路由
     {
+<<<<<<< HEAD
 		path:'/mytuan',
         component:MyTuan,
         children:[
@@ -67,4 +85,26 @@ export default [
             }
         ]
 	}
+=======
+      path:'/like',
+      component:Like
+    },
+    //美食页面的信息
+    {
+      path:'/food',
+      component:Food
+    },
+    {
+		path:'/like',
+		component:Like
+    },
+    //民宿
+    {
+        path:'/minsu',
+        component:minsu
+    }
+	
+
+
+>>>>>>> 78f0d3635648a03e1ba5e3b3d5134763796b1559
 ]
