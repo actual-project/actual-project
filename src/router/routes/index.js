@@ -23,8 +23,9 @@ export default [
     },
 
     {
-        path:'/Cart',
-        component:Cart
+        path:'/cart',
+        component:Cart,
+        props:(route)=>({shopId:route.query.shopId,foodId:route.query.foodId})
     }
 ,
     //注册美食详情

@@ -62,8 +62,8 @@
               <p class="slod">已售{{item.sold}}</p>
               <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
             </div>
+            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
           </div>
-          <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
         </div>
         <!-- 代金卷 -->
         <div class="foodList" v-if="shopInfo.consume">
@@ -78,8 +78,8 @@
               <p class="slod">已售{{item.sold}}</p>
               <!-- <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p> -->
             </div>
+            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
           </div>
-          <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
         </div>
 
       </div>
@@ -224,7 +224,9 @@ export default {
     },
     //去下单
     toOrder(good){
-      this.$router.push(`/cart?shopId=${this.id}&foodId=${good.id}`)
+      console.log(1111)
+      console.log(this.shopInfo.id)
+      this.$router.push(`/cart?shopId=${this.shopInfo.id}&foodId=${good.id}`)
     }
   },
  
