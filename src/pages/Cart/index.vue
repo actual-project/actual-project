@@ -12,16 +12,16 @@
               </tr>
               <tr class="second">
                 <td class="one">
-                  <a href="">福口居: 福口居10人餐</a>
+                  <a href="">shopInfo.nm</a>
                 </td>
-                <td>¥1028</td>
+                <td>¥{{foodInfo.price}}</td>
                 <td>
                   <div class="input-number">
-                    <button class="min-bus">
+                    <button class="min-bus" @click="numPlus">
                        +
-                    </button>
+                    </button >
                     <input type="text" class="input" value="1">
-                    <button class="plus-btn">
+                    <button class="plus-btn" @click="numDec">
                       -
                     </button>
                   </div>
@@ -47,15 +47,62 @@
             <input type="button" class="btn" value="提交订单">
           </div>
         </form>
-       
       </div>
 </template>
 <script>
+import {mapState,mapActions,mapMutations} from 'vuex'
 export default {
-  name:'Cart',
-  props:['shopId','foodId']
-  }
+    name:'Cart',
+    data() {
+      return {
+      num:1,
+      shopInfo:{},
+      foodInfo:{},
+      }
+    },
+    props:['shopId','foodId']
+    ,
+    mounted() {
+     
+      this.app();
+      this.getShopInfo();
+      
+    },
+    computed: {
+      ...mapState({
+            foodDetaiList:state =>state.shopList.foodDetaiList
+      })
+    },
+    methods:{
+      ...mapActions({
+        app:'getFoodDetailActions'
+      }),
+      getShopInfo(){
+        // console.log(this.foodDetaiList)
+        let result = this.foodDetaiList.find((x)=>x.id===this.shopId*1);
+        this.shopInfo = result;
+       // console.log(result+"@@")
+      },
+      // getFoodInfo(){
+      //   this.foodInfo = this.shopInfo.filter((item)=>{
+      //     item.combo.id === this.foodId
+      //   })
+      // },
+      //点击加的时候加
+      numPlus(){
+        this.num++;
+
+      },
+      //点击减的时候减
+      numDec(){
+          if(num>1){
+            this.num--;
+          }
+        }
+      },
+    }
 </script>
+
 <style lang='less' rel='stylesheet/less' scoped>
 // 注意还没有做适配
   .container{
