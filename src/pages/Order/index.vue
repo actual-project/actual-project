@@ -2,8 +2,10 @@
   <div>
     <div class="content">
       <div class="content-top">
-        <ul @click="selected">
-          <li class="active"><router-link to="/mytuan/order?status=0" >全部订单</router-link></li>
+        <ul @click="selected()">
+          <li class="active">
+            <router-link to="/mytuan/order?status=0">全部订单</router-link>
+          </li>
           <li><router-link to="/mytuan/order?status=1">待付款</router-link></li>
           <li><router-link to="/mytuan/order?status=2">待使用</router-link></li>
           <li><router-link to="/mytuan/order?status=3">待评价</router-link></li>
@@ -13,23 +15,28 @@
         </ul>
       </div>
       <div class="content-list">
-        <div
-          class="contentItem"
-          v-for="(item, index) in orderList"
-          :key="item.orderid"
-        >
-          <div class="img"><img :src="item.bottomUrl" alt="bottomUrl" /></div>
-          <div class="orderDetail">
-            <p class="title">{{ item.title }}</p>
-            <p>{{ item.orderinfo[0] }}</p>
-            <p>{{ item.orderinfo[1] }}</p>
+        <div v-if="orderList.length > 0">
+          <div
+            class="contentItem"
+            v-for="(item, index) in orderList"
+            :key="item.orderid"
+          >
+            <div class="img"><img :src="item.bottomUrl" alt="bottomUrl" /></div>
+            <div class="orderDetail">
+              <p class="title">{{ item.title }}</p>
+              <p>{{ item.orderinfo[0] }}</p>
+              <p>{{ item.orderinfo[1] }}</p>
+            </div>
+            <div class="orderPrice">
+              <p>{{ item.orderinfo[2] }}</p>
+            </div>
+            <div class="orderStatus">
+              <p>{{ item.showstatus }}</p>
+            </div>
           </div>
-          <div class="orderPrice">
-            <p>{{ item.orderinfo[2] }}</p>
-          </div>
-          <div class="orderStatus">
-            <p>{{ item.showstatus }}</p>
-          </div>
+        </div>
+        <div class="noOrder" v-else>
+          <p>没有订单哦</p>
         </div>
       </div>
     </div>
@@ -44,50 +51,58 @@ export default {
   data() {
     return {
       orderList: [],
-      status: 0,
+      // status: 0,
     };
   },
+  props: {
+    status: Number,
+    required: true,
+  },
   mounted() {
-		this.showorderList();
-		this.selected()
+    this.showorderList();
+    this.selected();
   },
   methods: {
     async showorderList() {
+      // console.log('showorderList',this.status)
       if (this.status == 0) {
-				let result = await getOrderList();
-				this.orderList = result.orders
-				console.log(this.orderList)
+        let result = await getOrderList();
+        this.orderList = result.orders;
+        // console.log(this.orderList)
       } else {
-				let result = await getOrderList();
+        let result = await getOrderList();
         let res = result.orders.filter((item) => {
           return item.status === this.status;
         });
         this.orderList = res;
       }
-		},
-		selected(){
-			console.log(this.status)
-			let li2 = document.querySelectorAll('.content-top ul li')
-			li2.forEach(item=>{
-				item.classList.remove("active")
-			})
-			let li = document.querySelectorAll('.content-top ul li')
-			li[this.status].classList.add("active")
-		}
+    },
+    selected() {
+      //点击时选中的样式
+      let li2 = document.querySelectorAll(".content-top ul li");
+      li2.forEach((item) => {
+        item.classList.remove("active");
+      });
+      let li = document.querySelectorAll(".content-top ul li");
+      li[this.status].classList.add("active");
+
+      
+    },
   },
+
   watch: {
     $route(val) {
       this.status = val.query.status * 1;
-			this.showorderList();
-			this.selected()
+      this.showorderList();
+      this.selected();
     },
   },
 };
 </script>
 
 <style lang="less" rel="stylesheet/less" scoped>
-.active{
-	border-bottom: 2px solid #ffc300;
+.active {
+  border-bottom: 2px solid #ffc300;
 }
 a {
   text-decoration: none !important;
@@ -128,6 +143,12 @@ a {
         img {
           width: 100%;
         }
+      }
+    }
+    .noOrder{
+      p{
+        margin: 30px;
+        text-align: center;
       }
     }
     .orderDetail {

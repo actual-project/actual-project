@@ -9,11 +9,13 @@ export const getShopLike = ()=>ajax.get('/shopLike')
 export const getUserInfo = ()=>ajax.get('/persnal')
 //获取猜你喜欢
 export const getlikeList = ()=>ajax.get('/like')
+
+//我的收藏
+export const getEnshrineList = ()=>ajax.get('/buying')
 //获取订单列表
 export const getOrderList = ()=>ajax.get('/order')
 //获取商店列表（美食列表）
 export const getShopList = ()=>ajax.get('/getpoilist')
-
 export const getLikeList = ()=>ajax.get('/like')
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
