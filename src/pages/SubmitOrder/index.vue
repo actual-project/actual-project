@@ -13,11 +13,11 @@
            <div class="second-container">
                <div class="project"> 
                         <div class="one">
-                            项目：好美滋代金券
+                            项目：{{this.foodName}}
                         </div> 
                         <div class="two">
                             应付金额：￥
-                           <span>18.00</span>
+                           <span>{{this.totalPrice}}</span>
                         </div>       
                </div>
                <div class="payment">
@@ -45,13 +45,13 @@
                                     <div class="money clearFix">
                                             <div class="m1 ">
                                             <span>支付￥
-                                                <i>98:00</i>
+                                                <i>{{this.totalPrice}}</i>
                                             </span>
                                              </div>  
                                       
                                             <div class="m2">
                                                 <span>返回修改订单</span>
-                                                <button>去付款</button>
+                                                <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
                                </div>
@@ -89,17 +89,17 @@
                                             <li><input type="radio" name="b2cebank" id="b2cebank_400" data-type="qdbpay" data-banktypeid="400" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_400"><img src="https://p1.meituan.net/pay/gfyh.png" disabled="" alt="广发银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
                                            <li><input type="radio" name="b2cebank" id="b2cebank_506" data-type="qdbpay" data-banktypeid="506" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_506"><img src="http://p0.meituan.net/pay/d727f7b4c245a263b73b31871fa301fe2643.png" disabled="" alt="北京银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
                                         </ul>
-                                           <!-- 支付金额 -->
+                                           <!-- 支付金额 -->{
                                         <div class="money clearFix">
                                             <div class="m1 ">
                                             <span>支付￥
-                                                <i>98:00</i>
+                                                <i>{{this.totalPrice}}</i>
                                             </span>
                                              </div>  
                                       
                                             <div class="m2">
                                                 <span>返回修改订单</span>
-                                                <button>去付款</button>
+                                                <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
                                     </div>
@@ -125,6 +125,15 @@
 <script>
 export default {
   name:'SubmitOrder',
+  props:['foodName','totalPrice'],
+
+  methods:{
+      toPayment(){
+         // console.log('路由跳转');
+         //`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`
+          this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+      }
+  }
 
   }
 </script>

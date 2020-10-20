@@ -3,7 +3,7 @@ module.exports = {
    lintOnSave:false,
     devServer: {
       proxy: {
-        '/api': {
+        '/api': {//接口信息，即带有api的文件才可以跨域
           target: 'http://localhost:3000',
           ws: true,
           changeOrigin: true,

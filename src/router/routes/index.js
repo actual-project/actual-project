@@ -16,6 +16,7 @@ import minsu from '@/pages/minsu/minsu.vue'
 
 //美食页面
 import Food from '../../pages/Food'
+import ShopList from '../../pages/ShopList'
 
 //以下为我的美团相关组件
 import MyTuan from '@/pages/MyTuan'
@@ -44,7 +45,8 @@ export default [
     ,
     {  
         path:'/submitorder',
-        component:SubmitOrder
+        component:SubmitOrder,
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
         
     },
     //注册美食详情
@@ -64,7 +66,8 @@ export default [
     {
 
         path:'/paysuccess',
-        component:PaySuccess
+        component:PaySuccess,
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
     },
     //以下为我的美团路由
     {
@@ -97,7 +100,13 @@ export default [
     //美食页面的信息
     {
       path:'/food',
-      component:Food
+      component:Food,
+      children:[
+        {
+          path:'/shopList',
+          component:ShopList
+        }
+      ]
     },
     //民宿
     {
