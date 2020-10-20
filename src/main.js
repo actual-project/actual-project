@@ -13,7 +13,7 @@ import './utils/element.js'
 // import 'swiper/css/swiper.css'
 Vue.config.productionTip = false
 
-Vue.prototype.moment = moment
+//Vue.prototype.moment = moment
 Vue.config.productionTip = false
 // Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
