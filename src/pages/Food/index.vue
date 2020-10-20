@@ -251,6 +251,7 @@ export default {
   data() {
     return {
       shopList:[], //商家列表
+
     }
   },
   computed:{
@@ -259,8 +260,10 @@ export default {
     })
   },
   methods:{
-    //发送请求
-    // async getShopList = await 
+    //获取商店列表
+    ...mapActions({
+      getShopList:'getShopListActions'
+    })
   }
 }
 </script>

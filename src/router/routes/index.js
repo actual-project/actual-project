@@ -7,21 +7,28 @@ import Register from '../../pages/Register'
 import Cart from '../../pages/Cart'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
+
+// import Like from '../../pages/Like'
+import SubmitOrder from '../../pages/SubmitOrder'
+import PaySuccess from '../../pages/PaySuccess'
+
+
 //引入民宿
 import minsu from '@/pages/minsu/minsu.vue'
+
 
 //美食页面
 import Food from '../../pages/Food'
 
 //以下为我的美团相关组件
-//--------------------------------------------
+
 import MyTuan from '@/pages/MyTuan'
 import Tuan from '@/pages/Tuan'
 import Order from '@/pages/Order'
 import Enshrine from '@/pages/Enshrine'
 import Ticket from '@/pages/Ticket'
 import User from '@/pages/User'
-// --------------------------------------------
+
 export default [
     //注册Login路由组件
     {
@@ -33,13 +40,17 @@ export default [
         path:'/register',
         component:Register
     },
-
     {
         path:'/cart',
         component:Cart,
         props:(route)=>({shopId:route.query.shopId,foodId:route.query.foodId})
     }
-,
+    ,
+    {  
+        path:'/submitorder',
+        component:SubmitOrder
+        
+    },
     //注册美食详情
     {
         path:"/fooddtaile/:id",
@@ -54,8 +65,21 @@ export default [
         // }
     },
     //以下为我的美团路由
+    // {
+
+	// 	path:'/like',
+	// 	component:Like
+    // },
+    //跳转到支付成功的界面
     {
-		path:'/mytuan',
+
+        path:'/paysuccess',
+        component:PaySuccess
+    },
+    {
+
+
+		  path:'/mytuan',
         component:MyTuan,
         children:[
             {
@@ -80,7 +104,11 @@ export default [
                 component:Order
             }
         ]
-	},
+	  },
+    // {
+    //   path:'/like',
+    //   component:Like
+    // },
     //美食页面的信息
     {
       path:'/food',
@@ -90,8 +118,4 @@ export default [
     {
         path:'/minsu',
         component:minsu
-    }
-	
-
-
-]
+    }]
