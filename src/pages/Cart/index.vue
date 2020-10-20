@@ -12,21 +12,22 @@
               </tr>
               <tr class="second">
                 <td class="one">
-                  <a href="">福口居: 福口居10人餐</a>
+                  <a href="">{{foodInfo.name}}</a>
                 </td>
-                <td>¥1028</td>
+                <td>¥{{foodInfo.price}}</td>
                 <td>
                   <div class="input-number">
-                    <button class="min-bus">
+                    <button class="min-bus" @click="numPlus">
                        +
-                    </button>
-                    <input type="text" class="input" value="1">
-                    <button class="plus-btn">
+                    </button >
+                    <!-- <input type="text" class="input" value="1"> -->
+                    <button class="input">{{num}}</button>
+                    <button class="plus-btn" @click="numDec">
                       -
                     </button>
                   </div>
                 </td>
-                <td>¥1028</td>
+                <td>¥{{totalPrice}}</td>
               </tr>
             </tbody>
           </table>
@@ -35,7 +36,7 @@
             <span>应付金额:
               <span>
               <i>￥</i>
-              159
+              {{totalPrice}}
             </span>
             </span>
           </div>
@@ -44,18 +45,71 @@
             <a href="">绑定新的手机号</a>
           </div>
           <div class="formSummit">
-            <input type="button" class="btn" value="提交订单">
+            <input type="button" class="btn" value="提交订单" @click="summitOrder">
           </div>
         </form>
-       
       </div>
 </template>
 <script>
+import {mapState,mapActions,mapMutations} from 'vuex'
 export default {
-  name:'Cart',
-  props:['shopId','foodId']
-  }
+    name:'Cart',
+    data() {
+      return {
+      num:1,
+      foodInfo:{},
+      }
+    },
+    props:['foodId']
+    ,
+    mounted() {
+      this.foodInfo = this.getFoodInfo();
+     // console.log(result+'^^^');
+    },
+    computed: {
+      //获取商品信息对象
+      ...mapState({
+            shopInfo:state =>state.shopList.shopInfo
+     }),
+     totalPrice(){
+				return this.foodInfo.price*this.num*1
+			}
+
+    },
+    methods:{
+      //提交订单的时候跳转到提交订单的页面
+      summitOrder(){
+        // this.$router.push(`/cart?foodId=${good.id}`)
+        this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`)
+      },
+      //获取foodid的对象
+      getFoodInfo(){
+       // console.log(111);
+        //return this.shopInfo.combo[0].id === this.foodId  ? this.shopInfo.combo[0] : this.shopInfo.consume[0]  
+        if(this.shopInfo.combo[0].id === this.foodId){
+            return this.shopInfo.combo[0]
+        }else{
+            return this.shopInfo.consume[0]
+        }
+
+      },
+      //点击加的时候加
+      numPlus(event){
+        event.preventDefault()
+        this.num++;
+       // this.total = num *foodInfo.price;
+      },
+      //点击减的时候减
+      numDec(){
+        event.preventDefault()
+          if(this.num>1){
+            this.num--;
+          }
+        }
+      },
+    }
 </script>
+
 <style lang='less' rel='stylesheet/less' scoped>
 // 注意还没有做适配
   .container{

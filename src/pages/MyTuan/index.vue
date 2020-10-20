@@ -4,7 +4,7 @@
       <div class="leftContainer">
         <div class="link-group">
           <router-link to="/mytuan"><p>我的美团</p></router-link>
-          <router-link to="/mytuan/order"><p>我的订单</p></router-link>
+          <router-link to="/mytuan/order?status=0"><p>我的订单</p></router-link>
           <ul class="link-ul">  
             <li><router-link to="/mytuan/order?status=0">全部订单<i class="icon-right">></i></router-link></li>
             <li><router-link to="/mytuan/order?status=1">待付款<i class="icon-right">></i></router-link></li>
@@ -14,24 +14,29 @@
           </ul>
         </div>
         <div class="link-group">
-          <router-link to="/mytuan/Ticket"><p>抵用券</p></router-link>
+          <router-link to="/mytuan/ticket?status=0"><p>抵用券</p></router-link>
           <ul class="link-ul">
-            <li>可用券<i class="icon-right">></i></li>
-            <li>失效券<i class="icon-right">></i></li>
+            <li><router-link to="/mytuan/ticket?status=0">可用券<i class="icon-right">></i></router-link></li>
+            <li><router-link to="/mytuan/ticket?status=1">失效券<i class="icon-right">></i></router-link></li>
           </ul> 
         </div>
         <div class="link-group">
-          <router-link to="/mytuan/Enshrine"><p>我的收藏</p></router-link>
+          <router-link to="/mytuan/enshrine?status=0"><p>我的收藏</p></router-link>
           <ul class="link-ul">
-            <li>收藏的商家<i class="icon-right">></i></li>
-            <li>收藏的团购<i class="icon-right">></i></li>
+            <li><router-link to="/mytuan/enshrine?status=0">收藏的商家<i class="icon-right">></i></router-link></li>
+            <li><router-link to="/mytuan/enshrine?status=1">收藏的团购<i class="icon-right">></i></router-link></li>
           </ul>
         </div>
         <div class="link-group">
           <router-link to="/mytuan/user"><p>个人信息</p></router-link>
           <ul class="link-ul">
-            <li>账户设置<i class="icon-right">></i></li>
+            <li><router-link to="/mytuan/user">账户设置<i class="icon-right">></i></router-link></li>
           </ul>
+        </div>
+        <div class="ma">
+          <img src="./images/erweima.png" alt="">
+          <p>美团APP手机版</p>
+          <p><i>1元起</i>吃喝玩乐</p>
         </div>
       </div>
       <div class="rightContainer">
@@ -54,8 +59,9 @@ export default {
   },
   watch:{
     '$route'(val){
-      console.log(val); 
-      console.log(val.query.status)
+      // console.log(val); 
+      // console.log(val.query.status)
+      this.status = val.query.status*1
     }
   }
 };
@@ -69,7 +75,6 @@ a {
   width: 100%;
   height: 100%;
   // background-image: linear-gradient(#dedede, #f8f8f8);
-  background: #ff6600;
 }
 .container {
   width: 1200px;
@@ -107,6 +112,25 @@ a {
         }
       }
     }
+    .ma{
+      width: 230px;
+      height: 167px;
+      text-align: center;
+      margin-top: 30px;
+      img{
+        width: 95px;
+        height: 95px;
+        margin: 10px auto;
+      }
+      p:last-child{
+        font-size: 12px;
+        margin-top: 3px;
+        i{
+          color: #ff6600;
+          margin-right: 3px;
+        }
+      }
+    }
   }
   .rightContainer {
     width: 950px;
@@ -115,6 +139,8 @@ a {
     margin-left: 20px;
     border-radius: 5px;
     box-sizing: border-box;
+    border: 1px solid #e5e5e5;
+
   }
 }
 </style>

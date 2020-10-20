@@ -63,6 +63,7 @@
               <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
             </div>
             <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <i>团</i>
           </div>
         </div>
         <!-- 代金卷 -->
@@ -132,16 +133,35 @@
           </p>
         </div>
       </div>
+      <!-- 分页 -->
+  <div class="page-wrap">
+      <ul class="page">
+        <li @click="changeCurrenPage(currentPage-1)">
+          &lt;
+        </li>
+        <li v-if="startOrEnd.start>1" @click="changeCurrenPage(1)" >1</li>
+        <li :class="{active:currentPage===num}"
+        v-for="(num) in startOrEnd.end"
+        :key="num"
+        @click="changeCurrenPage(num)">{{num}}</li>
+        <li v-if="startOrEnd.end > totalPages-1">...</li>
+        <li v-if="startOrEnd.end < totalPages" @click="changeCurrenPage(totalPages)">{{totalPages}}</li>
+        <li @click="changeCurrenPage(currentPage+1)">
+          &gt;
+        </li>
+      </ul>
     </div>
+  </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
-      class="pagetion"
-      background
+      class="page"
+      @current-change="handleCurrentChange"
+      :page-size="100"
       layout="prev, pager, next"
-      :total="9860">
+      :total="400">
     </el-pagination> -->
     <!-- 附近商家 -->
-    <p class="shop-tit">附近商家</p>
+    <p class="shop-tit footer-sh">附近商家</p>
     <el-card>
       <div  class="footer-shop">
         <div class="footer-item" v-for="item in shopLikeList" :key="item.id">
@@ -159,7 +179,8 @@
 
 <script>
 import {getFoodDetail} from '@/api'
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex'
+import Pagination from '@/components/Pagination'
 export default {
   name: 'FoodDtaile',
   data() {
@@ -169,11 +190,18 @@ export default {
         // isLogin:true,//是否登录
         userInfo:{},//当前登录用户
         // id:1816984255 //当前商户id
+        currentPage:1,
+        pageNo: 1, // 默认显示的是第一页的数据
+        pageSize: 10, // 默认每页显示3条数据
+        showPageNo: 4, // 连续的页码数
       }
+  },
+  components:{
+    Pagination
   },
   props:["id"],
   mounted() {
-    this.getFoodShop()
+    // this.getFoodShop()
     //从浏览器缓存获取用户信息
     this.userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
     // 获取商家列表 以及推荐商店
@@ -191,8 +219,60 @@ export default {
       rightLikeList:state =>state.shopList.rightLikeList,
       commentInfo:state =>state.shopList.commentInfo,
       shopList:state =>state.shopList.shopList
-    })
+    }),
+        // 计算总页码数(一共有多少页)
+    // 计算总页码数(一共有多少页)
+    totalPages() {
+      // 获取总的数据条数,每页显示数据的条数
+      const { pageSize } = this
+      const {total} = this.commentInfo
+      // 总的数据条数和每页显示的数据条数  他们的数据都要有意义才能进行计算(数据的值大于0)
+      if (total <= 0 || pageSize < 0) return
+      // 51条数据 ,每页10条数据---->总页:
+      return Math.ceil(total / pageSize)
+    },
+    // 连续页码是需要进行计算的(要计算出来),是根据当前的页码进行计算,还需要知道连续的页码数
+    // 要计算出连续页码的开始页码和结束页码
+    startOrEnd() {
+      // 获取总页码数,当前页码数,连续页码数
+      // 解构的方式
+      const {
+        totalPages,
+        currentPage,
+        showPageNo ,
+      } = this
+      // // 计算开始页码
+      let start = 0
+      start = currentPage - Math.floor(showPageNo / 2)
+      // // 当前页码 2 ,计算出来的开始页码就是0 ,根本就没有0这一页
+      // // 限定开始页码
+      if (start < 1) {
+        start = 1
+      }
+      // // 计算结束页码
+      let end = 0
+      end = start + showPageNo - 1
+      // 限定结束页码
+      if (end > totalPages) {
+        end = totalPages
+        // 重新校验一下开始的页码
+        start = end - showPageNo + 1
+        // 再次限定一下开始页码 ,如果页码一共有4 个  1  2  3   4
+        if (start < 1) {
+          start = 1
+        }
+      }
+      return { start, end }
+    },
   },
+  watch: {
+    // 如果你要监视的数据是对象中的某个属性值,那么请用成对的单引号可以括起来
+    pageNo(val){
+      // 立刻的更新当前的选中的页码数
+      this.currentPage = val
+    }
+  },
+
   methods: {
     //根据id 获取对应店家美食详情
   async  getFoodShop(){
@@ -203,6 +283,7 @@ export default {
             return item
           }
         })
+        this.getShopInfoMutations(this.shopInfo)
     },
     //点赞
     gaveLike(){
@@ -221,13 +302,26 @@ export default {
     async getCurrentShop(){
       let result = await getFoodDetail()
       this.shopInfo = result.find(item =>item.id === 1816984255)
+      this.getShopInfoMutations(this.shopInfo)
     },
     //去下单
     toOrder(good){
-      console.log(1111)
-      console.log(this.shopInfo.id)
-      this.$router.push(`/cart?shopId=${this.shopInfo.id}&foodId=${good.id}`)
-    }
+     // console.log(good)
+     // console.log(1111)
+      //console.log(this.shopInfo.id)
+      this.$router.push(`/cart?foodId=${good.id}`)
+    },
+    //commitMutation
+    ...mapMutations({
+      getShopInfoMutations:'getShopInfoMutations'
+    }),
+    //修改当前页面
+        changeCurrenPage(pageNo) {
+      // 修改当前的页码
+      this.currentPage = pageNo
+      // 通知父级组件,当前的页码改变了
+      this.$emit('changeCurrentPage', pageNo)
+    },
   },
  
 }
@@ -341,6 +435,9 @@ export default {
     &.two{
       font-weight: normal;
       margin-bottom: 10px;
+    }
+    &.footer-sh{
+      margin: 10px 0;
     }
   }
   //未登录
@@ -554,7 +651,7 @@ export default {
     box-sizing: border-box;
     border: 1px solid #eee;
     border-radius: 5px;
-        //加阴影
+    //加阴影
     box-shadow: 0 0 4px 2px #ddd;
     border-radius: 5px;
 
@@ -562,7 +659,7 @@ export default {
       display: flex;
       flex-wrap: wrap;
       .rt-item{
-        width: 76px;
+        width: 84px;
         height: 34px;
         line-height: 34px;
         text-align: center;
@@ -583,6 +680,7 @@ export default {
       display: flex;
       padding-right: 10px;
       margin-top: 30px;
+      
       .avatat{
         width: 10%;
         img{
@@ -619,6 +717,7 @@ export default {
             padding-top: 10px;
             cursor: pointer;
             display: flex;
+            flex-wrap: wrap;
             margin-bottom: 40px;
             .img-item{
               width: 16%;
@@ -643,6 +742,27 @@ export default {
       }
     }
 
+  }
+  .page-wrap{
+    .page{
+      display: flex;
+      width: 500px;
+      margin: 10px auto 0;
+      li{
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        border-radius: 50%;
+        border: 1px solid #eee;
+        text-align: center;
+        font-size: 16px;
+        margin: 0 10px;
+        &.active{
+          background: #13D1BE;
+          color: #fff;
+        }
+      }
+    }
   }
   //底部附近商家
   .footer-shop{
