@@ -12,6 +12,7 @@ import FoodDtaile from '@/pages/FoodDtaile'
 import SubmitOrder from '../../pages/SubmitOrder'
 import PaySuccess from '../../pages/PaySuccess'
 
+
 //引入民宿
 import minsu from '@/pages/minsu/minsu.vue'
 
@@ -20,14 +21,14 @@ import minsu from '@/pages/minsu/minsu.vue'
 import Food from '../../pages/Food'
 
 //以下为我的美团相关组件
-//--------------------------------------------
+
 import MyTuan from '@/pages/MyTuan'
 import Tuan from '@/pages/Tuan'
 import Order from '@/pages/Order'
 import Enshrine from '@/pages/Enshrine'
 import Ticket from '@/pages/Ticket'
 import User from '@/pages/User'
-// --------------------------------------------
+
 export default [
     //注册Login路由组件
     {
@@ -71,12 +72,14 @@ export default [
     // },
     //跳转到支付成功的界面
     {
+
         path:'/paysuccess',
         component:PaySuccess
     },
     {
 
-		path:'/mytuan',
+
+		  path:'/mytuan',
         component:MyTuan,
         children:[
             {
@@ -101,7 +104,11 @@ export default [
                 component:Order
             }
         ]
-	},
+	  },
+    // {
+    //   path:'/like',
+    //   component:Like
+    // },
     //美食页面的信息
     {
       path:'/food',

@@ -14,6 +14,7 @@ export const getOrderList = ()=>ajax.get('/order')
 //获取商店列表（美食列表）
 export const getShopList = ()=>ajax.get('/getpoilist')
 
+export const getLikeList = ()=>ajax.get('/like')
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
