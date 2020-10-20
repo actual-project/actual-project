@@ -48,7 +48,8 @@ export default [
     ,
     {  
         path:'/submitorder',
-        component:SubmitOrder
+        component:SubmitOrder,
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
         
     },
     //注册美食详情
@@ -74,7 +75,8 @@ export default [
     {
 
         path:'/paysuccess',
-        component:PaySuccess
+        component:PaySuccess,
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
     },
     {
 

@@ -12,7 +12,7 @@
               </tr>
               <tr class="second">
                 <td class="one">
-                  <a href="">shopInfo.nm</a>
+                  <a href="">{{foodInfo.name}}</a>
                 </td>
                 <td>¥{{foodInfo.price}}</td>
                 <td>
@@ -20,13 +20,14 @@
                     <button class="min-bus" @click="numPlus">
                        +
                     </button >
-                    <input type="text" class="input" value="1">
+                    <!-- <input type="text" class="input" value="1"> -->
+                    <button class="input">{{num}}</button>
                     <button class="plus-btn" @click="numDec">
                       -
                     </button>
                   </div>
                 </td>
-                <td>¥1028</td>
+                <td>¥{{totalPrice}}</td>
               </tr>
             </tbody>
           </table>
@@ -35,7 +36,7 @@
             <span>应付金额:
               <span>
               <i>￥</i>
-              159
+              {{totalPrice}}
             </span>
             </span>
           </div>
@@ -44,7 +45,7 @@
             <a href="">绑定新的手机号</a>
           </div>
           <div class="formSummit">
-            <input type="button" class="btn" value="提交订单">
+            <input type="button" class="btn" value="提交订单" @click="summitOrder">
           </div>
         </form>
       </div>
@@ -56,46 +57,52 @@ export default {
     data() {
       return {
       num:1,
-      shopInfo:{},
       foodInfo:{},
       }
     },
-    props:['shopId','foodId']
+    props:['foodId']
     ,
     mounted() {
-     
-      this.app();
-      this.getShopInfo();
-      
+      this.foodInfo = this.getFoodInfo();
+     // console.log(result+'^^^');
     },
     computed: {
+      //获取商品信息对象
       ...mapState({
-            foodDetaiList:state =>state.shopList.foodDetaiList
-      })
+            shopInfo:state =>state.shopList.shopInfo
+     }),
+     totalPrice(){
+				return this.foodInfo.price*this.num*1
+			}
+
     },
     methods:{
-      ...mapActions({
-        app:'getFoodDetailActions'
-      }),
-      getShopInfo(){
-        // console.log(this.foodDetaiList)
-        let result = this.foodDetaiList.find((x)=>x.id===this.shopId*1);
-        this.shopInfo = result;
-       // console.log(result+"@@")
+      //提交订单的时候跳转到提交订单的页面
+      summitOrder(){
+        // this.$router.push(`/cart?foodId=${good.id}`)
+        this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`)
       },
-      // getFoodInfo(){
-      //   this.foodInfo = this.shopInfo.filter((item)=>{
-      //     item.combo.id === this.foodId
-      //   })
-      // },
-      //点击加的时候加
-      numPlus(){
-        this.num++;
+      //获取foodid的对象
+      getFoodInfo(){
+       // console.log(111);
+        //return this.shopInfo.combo[0].id === this.foodId  ? this.shopInfo.combo[0] : this.shopInfo.consume[0]  
+        if(this.shopInfo.combo[0].id === this.foodId){
+            return this.shopInfo.combo[0]
+        }else{
+            return this.shopInfo.consume[0]
+        }
 
+      },
+      //点击加的时候加
+      numPlus(event){
+        event.preventDefault()
+        this.num++;
+       // this.total = num *foodInfo.price;
       },
       //点击减的时候减
       numDec(){
-          if(num>1){
+        event.preventDefault()
+          if(this.num>1){
             this.num--;
           }
         }
