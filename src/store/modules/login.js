@@ -15,9 +15,7 @@ const actions = {
     async login({ commit }, userInfo) {
 
         const result = await getLogin(userInfo)
-
         commit('RECIVE_USER', userInfo)
-        console.log(result);
         
         if (result.code == 200) {
             alert('成功登录')  

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div @click="toShopDetaile">
     <div class="shopList">
       <div class="image">
         <img :src="info.frontImg" />
@@ -18,7 +18,7 @@
 export default {
   name: "ShopList",
   props: {
-    info:Array,
+    info:Object,
     index:Number
   },
   data() {
@@ -27,7 +27,9 @@ export default {
     };
   },
   methods:{
-
+    toShopDetaile(){
+      this.$router.push(`/fooddtaile/${this.info.poiId}`)
+    }
   },
   computed: {
     
