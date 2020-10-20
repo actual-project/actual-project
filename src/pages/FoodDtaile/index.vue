@@ -536,7 +536,7 @@ export default {
     }
     .font{
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       flex-wrap: wrap;
       padding: 25px 0 0 16px;
       span{

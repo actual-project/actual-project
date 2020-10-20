@@ -9,8 +9,12 @@ import router from './router'
 //引入momentjs
 import moment from 'moment';
 import './utils/element.js'
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.css'
 Vue.config.productionTip = false
 Vue.prototype.moment = moment
+Vue.config.productionTip = false
+// Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 new Vue({
   render: h => h(App),
   //注册store
