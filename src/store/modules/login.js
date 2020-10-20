@@ -17,15 +17,22 @@ const actions = {
         const result = await getLogin(userInfo)
 
         commit('RECIVE_USER', userInfo)
-
+        console.log(result);
+        
         if (result.code == 200) {
-            alert('登录成功')
-        }else if(result.code == 502){
-            alert('密码错误')
-        }else if(result.code == 400) {
-            alert('用户名不存在')
-        }else{
-            throw new Error(result.message || '登录失败')
+            alert('成功登录')  
+            localStorage.setItem('MTuserInfo',JSON.stringify(result.userInfo))
+        } else{
+            
+            if(result.code == 502){
+                alert('密码错误')
+                return
+            }else if(result.code == 400) {
+                alert('用户名不存在')
+                return
+            }else{
+                throw new Error(result.message || '登录失败')  
+            }       
         }
     }
 

@@ -137,14 +137,24 @@ export default {
         alert("密码格式错误");
         return;
        }
-
+    
         try {
-          //分发action，实现登录
+          
+            //分发action，实现登录
           await this.$store.dispatch("login", { username, password });
           //跳转到主页
-           this.$router.replace('/')
+          //  this.$router.replace('/food')
+          console.log(JSON.parse(localStorage.getItem("MTuserInfo")).username);
+
+          let result = JSON.parse(localStorage.getItem("MTuserInfo"))
+
+          if(result.username == this.username){
+              this.$router.replace('/food')
+          }
+
+
         } catch (error) {
-          alert(error)
+          
         }
     }
 
