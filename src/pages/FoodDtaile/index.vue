@@ -201,7 +201,7 @@ export default {
   },
   props:["id"],
   mounted() {
-    // this.getFoodShop()
+    this.getFoodShop()
     //从浏览器缓存获取用户信息
     this.userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
     // 获取商家列表 以及推荐商店
@@ -209,9 +209,7 @@ export default {
     this.getShopLike()
     this.getRightShop()
     this.getComment()
-    //获取当前商家对象
-    this.getCurrentShop()
-    
+   
   },
   computed: {
     ...mapState({
@@ -277,6 +275,7 @@ export default {
     //根据id 获取对应店家美食详情
   async  getFoodShop(){
         let id = this.$route.params.id*1
+        console.log('id',id)
         const result = await getFoodDetail()
         this.shopInfo = result.find(item=>{
           if(item.id === id){
@@ -298,12 +297,6 @@ export default {
       getRightShop:'getRightShopLikeListActions',
       getComment:'getCommentListActions'
      }),
-    //根据商店id获取商店对象
-    async getCurrentShop(){
-      let result = await getFoodDetail()
-      this.shopInfo = result.find(item =>item.id === 1816984255)
-      this.getShopInfoMutations(this.shopInfo)
-    },
     //去下单
     toOrder(good){
      // console.log(good)
