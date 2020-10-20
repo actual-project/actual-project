@@ -5,6 +5,7 @@ const state ={
     shopLikeList:[],//猜你喜欢商家列表
     rightLikeList:[],//右侧猜你喜欢商家列表
     commentInfo:{},//食客评论
+    shopInfo:{} //商家对象
 }
 const mutations ={
     //获取商品详情列表的mutation
@@ -28,6 +29,12 @@ const mutations ={
     getCommentMutations(state,commentInfo){
         state.commentInfo = commentInfo
     },
+    //获取商家对象mutations
+    getShopInfoMutations(state,shopInfo){
+        console.log('shopInfo',shopInfo)
+        state.shopInfo = shopInfo
+    }
+
 }
 const actions ={
     //获取商品详情列表的actions

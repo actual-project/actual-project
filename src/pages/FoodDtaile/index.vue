@@ -63,6 +63,7 @@
               <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
             </div>
             <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <i>团</i>
           </div>
         </div>
         <!-- 代金卷 -->
@@ -132,6 +133,7 @@
           </p>
         </div>
       </div>
+      <Pagination/>
     </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
@@ -159,7 +161,8 @@
 
 <script>
 import {getFoodDetail} from '@/api'
-import {mapState,mapActions} from 'vuex'
+import {mapState,mapActions,mapMutations} from 'vuex'
+import Pagination from '@/components/Pagination'
 export default {
   name: 'FoodDtaile',
   data() {
@@ -171,9 +174,12 @@ export default {
         // id:1816984255 //当前商户id
       }
   },
+  components:{
+    Pagination
+  },
   props:["id"],
   mounted() {
-    this.getFoodShop()
+    // this.getFoodShop()
     //从浏览器缓存获取用户信息
     this.userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
     // 获取商家列表 以及推荐商店
@@ -203,6 +209,7 @@ export default {
             return item
           }
         })
+        this.getShopInfoMutations(this.shopInfo)
     },
     //点赞
     gaveLike(){
@@ -221,6 +228,7 @@ export default {
     async getCurrentShop(){
       let result = await getFoodDetail()
       this.shopInfo = result.find(item =>item.id === 1816984255)
+      this.getShopInfoMutations(this.shopInfo)
     },
     //去下单
     toOrder(good){
@@ -228,7 +236,11 @@ export default {
      // console.log(1111)
       //console.log(this.shopInfo.id)
       this.$router.push(`/cart?shopId=${this.shopInfo.id}&foodId=${good.id}`)
-    }
+    },
+    //commitMutation
+    ...mapMutations({
+      getShopInfoMutations:'getShopInfoMutations'
+    })
   },
  
 }
@@ -555,7 +567,7 @@ export default {
     box-sizing: border-box;
     border: 1px solid #eee;
     border-radius: 5px;
-        //加阴影
+    //加阴影
     box-shadow: 0 0 4px 2px #ddd;
     border-radius: 5px;
 
@@ -584,6 +596,7 @@ export default {
       display: flex;
       padding-right: 10px;
       margin-top: 30px;
+      
       .avatat{
         width: 10%;
         img{
@@ -620,6 +633,7 @@ export default {
             padding-top: 10px;
             cursor: pointer;
             display: flex;
+            flex-wrap: wrap;
             margin-bottom: 40px;
             .img-item{
               width: 16%;
