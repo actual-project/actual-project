@@ -8,6 +8,8 @@ import Cart from '../../pages/Cart'
 //引入美食详情
 import FoodDtaile from '@/pages/FoodDtaile'
 import Like from '../../pages/Like'
+import SubmitOrder from '../../pages/SubmitOrder'
+import PaySuccess from '../../pages/PaySuccess'
 
 
 export default [
@@ -26,7 +28,12 @@ export default [
         path:'/Cart',
         component:Cart
     }
-,
+    ,
+    {  
+        path:'/submitorder',
+        component:SubmitOrder
+        
+    },
     //注册美食详情
     {
         path:"/fooddtaile/:id",
@@ -44,6 +51,11 @@ export default [
     {
 		path:'/like',
 		component:Like
-	}
+    },
+    //跳转到支付成功的界面
+    {
+        path:'/paysuccess',
+        component:PaySuccess
+    }
 
 ]

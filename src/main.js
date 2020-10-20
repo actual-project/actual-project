@@ -9,11 +9,11 @@ import router from './router'
 import './utils/element.js'
 Vue.config.productionTip = false
 // 引入element-ui 组件库----所有的和这个库相关的组件都引入进来了
-import ElementUI from 'element-ui';
+///import ElementUI from 'element-ui';
 // // 引入element-ui 组件库中所有的样式
-import 'element-ui/lib/theme-chalk/index.css';
+//import 'element-ui/lib/theme-chalk/index.css';
 // 声明使用插件
-Vue.use(ElementUI);
+//Vue.use(ElementUI);
  //import { Button } from 'element-ui';
 // Vue.component(Button.name, Button);
 
