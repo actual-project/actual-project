@@ -16,11 +16,14 @@ export const getEnshrineList = ()=>ajax.get('/buying')
 export const getOrderList = ()=>ajax.get('/order')
 //获取商店列表（美食列表）
 export const getShopList = ()=>ajax.get('/getpoilist')
+
 //获取注册请求
-export const getRegister = (username,password)=>ajax.post('/regiset',{username,password})
-export const getLikeList = ()=>ajax.get('/like')
+export const getRegister = ({username,password})=>ajax.post('/register',{username,password})
 //获取登陆请求
 export const getLogin = ({username,password})=>ajax.post('/login',{username,password})
+
+export const getLikeList = ()=>ajax.get('/like')
+
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论

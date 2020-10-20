@@ -146,17 +146,10 @@ export default {
         return;
       }
 
-      //  //分发action，实现注册
-      // await this.$store.dispatch('register',{username,password})
-      //  //成功则跳转到登陆界面
-      //  this.$router.replace('./login')
       try {
-        await this.$store.dispatch("register", { username, password });
-        // 成功则跳转到登录界面
-        
+        await this.$store.dispatch("register", { username, password });  
+            // 成功则跳转到登录界面
            this.$router.replace("/login");
-     
-       
       } catch (error) {
         alert(error);
       }
