@@ -9,10 +9,7 @@ fieldset, lengend, button, input, textarea,
 th, td {
     margin: 0;
     padding: 0;
-<<<<<<< HEAD
-=======
     color: #666;
->>>>>>> 2c229e142070d928d8162f5492ec33b365ee98c4
 }
 /* 
  *该CSS文件，清除浏览器所有默认样式，可适用于其他网站页面，基础设置与风格设置

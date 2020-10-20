@@ -15,13 +15,13 @@ export const getOrderList = ()=>ajax.get('/order')
 export const getShopList = ()=>ajax.get('/getpoilist')
 
 export const getLikeList = ()=>ajax.get('/like')
-<<<<<<< HEAD
 
 //获取注册请求
-export const getRegister = (username,password)=>ajax.post('/regiset',{username,password})
-=======
+export const getRegister = ({username,password})=>ajax.post('/register',{username,password})
+//获取登陆请求
+export const getLogin = ({username,password})=>ajax.post('/login',{username,password})
+
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
 export const getCommentList = ()=>ajax.get('/pinglun')
->>>>>>> 2c229e142070d928d8162f5492ec33b365ee98c4
