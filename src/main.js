@@ -6,20 +6,16 @@ import App from './App.vue'
 import store from '@/store'
 //引入路由器对象
 import router from './router'
+//引入momentjs
+//import moment from 'moment'
 import './utils/element.js'
+// import VueAwesomeSwiper from 'vue-awesome-swiper'
+// import 'swiper/css/swiper.css'
 Vue.config.productionTip = false
-// 引入element-ui 组件库----所有的和这个库相关的组件都引入进来了
-///import ElementUI from 'element-ui';
-// // 引入element-ui 组件库中所有的样式
-//import 'element-ui/lib/theme-chalk/index.css';
-// 声明使用插件
-//Vue.use(ElementUI);
- //import { Button } from 'element-ui';
-// Vue.component(Button.name, Button);
 
-// 引入element.js---该文件中的代码会执行一次
-//import './utils/element.js'
-
+Vue.prototype.moment = moment
+Vue.config.productionTip = false
+// Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
 
 new Vue({
   render: h => h(App),

@@ -52,7 +52,8 @@
 </template>
 <script>
 export default {
-  name:'Cart'
+  name:'Cart',
+  props:['shopId','foodId']
   }
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
