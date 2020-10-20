@@ -20,7 +20,7 @@
     <div class="content">
       <div class="signup-form">
         <div class="sheet">
-          <form action="" method="">
+          <form action="" method="" >
             <!-- 手机号输入 -->
             <div class="form-field form-field--mobile">
               <label class="font-left">手机号</label>
@@ -69,9 +69,9 @@
                 type="submit"
                 name="commit"
                 value="同意以下协议并注册"
-                @click="regiset"
+                @click="register"
               />
-              <a target="_blank"></a>
+              <!-- <a target="_blank"></a> -->
             </div>
           </form>
         </div>
@@ -104,7 +104,7 @@
   </div>
 </template>
 <script>
-import { getRegister } from "@/api";
+
 export default {
   name: "Register",
   data() {
@@ -116,19 +116,50 @@ export default {
   },
   methods: {
     //注册
-    register() {
+    async register(event) {
+     event.preventDefault();
       //收集表单项数据
       const { username, password, password2 } = this;
       //前端验证
-      let usernameReg = /^[a-zA-Z0-9]{/
-      //判断两次密码是否一致
-     if(password !== password2) {
-       alert('两次密码不一致')
-       return
-     }
+      let usernameReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+      let passwordReg = /^\d{4,6}/;
 
-     //分发action，实现注册
-     
+      //手机号与密码不能为空
+      if (!username || !password) {
+        alert("手机号/密码部能为空");
+        return;
+      }
+
+      //判断手机号码是否符合要求
+      if (!usernameReg.test(username)) {
+        alert("手机号码格式错误");
+        return;
+      }
+      //判断密码格式
+      if (!passwordReg.test(password)) {
+        alert("密码格式错误");
+        return;
+      }
+      //判断两次输入密码
+      if (password !== password2) {
+        alert("两次输入的密码不一致");
+        return;
+      }
+
+      //  //分发action，实现注册
+      // await this.$store.dispatch('register',{username,password})
+      //  //成功则跳转到登陆界面
+      //  this.$router.replace('./login')
+      try {
+        await this.$store.dispatch("register", { username, password });
+        // 成功则跳转到登录界面
+        setTimeout(() => {
+           this.$router.replace("/login");
+        }, 1000);
+       
+      } catch (error) {
+        alert(error);
+      }
     },
   },
 };

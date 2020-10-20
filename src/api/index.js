@@ -15,6 +15,9 @@ export const getOrderList = ()=>ajax.get('/order')
 export const getShopList = ()=>ajax.get('/getpoilist')
 //获取注册请求
 export const getRegister = (username,password)=>ajax.post('/regiset',{username,password})
+export const getLikeList = ()=>ajax.get('/like')
+//获取登陆请求
+export const getLogin = ({username,password})=>ajax.post('/login',{username,password})
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
