@@ -24,7 +24,12 @@
             <!-- 手机号输入 -->
             <div class="form-field form-field--mobile">
               <label class="font-left">手机号</label>
-              <input type="text" name="mobile" class="f-text J-mobile" />
+              <input
+                type="text"
+                name="mobile"
+                class="f-text J-mobile"
+                v-model="username"
+              />
               <span class="J-unitive-tip unitive-tip"
                 >注册成功后，全美团通用</span
               >
@@ -45,7 +50,7 @@
             <!-- 创建密码 -->
             <div class="form-field form-field--pwd">
               <label for="">创建密码</label>
-              <input type="text" class="f-text" />
+              <input type="text" class="f-text" v-model="password" />
               <div class="pw-strength">
                 <span>弱</span>
                 <span>中</span>
@@ -55,7 +60,7 @@
             <!-- 确认密码 -->
             <div class="form-field form-field--pwd2">
               <label for="">确认密码</label>
-              <input type="text" class="f-text" />
+              <input type="text" class="f-text" v-model="password2" />
             </div>
             <!-- 注册 -->
             <div class="form-field regiter-btn">
@@ -64,6 +69,7 @@
                 type="submit"
                 name="commit"
                 value="同意以下协议并注册"
+                @click="regiset"
               />
               <a target="_blank"></a>
             </div>
@@ -75,27 +81,56 @@
           class="f1"
           href="https://rules-center.meituan.com/rules-detail/4"
           target="_blank"
-          >《美团点评用户服务协议》</a>
+          >《美团点评用户服务协议》</a
+        >
         <a
           class="f1"
           href="https://rules-center.meituan.com/rules-detail/2"
           target="_blank"
-          >《美团点评隐私政策》</a>
+          >《美团点评隐私政策》</a
+        >
       </div>
     </div>
     <div class="footer">
       <p class="footer-item">
-          ©
+        ©
         <a class="f1" href="https://www.meituan.com">meituan.com</a> &nbsp;
-        <a class="f1" target="_blank" href="http://www.miibeian.gov.cn/">京ICP证070791号</a>&nbsp;
+        <a class="f1" target="_blank" href="http://www.miibeian.gov.cn/"
+          >京ICP证070791号</a
+        >&nbsp;
         <span class="f1">京公网安备11010502025545号</span>
       </p>
     </div>
   </div>
 </template>
 <script>
+import { getRegister } from "@/api";
 export default {
   name: "Register",
+  data() {
+    return {
+      username: "", //手机号
+      password: "", //密码
+      password2: "", //确认密码
+    };
+  },
+  methods: {
+    //注册
+    register() {
+      //收集表单项数据
+      const { username, password, password2 } = this;
+      //前端验证
+      let usernameReg = /^[a-zA-Z0-9]{/
+      //判断两次密码是否一致
+     if(password !== password2) {
+       alert('两次密码不一致')
+       return
+     }
+
+     //分发action，实现注册
+     
+    },
+  },
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
@@ -118,7 +153,6 @@ export default {
 }
 //
 .font-left() {
-  
   display: block;
   position: absolute;
   left: 0;
@@ -364,36 +398,35 @@ export default {
       zoom: 1;
       cursor: pointer;
       font-size: 13px;
-      &>a{
+      & > a {
         color: #fe8c00;
         text-decoration: none;
-        &:hover{
-           color: #ffbd00 !important;
+        &:hover {
+          color: #ffbd00 !important;
         }
-      } 
-    }     
+      }
+    }
   }
-  .footer{
-    border-top: 1px solid #EEE;
+  .footer {
+    border-top: 1px solid #eee;
     padding-top: 20px;
     text-align: center;
     font-size: 13px;
-    .footer-item{
+    .footer-item {
       font-size: 12px;
       font-family: initial;
-      a{
+      a {
         font-size: 13px;
         color: #999;
         text-decoration: none;
-        &:hover{
+        &:hover {
           color: #999 !important;
         }
       }
-      span{
-        color:#999 ;
+      span {
+        color: #999;
       }
     }
-    
   }
 }
 </style>

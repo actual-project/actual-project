@@ -11,3 +11,6 @@ export const getLike = ()=>ajax.get('/like')
 export const getShopList = ()=>ajax.get('/getpoilist')
 
 export const getLikeList = ()=>ajax.get('/like')
+
+//获取注册请求
+export const getRegister = (username,password)=>ajax.post('/regiset',{username,password})
