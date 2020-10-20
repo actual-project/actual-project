@@ -1,5 +1,5 @@
 <template>
-  <div class="detail-warp ">
+  <div class="detail-warp " v-if="shopInfo">
     <!-- 导航 -->
     <div class="breadcrumbs">
       <a href="javascript:;">北京美团 > </a>
@@ -7,259 +7,158 @@
       <a href="javascript:;">北京火锅</a>
     </div> 
     <!-- 店铺介绍 -->
-    <div class="dalhead">
-      <h2>福口居（北太平庄店）</h2>
-      <p class="shop-detail"><el-rate v-model="value1"></el-rate>{{value1}}分人均￥999</p>
-      <p class="shop-address">地址：海淀区北太平庄北三环中路40号（近国美）</p>
-      <p class="shop-address">电话：010-62382412</p>
-      <p class="shop-address last">营业时间：周一至周日 11:00-14:30 16:00-22:30</p>
+    <div class="dalhead" v-if="shopInfo">
+      <h2>{{shopInfo.name}}</h2>
+      <p class="shop-detail"><el-rate :value="shopInfo.score"></el-rate>{{shopInfo.score}}分人均￥{{shopInfo.meanprice}}</p>
+      <p class="shop-address">地址：{{shopInfo.address}}</p>
+      <p class="shop-address">电话：{{shopInfo.phone}}</p>
+      <p class="shop-address last">营业时间：{{shopInfo.time}}</p>
       <div class="service-wrap">
         <div>
-          <i class="iconfont">图标</i>
+          <i class="iconfont icon-wuxianwangWi-Fixianxing"></i>
           <span>提供wifi</span>
         </div>
         <div>
-          <i class="iconfont">图标</i>
+          <i class="iconfont icon-tingche"></i>
           <span>停车位</span>
         </div>
       </div>
+      <div class="shop-logo">
+        <img :src="shopInfo.url" alt="" class="first">
+        <ul class="shop-phone">
+          <li v-for="img in shopInfo.pwall" :key="img">
+            <img :src="img" alt="">
+          </li>
+        </ul>
+      </div>
     </div>
+      <!-- 猜你喜欢右侧 -->
     <div class="food-wrap clearfix">
-        
-    <p class="shop-tit">商家团购及优惠</p>
-    <!-- 未登录 -->
-    <div class="login" v-if="!isLogin">
-      <img src="../../static/images/shopDetail/toLogin.png" alt="">
-      <p>请登录后查看详细团购优惠</p>
-      <el-button round>立即登录</el-button>
-    </div>
-      <!-- 菜品介绍 -->
-    <div class="foodList" v-else>
-      <p class="tit">5款堂食套餐</p>
-      <div class="footItem">
-        <img src="" alt="">
-        <div>
-          <p class="foot-name">XXXXX</p>
-          <p class="slod">已售xx</p>
-          <p class="price">￥<span>1028</span><i>门店价￥1335</i></p>
+      <div class="islike">
+        <p class="like-tit">猜你喜欢</p>
+        <div v-for="item in rightLikeList" :key="item.id" class="item-like">
+            <img :src="item.img" alt="">
+            <p class="like-name">{{item.name}}</p>
+            <p class="like-dingwei">{{item.adress}}</p>
+            <p class="like-price">￥{{item.pirce}}</p>
         </div>
       </div>
-    </div>
-    <!-- 猜你喜欢 -->
-    <div class="islike">
-      <p class="like-tit">猜你喜欢</p>
-      <div>
-        <img src="https://p1.meituan.net//bbia/f58fafc0be2bc3a69dfcac20260888c2201000.jpg@188w_106h_1e_1c" alt="">
-        <p class="like-name">晓寿司（望京soho店）</p>
-        <p class="like-dingwei">望京</p>
-        <p class="like-price">￥98.0</p>
+      
+      <p class="shop-tit">商家团购及优惠</p>
+      <!-- 未登录 -->
+      <div  class="login" v-if="userInfo">
+        <img src="../../static/images/shopDetail/toLogin.png" alt="">
+        <p>请登录后查看详细团购优惠</p>
+        <el-button round>立即登录</el-button>
       </div>
-      <div>
-        <img src="https://p0.meituan.net//dpmerchantpic/b4f08dbd06a9f02c6aed7ab24b09acbd129481.jpg@188w_106h_1e_1c" alt="">
-        <p class="like-name">晓寿司（望京soho店）</p>
-        <p class="like-dingwei">望京</p>
-        <p class="like-price">￥98.0</p>
+      <div  v-else>
+              <!-- 菜品介绍 -->
+        <div class="foodList" v-if="shopInfo.combo">
+          <p class="tit">{{shopInfo.combo.length}}款堂食套餐</p>
+          <div class="footItem" v-for="item in shopInfo.combo" :key="item.id">
+            <img :src="item.url" alt="">
+            <div>
+              <p class="foot-name">{{item.name}}</p>
+              <p class="slod">已售{{item.sold}}</p>
+              <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
+            </div>
+            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+          </div>
+        </div>
+        <!-- 代金卷 -->
+        <div class="foodList" v-if="shopInfo.consume">
+          <p class="tit">{{shopInfo.consume.length}}款代金卷</p>
+          <div class="footItem" v-for="item in shopInfo.consume" :key="item.id">
+            <div class="bac">
+              <span>￥<i>{{item.price}}</i></span>
+              <p>门店价￥{{item.shopprice}}</p>
+            </div>
+            <div>
+              <p class="foot-name">{{item.name}}</p>
+              <p class="slod">已售{{item.sold}}</p>
+              <!-- <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p> -->
+            </div>
+            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+          </div>
+        </div>
+
       </div>
-    </div>
-    </div>
+      </div>
     <!-- 推荐菜 -->
     <p class="shop-tit">推荐菜</p>
-    <div class="recommend">
+    <div class="recommend" v-if="shopInfo.recommendList">
       <ul class="img">
-        <li class="img-item">
-          <img src="https://p0.meituan.net/bbia/e5a2bda2c4bd13e3fae23e16a8a468d4447156.jpg@130w_130h_1e_1c" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
-        </li>
-        <li class="img-item">
-          <img src="https://p0.meituan.net/bbia/e5a2bda2c4bd13e3fae23e16a8a468d4447156.jpg@130w_130h_1e_1c" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
-        </li>
-        <li class="img-item">
-          <img src="https://qcloud.dpfile.com/pc/en3u7B4yLwPgM8zHWpHXrXa04lTlbaycSTVhy9_bd55SVYM2_sJPKT7vzoJzDGX75g_3Oo7Z9EXqcoVvW9arsw.jpg" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
-        </li>
-        <li class="img-item">
-          <img src="https://p0.meituan.net/bbia/e5a2bda2c4bd13e3fae23e16a8a468d4447156.jpg@130w_130h_1e_1c" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
-        </li>
-        <li class="img-item">
-          <img src="https://p0.meituan.net/bbia/e5a2bda2c4bd13e3fae23e16a8a468d4447156.jpg@130w_130h_1e_1c" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
-        </li>
-        <li class="img-item">
-          <img src="https://p0.meituan.net/bbia/e5a2bda2c4bd13e3fae23e16a8a468d4447156.jpg@130w_130h_1e_1c" alt="极品羊肉">
-          <p>极品羊肉￥32</p>
+        <li class="img-item" v-for="item in shopInfo.recommendList" :key="item.id">
+          <img :src="item.url" alt="极品羊肉">
+          <p>{{item.name}}￥{{item.price}}</p>
         </li>
       </ul>
       <div class="font">
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
-        <span>火kakak锅</span>
+        <span v-for="item in shopInfo.recommend2" :key="item">{{item}}</span>
       </div>
     </div>
     <!-- 评论 -->
-    <p class="shop-tit two">XXXX条网友点评</p>
+    <p class="shop-tit two">{{commentInfo.total}}条网友点评</p>
     <div class="review-wrap">
       <ul class="review-top">
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
-        </li>
-        <li class="rt-item">
-          <span>回头看(999)</span>
+        <li class="rt-item" v-for="tag in commentInfo.tags" :key="tag.tag">
+          <span>{{tag.tag}}({{tag.count}})</span>
         </li>
       </ul>
       <p class="only">
         <span class="yes"></span>
         只看有图片的评论
       </p>
-      <div class="review-item">
+      <div class="review-item" v-for="item in commentInfo.comments" :key="item.userId">
         <div class="avatat">
-          <img src="https://img.meituan.net/avatar/__49543537__4371130.jpg@60w_60h_1e_1c" alt="" >
+          <img :src="item.userUrl?item.userUrl:'/images/01.jpg'" alt="" >
         </div>
         <div class="review-detail">
-          <div class="name">未闻花名mqy</div>
-          <div class="date-time">2020年04月22日</div>
-          <el-rate v-model="value1"></el-rate>
-          <p class="content">团的4人套餐，量多少有点儿不够，又加了一些，铜锅吃起来还是很舒服的。吃火锅，还真是费酒啊，4个人不知不觉就喝了一件儿，差不多够再点三盘肉了，以后一定要克制，少喝酒，多吃肉。整体来说，环境不错，菜品味道也可以，当然也可能是因为一起吃饭的人的关系。</p>
-          <p class="reply">商家回复：亲，感谢您的惠顾，祝您生活愉快、天天开心！</p>
+          <div class="review-border">
+          <div class="name">{{item.userName}}</div>
+          <!-- <div class="date-time">{{moment(item.commentTime).format('MMMM Do YYYY, h:mm:ss a')}}</div> -->
+          <el-rate :value="item.star/10" ></el-rate>
+          <p class="content">{{item.comment}}</p>
+          <p class="reply">{{item.merchantComment?'商家回复：'+item.merchantComment:''}}</p>
           <div class="showImg">
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
+            <div class="img-item" v-for="pic in item.picUrls" :key="pic.id">
+              <img :src="pic.url" alt="">
             </div>
           </div>
-          <i class="iconfont zan">赞</i>
-        </div>
-      </div>
-      <div class="review-item">
-        <div class="avatat">
-          <img src="https://img.meituan.net/avatar/__49543537__4371130.jpg@60w_60h_1e_1c" alt="" >
-        </div>
-        <div class="review-detail">
-          <div class="name">未闻花名mqy</div>
-          <div class="date-time">2020年04月22日</div>
-          <el-rate v-model="value1"></el-rate>
-          <p class="content">团的4人套餐，量多少有点儿不够，又加了一些，铜锅吃起来还是很舒服的。吃火锅，还真是费酒啊，4个人不知不觉就喝了一件儿，差不多够再点三盘肉了，以后一定要克制，少喝酒，多吃肉。整体来说，环境不错，菜品味道也可以，当然也可能是因为一起吃饭的人的关系。</p>
-          <p class="reply">商家回复：亲，感谢您的惠顾，祝您生活愉快、天天开心！</p>
-          <div class="showImg">
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
-            <div class="img-item">
-              <img src="https://p0.meituan.net/shaitu/88555f3f0ccd93a7ca77f6ff6b481a5c315542.jpg" alt="">
-            </div>
+
           </div>
-          <i class="iconfont zan">赞</i>
+          <p class="zan" @click="gaveLike">
+            <i class="iconfont icon-dianzan-copy"></i> 赞
+          </p>
         </div>
       </div>
     </div>
+    <!-- 分页组件 -->
+    <!-- <el-pagination
+      class="pagetion"
+      background
+      layout="prev, pager, next"
+      :total="9860">
+    </el-pagination> -->
+    <!-- 附近商家 -->
+    <p class="shop-tit">附近商家</p>
+    <el-card>
+      <div  class="footer-shop">
+        <div class="footer-item" v-for="item in shopLikeList" :key="item.id">
+          <img :src="item.headIcon" alt="">
+          <p class="footer-name">{{item.name}}</p>
+          <p class="footer-score">{{item.score}}分&nbsp;&nbsp;&nbsp;{{item.sold}}人消费</p>
+          <p class="footer-hot">{{item.park}}</p>
+          <p class="footer-price">￥<span>{{item.avgPrice}}</span>起</p>
+        </div>
+      </div>
+    </el-card>
+
   </div>
 </template>
 
 <script>
-import {getFoodDetail,getShopList} from '@/api'
+import {getFoodDetail} from '@/api'
 import {mapState,mapActions} from 'vuex'
 export default {
   name: 'FoodDtaile',
@@ -267,15 +166,31 @@ export default {
       return {
         shopInfo:{},//当前商家
         value1:4,//评价评分
-        isLogin:true,//是否登录
+        // isLogin:true,//是否登录
+        userInfo:{},//当前登录用户
+        // id:1816984255 //当前商户id
       }
   },
+  props:["id"],
   mounted() {
     this.getFoodShop()
+    //从浏览器缓存获取用户信息
+    this.userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
+    // 获取商家列表 以及推荐商店
+    this.getShop()
+    this.getShopLike()
+    this.getRightShop()
+    this.getComment()
+    //获取当前商家对象
+    this.getCurrentShop()
+    
   },
   computed: {
     ...mapState({
-      shopLikeList:state=>state.shopList.shopLikeList
+      shopLikeList:state=>state.shopList.shopLikeList,
+      rightLikeList:state =>state.shopList.rightLikeList,
+      commentInfo:state =>state.shopList.commentInfo,
+      shopList:state =>state.shopList.shopList
     })
   },
   methods: {
@@ -288,12 +203,33 @@ export default {
             return item
           }
         })
+    },
+    //点赞
+    gaveLike(){
+      if(!this.userInfo.username){
+        alert('请先登录')
+      }
+    },
+    //获取对应action
+    ...mapActions({
+      getShop:'getShopLikeListActions',
+      getShopLike:'getShopListActions',
+      getRightShop:'getRightShopLikeListActions',
+      getComment:'getCommentListActions'
+     }),
+    //根据商店id获取商店对象
+    async getCurrentShop(){
+      let result = await getFoodDetail()
+      this.shopInfo = result.find(item =>item.id === 1816984255)
+    },
+    //去下单
+    toOrder(good){
+      console.log(1111)
+      console.log(this.shopInfo.id)
+      this.$router.push(`/cart?shopId=${this.shopInfo.id}&foodId=${good.id}`)
     }
   },
-  ...mapActions({
-    getShopListActions:'getShopListActions',
-    getShopLikeListActions:"getShopLikeListActions"
-  })
+ 
 }
 </script>
 
@@ -302,18 +238,27 @@ export default {
   width: 1200px;
   margin: 0 auto;
   position: relative;
+  &::before{
+    content: '';
+    display: block;
+    overflow: hidden;
+  }
   // 路径导航
   .breadcrumbs{
     width: 100%;
-    background-color: antiquewhite;
+    background-color: #fff;
     margin: 20px 20px 20px 0;
   }
   // 商家介绍
   .dalhead{
+    //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
+    position: relative;
     // width: 100%;
     height: 300px;
     padding: 15px;
-    background-color: greenyellow;
+    background-color: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
     margin-bottom: 20px;
@@ -325,7 +270,8 @@ export default {
       font-weight: normal;
     }
     .shop-detail{
-      border-bottom: 1px solid #F8F8F8;
+      width: 65%;
+      border-bottom: 1px solid #ddd;
       height: 30px;
       line-height: 24px;
       display: flex;
@@ -336,21 +282,54 @@ export default {
       }
     }
     .shop-address{
+      width: 65%;
       font-size: 14px;
       height: 20px;
       line-height: 20px;
       //vertical-align: top;
-      margin-top: 10px;
+      margin-top: 15px;
       &.last{
-        padding-bottom: 10px;
-        border-bottom: 1px solid #F8F8F8;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ddd;
       }
     }
+
     .service-wrap{
       display: flex;
       div{
         display: flex;
         flex-direction: column;
+        text-align: center;
+        margin-right: 20px;
+        padding-top: 20px;
+        i{
+          font-size: 30px;
+        }
+      }
+    }
+    //商家照片墙
+    .shop-logo{
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 32%;
+      margin: 20px 20px 0 0;
+      .first{
+        width: 100%;
+        height: 100%;
+        border-radius: 5px;
+      }
+      .shop-phone{
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+        li{
+          padding: 4px;
+          img{
+            border-radius: 10px;
+            width: 100%;
+          }
+        }
       }
     }
   }
@@ -365,13 +344,17 @@ export default {
     }
   }
   //未登录
-  .login{
-    float: left;
+    .login{
     width: 80%;
+    // float: left;
     height: 210px;
     padding: 30px 0;
-    background: skyblue;
+    background: #fff;
     text-align: center;
+    //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
     img{
       display: block;
       margin: 0 auto;
@@ -390,64 +373,150 @@ export default {
   }
   //
   .foodList{
-    float: left;
-    width: 80%;
-    box-sizing: border-box;
-    padding: 10px;
-    background-color: hotpink;
+    position: relative;
+    //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
+    margin: 20px 0;
+    width: 77%;
+    // float: left;
+    // height: 210px;
+    padding: 20px 20px 30px 20px;
+    background: #fff;
     .tit{
-      font-size: 28px;
-      font-weight: bold;
+      font-size: 16px;
+      line-height: 26px;
+      font-weight: 700;
+      margin-bottom: 15px;
     }
     .footItem{
-      height: 200px;
+      height: 124px;
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      &:last-of-type{
+        border-bottom: none;
+      }
+      img{
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+        margin-right: 20px;
+      }
+      .bac{
+        width: 150px;
+        height: 100px;
+        border-radius: 5px;
+        margin-right: 20px;
+        background-color: #EEEFF4;
+        span{
+          display: block;
+          border-bottom: 1px dashed #ccc;
+          line-height: 36px;
+          margin-bottom: 9px;
+          padding: 9px 0;
+          text-align: center;
+          color: #f60;
+          i{
+            font-size: 30px;
+          }
+        }
+        p{
+          text-align: center;
+        }
+      }
+      .foot-name{
+        font-size: 16px;
+        line-height: 22px;
+        cursor: pointer;
+      }
+      .slod{
+        font-size: 12px;
+        color: #666;
+        line-height: 17px;
+        margin: 1px 0 22px;
+        cursor: pointer;
+      }
+      .price{
+        color: #f60;
+        cursor: pointer;
+        font-size: 12px;
+        span{
+          font-size: 30px;
+        }
+        i{
+          color: #999;
+          margin-left: 10px;
+        }
+      }
+
+    }
+    .buy{
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #FF9900;
+      border-color: #FF9900;
+      color: #fff;
     }
   }
   //猜你喜欢列表
   .islike{
     // float: right;
+        //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
     position: absolute;
     right: 0;
+    top: 451px;
     background: #fff;
     border: 1px solid #eee;
     border-radius: 5px;
     width:18%;
     padding: 10px 20px;
     box-sizing: border-box;
-    height: 1000px;
+    // height: 1000px;
     .like-tit{
       font-size: 16px;
       line-height: 22px;
       margin: 0 0 12px;
       color: #333;
     }
-    img{
-      display: block;
-      margin: 0 auto;
-      width: 100%;
-    }
-    .like-name{
-      font-size: 14px;
-    line-height: 20px;
-    color: #222;
-    margin: 10px 0 4px;
-    }
-    .like-dingwei{
-      font-size: 12px;
-    line-height: 17px;
-    color: #999;
-    }
-    .like-price{
-      font-size: 22px;
-    color: #f60;
-    line-height: 27px;
+    //每一家店
+    .item-like{
+      margin-bottom: 20px;
+      img{
+        display: block;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .like-name{
+        font-size: 14px;
+      line-height: 20px;
+      color: #222;
+      margin: 10px 0 4px;
+      }
+      .like-dingwei{
+        font-size: 12px;
+      line-height: 17px;
+      color: #999;
+      }
+      .like-price{
+        font-size: 22px;
+      color: #f60;
+      line-height: 27px;
+      }
     }
 
   }
   //推荐菜
   .recommend{
+        //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
+    margin-top: 20px;
     height: 400px;
-    background: yellow;
+    background: #fff;
     width: 80%;
     box-sizing: border-box;
     padding: 30px 20px;
@@ -467,7 +536,7 @@ export default {
     }
     .font{
       display: flex;
-      justify-content: start;
+      justify-content: flex-start;
       flex-wrap: wrap;
       padding: 25px 0 0 16px;
       span{
@@ -479,12 +548,16 @@ export default {
   }
   // 评论区
   .review-wrap{
-    background: red;
+    background: #fff;
     width: 80%;
     padding: 0 20px 40px;
     box-sizing: border-box;
     border: 1px solid #eee;
     border-radius: 5px;
+        //加阴影
+    box-shadow: 0 0 4px 2px #ddd;
+    border-radius: 5px;
+
     .review-top{
       display: flex;
       flex-wrap: wrap;
@@ -506,7 +579,7 @@ export default {
       font-size: 14px;
     }
     .review-item{
-      background: purple;
+      background:#fff;
       display: flex;
       padding-right: 10px;
       margin-top: 30px;
@@ -519,49 +592,108 @@ export default {
         }
       }
       .review-detail{
-        border-bottom: 1px solid #eee;
         position: relative;
-        .name{
-          font-size: 16px;
-        }
-        .date-time{
-          float: right;
-          font-size: 12px;
-        }
-        .el-rate{
-          margin: 5px 0 15px 0;
-        }
-        .content{
-          font-size: 14px;
-          color: #333;
-        }
-        .reply{
-          font-size: 14px;
-          color: #31bbac;
-          padding-top: 12px;
-        }
-        .showImg{
-          padding-top: 10px;
-          cursor: pointer;
-          display: flex;
-          margin-bottom: 40px;
-          .img-item{
-            width: 16%;
-            margin: 10px 20px 10px 5px;
-            img{
-              width: 100%;
-            }
+        width: 100%;
+        .review-border{
+          border-bottom: 1px solid #eee;
+          .name{
+            font-size: 16px;
           }
+          .date-time{
+            float: right;
+            font-size: 12px;
+          }
+          .el-rate{
+            margin: 5px 0 15px 0;
+          }
+          .content{
+            font-size: 14px;
+            color: #333;
+          }
+          .reply{
+            font-size: 14px;
+            color: #31bbac;
+            padding-top: 12px;
+          }
+          .showImg{
+            padding-top: 10px;
+            cursor: pointer;
+            display: flex;
+            margin-bottom: 40px;
+            .img-item{
+              width: 16%;
+              margin: 10px 20px 10px 5px;
+              img{
+                width: 120px;
+                height: 100px;
+              }
+            }
+        }
+
         }
         .zan{
           position: absolute;
           right: 4px;
           bottom: 15px;
           font-size: 14px;
+          .icon-dianzan-copy{
+            color: #eee;
+          }
         }
       }
     }
+
   }
+  //底部附近商家
+  .footer-shop{
+    width: 1200px;
+    display: flex;
+    // justify-content: space-evenly;
+    flex-wrap: wrap;
+    .footer-item{
+      width: 18%;
+      height: 241px;
+      margin: 0 10px 22px 10px;
+      img{
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        border-radius: 4px;
+      }
+      .footer-name{
+        font-size: 16px;
+        line-height: 22px;
+        color: #222;
+        margin: 10px 0 6px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;}
+      .footer-score{
+        margin-top: 8px;
+        background: #fff;
+        border-radius: 4px;
+        color: #999;
+      }
+      .footer-hot{
+        margin: 1px 0 3px;
+        min-height: 33px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+      }
+      .footer-price{
+        font-size: 14px;
+        line-height: 27px;
+        color: #f60;
+        span{
+          font-size: 22px;
+        }
+      }
+
+    }
+  }
+
 }
 
 </style>
