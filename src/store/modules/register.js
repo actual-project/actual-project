@@ -19,17 +19,19 @@ const actions ={
         // console.log(result);
 
         commit('RECEIVE_USER_INFO',userInfo)
-        // 只处理失败情况
+        // 
         if (result.code == 200) {
             alert('注册成功,即将跳转登录界面')
-            
-        }else if(result.code == 402){
-
-            alert('手机号已存在')
-
-        }else{
+            if(result.code == 402){
+                alert('手机号已存在')
+                
+            }
+        }else  {
             throw new Error(result.message || '注册失败了')
         }
+        
+        
+      
         
         
     }
