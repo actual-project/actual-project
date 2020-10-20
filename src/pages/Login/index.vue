@@ -140,7 +140,7 @@ export default {
 
         try {
           //分发action，实现登录
-          await this.$store.dispatch("login", { username, password });
+        await this.$store.dispatch("login", { username, password });
           //跳转到主页
            this.$router.replace('/')
         } catch (error) {

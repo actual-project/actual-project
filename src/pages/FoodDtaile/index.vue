@@ -46,7 +46,7 @@
       
       <p class="shop-tit">商家团购及优惠</p>
       <!-- 未登录 -->
-      <div  class="login" v-if="userInfo">
+      <div  class="login" v-if="!userInfo">
         <img src="../../static/images/shopDetail/toLogin.png" alt="">
         <p>请登录后查看详细团购优惠</p>
         <el-button round>立即登录</el-button>

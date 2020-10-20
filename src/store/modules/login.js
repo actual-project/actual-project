@@ -15,10 +15,11 @@ const actions = {
     async login({ commit }, userInfo) {
 
         const result = await getLogin(userInfo)
-
+        console.log('result',result)
         commit('RECIVE_USER', userInfo)
 
         if (result.code == 200) {
+            window.localStorage.setItem('MTuserInfo',JSON.stringify(result.userInfo))
             alert('登录成功')
         }else if(result.code == 502){
             alert('密码错误')
