@@ -224,8 +224,9 @@ export default {
     },
     //去下单
     toOrder(good){
-      console.log(1111)
-      console.log(this.shopInfo.id)
+      console.log(good)
+     // console.log(1111)
+      //console.log(this.shopInfo.id)
       this.$router.push(`/cart?shopId=${this.shopInfo.id}&foodId=${good.id}`)
     }
   },
