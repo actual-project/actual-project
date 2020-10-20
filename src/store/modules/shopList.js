@@ -1,5 +1,6 @@
-import {getShopList,getShopLike,getLeftLikeList,getCommentList} from '@/api'
+import {getShopList,getShopLike,getLeftLikeList,getCommentList,getFoodDetail} from '@/api'
 const state ={
+    foodDetaiList:[],//商品详情的列表
     shopList:[],//商店列表
     shopLikeList:[],//猜你喜欢商家列表
     rightLikeList:[],//右侧猜你喜欢商家列表
@@ -7,6 +8,10 @@ const state ={
     shopInfo:{} //商家对象
 }
 const mutations ={
+    //获取商品详情列表的mutation
+    getFoodDetailMutations(state,foodDetailList){
+        state.foodDetaiList = foodDetailList
+    },
     //获取商店列表mutations
     getShopListMutations(state,shopList){
         state.shopList = shopList
@@ -32,6 +37,13 @@ const mutations ={
 
 }
 const actions ={
+    //获取商品详情列表的actions
+    async getFoodDetailActions({commit}){
+        // console.log(111);
+        let result = await getFoodDetail()
+       
+        commit('getFoodDetailMutations',result)
+    } ,
     //获取商店列表actions
     async getShopListActions({commit}){
         let result = await getShopList()

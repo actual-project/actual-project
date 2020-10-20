@@ -13,13 +13,13 @@
         <!-- 登陆项 -->
         <div class="login-section">
           <form action="">
-            <label for="" class="logo-type">账号登录</label>
+            <label for="" class="logo-type" >账号登录</label>
             <div class="phcode">手机动态码登陆</div>
             <div class="phNumber">
               <span>+</span>
               <span>86</span>
               <i> > </i>
-              <input type="text" placeholder="手机号" class="phInput" />
+              <input type="text" placeholder="手机号" class="phInput"  v-model="username"/>
             </div>
             <!-- 密码 -->
             <div class="pwCode">
@@ -30,20 +30,21 @@
                 name="password"
                 id="login-password"
                 placeholder="密码"
+                v-model="password"
               />
             </div>
             <!-- 忘记密码 -->
             <div class="auto-login">
               <a
                 tabindex="-1"
-                href="https://passport.meituan.com/useraccount/retrievepassword?risk_partner=0&amp;service=www&amp;continue=https%3A%2F%2Fwww.meituan.com%2Faccount%2Fsettoken%3Fcontinue%3Dhttps%253A%252F%252Fbj.meituan.com%252F"
+                href="javasctipt:;"
                 target="_top"
                 class="forget-password"
                 >忘记密码？</a
               >
             </div>
             <!-- 登陆按钮 -->
-            <input type="submit" value="登录" class="btn" />
+            <input type="submit" value="登录" class="btn"  @click="login"/>
             <p class="signup-guide">
               还没有账号？
               <!-- <a href=""></a> -->
@@ -105,6 +106,50 @@
 <script>
 export default {
   name: "Login",
+  data(){
+    return{
+      username:'', //用户手机号
+      password:'' //用户密码
+    }
+  },
+
+  methods:{
+    //登录
+    async login(event){
+      //
+        event.preventDefault();
+        const {username,password}  = this
+        // console.log(username,password);
+        //前端验证
+        let usernameReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
+        let passwordReg = /^\d{4,6}/;
+        //手机号码/密码不能为空
+        if(!username || !password){
+          alert('手机号码/密码不能为空')
+          return
+        }
+        if(!usernameReg.test(username)){
+          alert('手机号码格式错误')
+          return
+        }
+        //判断密码格式
+         if (!passwordReg.test(password)) {
+        alert("密码格式错误");
+        return;
+       }
+
+        try {
+          //分发action，实现登录
+          await this.$store.dispatch("login", { username, password });
+          //跳转到主页
+           this.$router.replace('/')
+        } catch (error) {
+          alert(error)
+        }
+    }
+
+
+  }
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
@@ -224,6 +269,7 @@ export default {
             margin-left: 210px;
             a {
               color: #fe8c00 !important;
+              border: none;
               &:hover {
                 text-decoration: none;
               }
