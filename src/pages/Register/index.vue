@@ -1,7 +1,7 @@
 <template>
   <div class="registerContainer">
     <!-- 头部 -->
-    <div class="header">
+    <div class="header clearFix">
       <div class="header-wraper clearFix">
         <!-- Logo -->
         <a class="site-logo" href="http://www.meituan.com">美团</a>
@@ -20,10 +20,10 @@
     <div class="content">
       <div class="signup-form">
         <div class="sheet">
-          <form action="" method="" >
+          <form action="" method="">
             <!-- 手机号输入 -->
             <div class="form-field form-field--mobile">
-              <label class="font-left">手机号</label>
+              <label class="font-left label-item" >手机号</label>
               <input
                 type="text"
                 name="mobile"
@@ -44,12 +44,12 @@
             </div>
             <!-- 短信动态码 -->
             <div class="form-field form-field--sms">
-              <label for="">短信动态码</label>
+              <label for="" class="label-item">短信动态码</label>
               <input type="text" class="f-text" />
             </div>
             <!-- 创建密码 -->
             <div class="form-field form-field--pwd">
-              <label for="">创建密码</label>
+              <label for="" class="label-item">创建密码</label>
               <input type="text" class="f-text" v-model="password" />
               <div class="pw-strength">
                 <span>弱</span>
@@ -59,7 +59,7 @@
             </div>
             <!-- 确认密码 -->
             <div class="form-field form-field--pwd2">
-              <label for="">确认密码</label>
+              <label for="" class="label-item">确认密码</label>
               <input type="text" class="f-text" v-model="password2" />
             </div>
             <!-- 注册 -->
@@ -104,7 +104,7 @@
   </div>
 </template>
 <script>
-import {mapAtcions} from '../../api'
+import { mapAtcions } from "../../api";
 export default {
   name: "Register",
   data() {
@@ -117,7 +117,7 @@ export default {
   methods: {
     //注册
     async register(event) {
-     event.preventDefault();
+      event.preventDefault();
       //收集表单项数据
       const { username, password, password2 } = this;
       //前端验证
@@ -153,10 +153,8 @@ export default {
       try {
         await this.$store.dispatch("register", { username, password });
         // 成功则跳转到登录界面
-        
-           this.$router.replace("/login");
-     
-       
+
+        this.$router.replace("/login");
       } catch (error) {
         alert(error);
       }
@@ -165,23 +163,24 @@ export default {
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
-// 清除浮动
-.clearFix() {
-  *zoom: 1;
-  &:after {
-    //空字符
-    content: "";
-    height: 0;
-    display: block;
-    clear: both;
-  }
-}
 // 公共样式
 .form-field() {
   position: relative;
   padding: 8px 0 8px 110px;
   zoom: 1;
 }
+//
+.label-item() {
+  display: block;
+  position: absolute;
+  left: 0;
+  width: 100px;
+  padding-top: 6px;
+  font-size: 14px;
+  text-align: right;
+  color: #333;
+}
+
 //
 .font-left() {
   display: block;
@@ -199,7 +198,6 @@ export default {
   background: #fff;
   .header {
     height: 59px;
-    .clearFix();
     border-bottom: 2px solid #d8d8d8;
     min-width: 980px;
     color: #666;
