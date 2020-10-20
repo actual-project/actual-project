@@ -104,7 +104,7 @@
   </div>
 </template>
 <script>
-
+import {mapAtcions} from '../../api'
 export default {
   name: "Register",
   data() {
@@ -153,9 +153,9 @@ export default {
       try {
         await this.$store.dispatch("register", { username, password });
         // 成功则跳转到登录界面
-        setTimeout(() => {
+        
            this.$router.replace("/login");
-        }, 1000);
+     
        
       } catch (error) {
         alert(error);
