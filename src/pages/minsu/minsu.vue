@@ -81,26 +81,56 @@
     <div class="main">
       <div class="theme">
         <div class="themeHead">
-          <h2>主题精选</h2>
-          <span>LIST</span>
-        </div>
-        <!-- <div class="pic">
-          <img src="./img/1.png" alt="">
-        </div>
-        <div class="pic">
-          <img src="./img/2.png" alt="">
+          <div class="themeTitle">
+            <h2>主题精选</h2>
+            <span>LIST</span>
+          </div>
         </div>
         <div class="pic">
-          <img src="./img/3.png" alt="">
+          <img src="./img/theme/1.png" alt="" />
+          <div class="shadow1"></div>
+          <div class="shadow2"></div>
+          <span>网红Ins风</span>
         </div>
         <div class="pic">
-          <img src="./img/4.png" alt="">
+          <img src="./img/theme/2.png" alt="" />
+          <div class="shadow1"></div>
+          <div class="shadow2"></div>
+          <span>四合院</span>
         </div>
         <div class="pic">
-          <img src="./img/5.png" alt="">
-        </div> -->
+          <img src="./img/theme/3.png" alt="" />
+          <div class="shadow1"></div>
+          <div class="shadow2"></div>
+          <span>私人影院</span>
+        </div>
+        <div class="pic">
+          <img src="./img/theme/4.png" alt="" />
+          <div class="shadow1"></div>
+          <div class="shadow2"></div>
+          <span>美食烹饪</span>
+        </div>
+        <div class="pic">
+          <img src="./img/theme/5.png" alt="" />
+          <div class="shadow1"></div>
+          <div class="shadow2"></div>
+          <span>咖啡体验</span>
+        </div>
       </div>
-      <div class="pinpaiminsu"></div>
+      <div class="pinpaiminsu">
+        <div class="pinpaiminsuhead">
+          <h2>品牌民宿</h2>
+          <span>BRAND</span>
+        </div>
+        <div class="pinpaiminsubody">
+          <minsuzujian />
+          <!-- <minsuzujian />
+        <minsuzujian />
+        <minsuzujian />
+        <minsuzujian />
+        <minsuzujian /> -->
+        </div>
+      </div>
       <div class="remenruzhudi"></div>
     </div>
     <div class="footer">
@@ -113,8 +143,12 @@
 
 <script>
 import Swiper from "swiper";
+import minsuzujian from "./minsuzujian";
 export default {
   name: "minsu",
+  components: {
+    minsuzujian,
+  },
   data() {
     return {
       add: false,
@@ -133,6 +167,49 @@ export default {
         { city: "北京" },
         { city: "北京" },
         { city: "北京" },
+        
+      ],
+      shuju: [
+        {
+          url: "./img/pinpaiminsu/1.jpg",
+          title: "【壹捌】极简北欧风现代艺术大3居/1层/三里屯太古里@CactusSpace",
+          price: 850,
+          address: "北京·朝阳区",
+        },
+        {
+          url: "./img/pinpaiminsu/2.jpg",
+          title:
+            "含早晚餐「森岚·逸云」5# 舒适家庭房 | <隐市乡居>Hazy Forest Hill Room5",
+          price: 485,
+          address: "北京·怀柔区",
+        },
+        {
+          url: "./img/pinpaiminsu/3.jpg",
+          title:
+            "延庆大隐于世《冬奥小镇三号院》野鸭湖·玉渡山·龙庆峡拍照拍摄小院",
+          price: 2999,
+          address: "北京·延庆区",
+        },
+        {
+          url: "./img/pinpaiminsu/4.jpg",
+          title:
+            "藏幽山水境 | 茶道别院 | 青瓦【怀柔民宿】怀柔雁栖湖风景区 怀柔虹鳟鱼一条沟/神堂峪 怀柔慕田峪/红螺寺 怀柔风景区",
+          price: 2620,
+          address: "北京·怀柔区",
+        },
+        {
+          url: "./img/pinpaiminsu/5.jpg",
+          title:
+            "NUTS「私院」泡池客厅餐厅厨房茶室III【怀柔民宿】怀柔青龙峡 怀柔雁栖湖风景区 怀北漂流 雁栖湖 红螺寺 怀柔风景区",
+          price: 2980,
+          address: "北京·怀柔区",
+        },
+        {
+          url: "./img/pinpaiminsu/6.jpg",
+          title: "「肆舍」玉渡山 龙庆峡 原生态独立小院",
+          price: 798,
+          address: "北京·延庆区",
+        },
       ],
     };
   },
@@ -284,9 +361,9 @@ export default {
               flex-direction: row;
               display: flex;
               justify-content: center;
-              ul{
+              ul {
                 display: flex;
-                flex-wrap:wrap
+                flex-wrap: wrap;
               }
               .liCity {
                 line-height: 36px;
@@ -296,7 +373,6 @@ export default {
                 border-radius: 4px;
                 color: rgb(0, 170, 255);
                 font-size: 14px;
-                
               }
             }
           }
@@ -305,15 +381,12 @@ export default {
 
       .searchMiddle {
         width: 426px;
-
         height: 57px;
-        // border: 1px solid red;
         background: white;
       }
       .searchRight {
         width: 133px;
         height: 57px;
-        // border: 1px solid red;
         border-radius: 0 10px 10px 0;
         background: white;
         .searchRightIn {
@@ -333,21 +406,112 @@ export default {
 .main {
   background-color: rgb(255, 255, 255);
   .theme {
+    width: 1150px;
+    height: 362px;
+    margin: 0 auto;
+    // display: flex;
     .themeHead {
-      max-width: 1150px;
+      width: 1150px;
+      height: 24px;
       margin: 0 auto;
+      // display: flex;
+      // flex-wrap: wrap ;
+      // flex-direction: row;
+      // align-items: flex-start;
+      .themeTitle {
+        position: relative;
+        h2 {
+          font-size: 24px;
+          line-height: 24px;
+          // float: left;
+          display: inline-block;
+        }
+        span {
+          // float: left;
+          position: absolute;
+          font-size: 10px;
+          margin-left: 4px;
+          color: #cbcccd;
+          font-style: oblique;
+          display: inline-block;
+          left: 96px;
+          top: 0px;
+        }
+      }
+    }
+    .pic {
+      width: 223px;
+      height: 223px;
+      border-radius: 8px;
+      // overflow: hidden;
+      float: left;
+      margin-right: 7px;
+      margin-top: 15px;
+      position: relative;
+      z-index: 5;
+      span {
+        font-size: 18px;
+        color: #fff;
+        display: inline-block;
+        position: absolute;
+        top: 180px;
+        left: 15px;
+        z-index: 8;
+      }
+      img {
+        position: relative;
+        width: 100%;
+        z-index: 6;
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      .shadow1 {
+        width: 200px;
+        height: 200px;
+        border-radius: 8px;
+        background: #e1e3ea;
+        position: absolute;
+        top: 35px;
+        left: 12px;
+        z-index: 4;
+        overflow: visible;
+      }
+      .shadow2 {
+        width: 180px;
+        height: 180px;
+        border-radius: 8px;
+        background: #eceef4;
+        position: absolute;
+        top: 65px;
+        left: 18px;
+        z-index: 3;
+        overflow: visible;
+      }
+    }
+  }
+  .pinpaiminsu {
+    .pinpaiminsuhead {
+      width: 1150px;
+      margin: 0 auto;
+      position: relative;
       h2 {
         font-size: 24px;
         line-height: 24px;
-        float: left;
+        color: #252626;
       }
       span {
-        float: left;
+        background: #e5b46a;
         font-size: 10px;
-        margin-left: 4px;
-        color: #cbcccd;
-        font-style: oblique;
+        color: #fff;
+        font-style: italic;
+        position: absolute;
+        top: 0;
+        left: 98px;
       }
+    }
+    .pinpaiminsubody {
+      width: 1180px;
+      margin: 0 auto;
     }
   }
 }
