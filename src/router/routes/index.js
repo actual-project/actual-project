@@ -25,6 +25,7 @@ import Order from '@/pages/Order'
 import Enshrine from '@/pages/Enshrine'
 import Ticket from '@/pages/Ticket'
 import User from '@/pages/User'
+import store from '@/store'
 
 export default [
     //注册Login路由组件
@@ -40,13 +41,35 @@ export default [
     {
         path:'/cart',
         component:Cart,
-        props:(route)=>({shopId:route.query.shopId,foodId:route.query.foodId})
+        props:(route)=>({shopId:route.query.shopId,foodId:route.query.foodId}),
+        //路由独享守卫
+        //只有detail页面携带了foodId 才可以跳转这个界面
+          beforeEnter: (to, from, next) => {
+            const {foodId} = to.query
+            console.log('foodId',+foodId)
+            if(foodId){
+                console.log('携带了foodId')
+                next()
+            }else{
+                console.log('从哪里来'+from.path)
+                //从哪里来回哪里去
+                next(from.path)
+            }
+        }
     }
     ,
     {  
         path:'/submitorder',
         component:SubmitOrder,
-        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice}),
+            //判断是否由cart页面跳转
+        beforeEnter: (to, from, next) => {
+            if(from.path === '/cart'){
+                next()
+            }else{
+                next('/cart')
+            }
+        }
         
     },
     //注册美食详情
@@ -67,7 +90,15 @@ export default [
 
         path:'/paysuccess',
         component:PaySuccess,
-        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice})
+        props:(route)=>({foodName:route.query.foodName,totalPrice:route.query.totalPrice}),
+           // 判断是否由submitorder页面跳转
+        beforeEnter: (to, from, next) => {
+            if(from.path === '/submitorder'){
+                next()
+            }else{
+                next('/submitorder')
+            }
+        }
     },
     //以下为我的美团路由
     {

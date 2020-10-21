@@ -28,15 +28,14 @@ router.beforeEach((to,from,next)=>{
         //看 要去的路径中是否包含这个数组的元素
         //如果存在
         //判断当前有没有登陆 从vuex中看
-        console.log(store.state)
-        if(store.state.login.userInfo.username){
-            
+        if(JSON.parse(localStorage.getItem("MTuserInfo"))){
+            if(JSON.parse(localStorage.getItem("MTuserInfo")).username){    
             next()
+            }
         }else{
-            
-            //next('/login')
-            next()
-        }
+           // console.log('去登陆')
+            next('/login')
+        }       
     }else{
         //不去这三个地方 放行
         next()
