@@ -72,8 +72,8 @@
               <div class="biz-wrapper J-biz-wrapper biz-wrapper-nobottom inited" id="yui_3_16_0_1_1526278880782_24" data-reactid="73">
                 <div id="J-bizinfo-list" 
                 data-poi="[{&quot;shopid&quot;:6871211,&quot;name&quot;:&quot;\u4f18\u6ea2\u6e90\u51bb\u9178\u5976\uff08BHG\u534e\u8054\u767e\u8d27\u5e97\uff09&quot;,&quot;address&quot;:&quot;\u6d77\u6dc0\u533a\u6210\u5e9c\u8def28\u53f7\u4e94\u9053\u53e3\u5546\u4e1a\u4e2d\u5fc3BHG\u534e\u8054\u767e\u8d27B1\u697c&quot;,&quot;range&quot;:&quot;\u4e94\u9053\u53e3&quot;,&quot;rangeid&quot;:689,&quot;disid&quot;:17,&quot;disname&quot;:&quot;\u6d77\u6dc0\u533a&quot;,&quot;dpshopid&quot;:0,&quot;mapurl&quot;:&quot;&quot;,&quot;trafficinfo&quot;:&quot;&quot;,&quot;phone&quot;:&quot;13488688874&quot;,&quot;latlng&quot;:&quot;[39.992199,116.33917]&quot;,&quot;city&quot;:1,&quot;url&quot;:&quot;&quot;,&quot;poiid&quot;:91868721,&quot;poilevel&quot;:{&quot;avgscore&quot;:3.9,&quot;fbcount&quot;:45},&quot;cityname&quot;:&quot;\u5317\u4eac&quot;,&quot;status&quot;:0,&quot;subwayname&quot;:&quot;\u4e94\u9053\u53e3&quot;,&quot;subwaydis&quot;:166,&quot;subwayslug&quot;:&quot;&quot;,&quot;appointmentDay&quot;:0,&quot;cityfirstalpha&quot;:&quot;bj&quot;}]" 
-                data-reservationphonenumber="" class="all-biz cf" data-uix="collapse" data-params="{lazyload:true, triggerEvent:'hover', group:'.biz-info', trigger:'.biz-info__title', openClass:'biz-info--open'}" data-reactid="74"><div class="biz-info biz-info--first biz-info--open" data-reactid="75"><h5 class="biz-info__title" data-reactid="76"><a class="poi-link" title="优溢源冻酸奶（BHG华联百货店）" href="/meishi/361588.html" target="_blank" data-reactid="77">{{shopInfo.nm}}</a><i class="F-glob F-glob-caret-down-thin down-arrow" data-reactid="78"></i></h5><div class="biz-info__content" 
-                data-reactid="79"><div class="biz-item field-group" title="海淀区成府路28号五道口商业中心BHG华联百货B1楼" 
+                data-reservationphonenumber="" class="all-biz cf" data-uix="collapse" data-params="{lazyload:true, triggerEvent:'hover', group:'.biz-info', trigger:'.biz-info__title', openClass:'biz-info--open'}" data-reactid="74"><div class="biz-info biz-info--first biz-info--open" data-reactid="75"><h5 class="biz-info__title" data-reactid="76"><a class="poi-link" title="优溢源冻酸奶（BHG华联百货店）" href="/meishi/361588.html" target="_blank" data-reactid="77">{{shopInfo.name}}</a><i class="F-glob F-glob-caret-down-thin down-arrow" data-reactid="78"></i></h5><div class="biz-info__content" 
+                data-reactid="79"><div class="biz-item field-group" title="优溢源冻酸奶（BHG华联百货店）" 
                 data-reactid="80">
                 <label class="title-label" data-reactid="81">地址：</label>{{shopInfo.address}}</div>
                 <div class="biz-item" data-uix="tooltip" data-params="{showEvent: 'click'}" id="yui_3_16_0_1_1526278880782_62" data-reactid="83">
@@ -234,11 +234,12 @@ export default {
               padding:20px 0px;
               //background: yellow;
               margin: 0 20px;
-             
               .detail__content {
                  ul{
+               // width:250px;
                 padding-left: 20px;
                  }
+                
                 .qrcode-orderreturn {
                 float: right;
                 width: 75px;
