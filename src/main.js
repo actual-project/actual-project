@@ -7,8 +7,11 @@ import store from '@/store'
 //引入路由器对象
 import router from './router'
 import './utils/element.js'
+//引入moment 进行时间格式转换
+import moment from 'moment'
 Vue.config.productionTip = false
 Vue.config.productionTip = false
+Vue.prototype.$moment = moment
 new Vue({
   //绑定全局事件总线
   beforeCreate(){
