@@ -6,17 +6,22 @@ import App from './App.vue'
 import store from '@/store'
 //引入路由器对象
 import router from './router'
+<<<<<<< HEAD
 //引入momentjs
 //import moment from 'moment'
+=======
+>>>>>>> 2defc7c313dd0bdaba1515e942e5ccb0872a36d2
 import './utils/element.js'
-// import VueAwesomeSwiper from 'vue-awesome-swiper'
-// import 'swiper/css/swiper.css'
+//引入moment 进行时间格式转换
+import moment from 'moment'
 Vue.config.productionTip = false
-//Vue.prototype.moment = moment
 Vue.config.productionTip = false
-// Vue.use(VueAwesomeSwiper, /* { default options with global component } */)
-
+Vue.prototype.$moment = moment
 new Vue({
+  //绑定全局事件总线
+  beforeCreate(){
+    Vue.prototype.$bus = this
+  },
   render: h => h(App),
   //注册store
   store,

@@ -3,10 +3,10 @@
    <div class="container">
        <div class="top">
            <div class="first-container">
-               <i></i>
+               <i class="iconfont icon-daojishi" ></i>
                <span class="bd">
                    请在
-                   <span class="cd">22:32:48</span>
+                   <span class="cd">{{h}}:{{m}}:{{s}}</span>
                    内完成支付，超时订单会自动取消
                </span>
            </div>
@@ -123,19 +123,65 @@
    </div>
 </template>
 <script>
+import QRCode from 'qrcode'
 export default {
   name:'SubmitOrder',
   props:['foodName','totalPrice'],
-
-  methods:{
-      toPayment(){
-         // console.log('路由跳转');
-         //`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`
-          this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+  data(){
+      return{
+         h:'',
+         m:'',
+         s:'',
       }
-  }
+  },
+  mounted(){
+      this.countTime()
+  },
+  methods:{
+      //倒计时的函数
+      countTime(){
+            //获取当前时间
+                var date = new Date();
+                var now = date.getTime();
+                //设置截止时间
+                var endDate = new Date("2020-10-22 12:23:23");
+               // var leftTime2 = new Date('24:00:00').getTime()
+                var end = endDate.getTime();
+                //时间差
+                var leftTime = end - now
+                //定义变量 d,h,m,s保存倒计时的时间
+                if (leftTime >= 0) {
+                    this.h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
+                    this.m = Math.floor(leftTime / 1000 / 60 % 60);
+                    this.s = Math.floor(leftTime / 1000 % 60);
+                }
+               // console.log(this.s);
+                //递归每秒调用countTime方法，显示动态时间效果
+                setTimeout(this.countTime, 1000);
+      },
+      toPayment(){
+          let payInfo = 
+          //问题是没有这个借口这个怎么搞？？？
+          //用来生成二维码图片的地址
+        // QRCode.toDataURL(this.payInfo.url).then((imgurl)=>{
+        //     //二维码生成成功了
+        //     console.log(imgurl);
+        //     this.$alert(`<img src="${imgurl}"/>`, '请使用微信扫一扫，扫描二维码支付', {
+        //    dangerouslyUseHTMLString: true
 
-  }
+        //    //判断是否支付
+
+        // }).catch((err)=>{
+        //     alert('二维码生成失败了')
+        // })
+        //弹框
+      
+         //console.log('路由跳转');
+         this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+      //})
+  },
+  },
+}
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
     .container{
@@ -166,6 +212,9 @@ export default {
                 text-align: center;
                 font-size: 14px;
                 color: #666;
+                .iconfont{
+                   color:#f60;
+                }
                 .cd{
                     color: #f60;
                 }
