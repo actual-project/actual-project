@@ -149,7 +149,7 @@ export default {
           let result = JSON.parse(localStorage.getItem("MTuserInfo"))
 
           if(result.username == this.username){
-              this.$router.replace('/food')
+              this.$router.replace('/')
           }
 
 
