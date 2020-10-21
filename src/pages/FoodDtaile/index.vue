@@ -2,8 +2,8 @@
   <div class="detail-warp " v-if="shopInfo">
     <!-- 导航 -->
     <div class="breadcrumbs">
-      <a href="javascript:;">北京美团 > </a>
-      <a href="javascript:;">北京美食 > </a>
+      <router-link to="/">北京美团 ></router-link>
+      <router-link to="/food">北京美食 ></router-link>
       <a href="javascript:;">北京火锅</a>
     </div> 
     <!-- 店铺介绍 -->
@@ -108,7 +108,7 @@
       </ul>
       <p class="only">
         <span class="yes"></span>
-        只看有图片的评论
+        <i class="iconfont icon-uncheck" :class="{onlyImg:onlyImg}" @click="onlyImgComment"></i>只看有图片的评论
       </p>
       <div class="review-item" v-for="item in commentInfo.comments" :key="item.userId">
         <div class="avatat">
@@ -117,7 +117,7 @@
         <div class="review-detail">
           <div class="review-border">
           <div class="name">{{item.userName}}</div>
-          <!-- <div class="date-time">{{moment(item.commentTime).format('MMMM Do YYYY, h:mm:ss a')}}</div> -->
+          <div class="date-time">{{$moment(item.commentTime*1).format('YYYY年MM月DD日')}}</div>
           <el-rate :value="item.star/10" ></el-rate>
           <p class="content">{{item.comment}}</p>
           <p class="reply">{{item.merchantComment?'商家回复：'+item.merchantComment:''}}</p>
@@ -128,29 +128,13 @@
           </div>
 
           </div>
-          <p class="zan" @click="gaveLike">
-            <i class="iconfont icon-dianzan-copy"></i> 赞
+          <p class="zan" @click="gaveLike(item)">
+            <i class="iconfont icon-dianzan-copy"  :class="{agreen:item.zanCnt}"></i> 赞
           </p>
         </div>
       </div>
       <!-- 分页 -->
-  <div class="page-wrap">
-      <ul class="page">
-        <li @click="changeCurrenPage(currentPage-1)">
-          &lt;
-        </li>
-        <li v-if="startOrEnd.start>1" @click="changeCurrenPage(1)" >1</li>
-        <li :class="{active:currentPage===num}"
-        v-for="(num) in startOrEnd.end"
-        :key="num"
-        @click="changeCurrenPage(num)">{{num}}</li>
-        <li v-if="startOrEnd.end > totalPages-1">...</li>
-        <li v-if="startOrEnd.end < totalPages" @click="changeCurrenPage(totalPages)">{{totalPages}}</li>
-        <li @click="changeCurrenPage(currentPage+1)">
-          &gt;
-        </li>
-      </ul>
-    </div>
+      <Pagination :info="commentInfo"/>
   </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
@@ -161,6 +145,7 @@
       :total="400">
     </el-pagination> -->
     <!-- 附近商家 -->
+   
     <p class="shop-tit footer-sh">附近商家</p>
     <el-card>
       <div  class="footer-shop">
@@ -178,9 +163,10 @@
 </template>
 
 <script>
-import {getFoodDetail} from '@/api'
+import {getFoodDetail,getDiscuss} from '@/api'
 import {mapState,mapActions,mapMutations} from 'vuex'
 import Pagination from '@/components/Pagination'
+
 export default {
   name: 'FoodDtaile',
   data() {
@@ -194,6 +180,7 @@ export default {
         pageNo: 1, // 默认显示的是第一页的数据
         pageSize: 10, // 默认每页显示3条数据
         showPageNo: 4, // 连续的页码数
+        onlyImg:false //只看图片
       }
   },
   components:{
@@ -208,7 +195,12 @@ export default {
     this.getShop()
     this.getShopLike()
     this.getRightShop()
-    this.getComment()
+    this.getComment(1)
+    //事件总线订阅 获取对应页面评论
+    this.$bus.$on('getCommont',async (currentPage=1)=>{
+      let result = await getDiscuss(currentPage)
+      this.$store.commit('getCommentMutations',result)
+    })
    
   },
   computed: {
@@ -275,7 +267,6 @@ export default {
     //根据id 获取对应店家美食详情
   async  getFoodShop(){
         let id = this.$route.params.id*1
-        console.log('id',id)
         const result = await getFoodDetail()
         this.shopInfo = result.find(item=>{
           if(item.id === id){
@@ -285,10 +276,12 @@ export default {
         this.getShopInfoMutations(this.shopInfo)
     },
     //点赞
-    gaveLike(){
+    gaveLike(item){
       if(!this.userInfo.username){
         alert('请先登录')
       }
+      item.zanCnt =!item.zanCnt
+
     },
     //获取对应action
     ...mapActions({
@@ -299,9 +292,6 @@ export default {
      }),
     //去下单
     toOrder(good){
-     // console.log(good)
-     // console.log(1111)
-      //console.log(this.shopInfo.id)
       this.$router.push(`/cart?foodId=${good.id}`)
     },
     //commitMutation
@@ -315,6 +305,15 @@ export default {
       // 通知父级组件,当前的页码改变了
       this.$emit('changeCurrentPage', pageNo)
     },
+    //只看图片评论
+    onlyImgComment(){
+      this.onlyImg =!this.onlyImg
+      this.commentInfo.comments = this.commentInfo.comments.filter((item)=>{
+        if(item.picUrls.length>0){
+          return item
+        }
+      })
+    }
   },
  
 }
@@ -647,7 +646,10 @@ export default {
     //加阴影
     box-shadow: 0 0 4px 2px #ddd;
     border-radius: 5px;
-
+  .onlyImg{
+    color: red;
+    background: red;
+  }
     .review-top{
       display: flex;
       flex-wrap: wrap;
@@ -730,6 +732,9 @@ export default {
           font-size: 14px;
           .icon-dianzan-copy{
             color: #eee;
+            &.agreen{
+              color: red;
+            }
           }
         }
       }

@@ -7,12 +7,7 @@
         <a class="site-logo" href="http://www.meituan.com">美团</a>
         <div class="login-block">
           <span class="tip">已有美团账号?</span>
-          <!-- <a
-            class="login"
-            href="/account/unitivelogin?service=www&amp;continue=http%3A%2F%2Fwww.meituan.com%2Faccount%2Fsettoken"
-            >登 录</a
-          > -->
-          <router-link to="/login" class="login">登陆</router-link>
+          <router-link to="/login" class="login">登录</router-link>
         </div>
       </div>
     </div>
@@ -23,7 +18,7 @@
           <form action="" method="">
             <!-- 手机号输入 -->
             <div class="form-field form-field--mobile">
-              <label class="font-left label-item" >手机号</label>
+              <label class="font-left label-item">手机号</label>
               <input
                 type="text"
                 name="mobile"
@@ -52,9 +47,9 @@
               <label for="" class="label-item">创建密码</label>
               <input type="text" class="f-text" v-model="password" />
               <div class="pw-strength">
-                <span>弱</span>
-                <span>中</span>
-                <span>强</span>
+                <span id="one">弱</span>
+                <span id="two">中</span>
+                <span id="three">强</span>
               </div>
             </div>
             <!-- 确认密码 -->
@@ -71,7 +66,6 @@
                 value="同意以下协议并注册"
                 @click="register"
               />
-              <!-- <a target="_blank"></a> -->
             </div>
           </form>
         </div>
@@ -104,7 +98,7 @@
   </div>
 </template>
 <script>
-import { mapAtcions } from "../../api";
+
 export default {
   name: "Register",
   data() {
@@ -112,9 +106,60 @@ export default {
       username: "", //手机号
       password: "", //密码
       password2: "", //确认密码
+      msgText: "",
     };
   },
+  watch: {
+    password(newname, oldname) {
+      console.log(newname);
+      this.msgText = this.checkStrong(newname);
+      
+      if (this.msgText > 1 || this.msgText == 1) {
+        document.getElementById("one").style.background = "red";
+      } else {
+        document.getElementById("one").style.background = "#eee";
+      }
+      if (this.msgText > 2 || this.msgText == 2) {
+        document.getElementById("two").style.background = "orange";
+      } else {
+        document.getElementById("two").style.background = "#eee";
+      }
+      if (this.msgText == 4) {
+        document.getElementById("three").style.background = "#00D1B2";
+      } else {
+        document.getElementById("three").style.background = "#eee";
+      }
+    },
+  },
   methods: {
+    checkStrong(sValue) {
+      console.log(sValue,'111');
+      var modes = 0;
+      //正则表达式符合验证要求得
+      if (sValue.length < 1) return modes;
+      if (/\d/.test(sValue)) modes++; //数字
+      if (/[a-z]/.test(sValue)) modes++; //小写
+      if (/[A-Z]/.test(sValue)) modes++; //大写
+      if (/\W/.test(sValue)) modes++; //特殊字符
+
+      //逻辑处理
+      switch (modes) {
+        case 1:
+          return 1;
+          break;
+        case 2:
+          return 2;
+          break;
+        case 3:
+        case 4:
+          return sValue.length < 4 ? 3 : 4;
+          break;
+      }
+    
+      return modes;
+      
+    },
+
     //注册
     async register(event) {
       event.preventDefault();
@@ -147,9 +192,9 @@ export default {
       }
 
       try {
-        await this.$store.dispatch("register", { username, password });  
-            // 成功则跳转到登录界面
-           this.$router.replace("/login");
+        await this.$store.dispatch("register", { username, password });
+        // 成功则跳转到登录界面
+        this.$router.replace("/login");
       } catch (error) {
         alert(error);
       }
@@ -164,31 +209,8 @@ export default {
   padding: 8px 0 8px 110px;
   zoom: 1;
 }
-//
-.label-item() {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100px;
-  padding-top: 6px;
-  font-size: 14px;
-  text-align: right;
-  color: #333;
-}
 
-//
-.font-left() {
-  display: block;
-  position: absolute;
-  left: 0;
-  width: 100px;
-  padding-top: 6px;
-  font-size: 14px;
-  text-align: right;
-  color: #333;
-}
-
-//
+//主体
 .registerContainer {
   background: #fff;
   .header {
@@ -228,7 +250,6 @@ export default {
           display: inline-block;
           text-decoration: none;
           margin-top: 7px;
-
           height: 17px;
           line-height: 1.5;
           text-align: center;
@@ -240,7 +261,6 @@ export default {
           box-shadow: 0 2px 1px rgba(191, 105, 0, 0.15);
           vertical-align: middle;
           background-image: linear-gradient(135deg, #ffd000 0, #ffbd00 100%);
-          // background: #FFBD00;
         }
       }
     }
@@ -250,7 +270,6 @@ export default {
     padding-top: 30px;
     width: 980px;
     min-height: 300px;
-    // background: #bfa;
     font: 400 14px/1.5 "Hiragino Sans GB", "WenQuanYi Micro Hei", tahoma,
       sans-serif;
     .signup-form {
@@ -261,25 +280,6 @@ export default {
           width: 870px;
           height: 36px;
           margin-bottom: 8px;
-          label {
-            display: block;
-            position: absolute;
-            left: 0;
-            width: 100px;
-            padding-top: 6px;
-            font-size: 14px;
-            text-align: right;
-            color: #333;
-          }
-          .f-text {
-            width: 248px;
-            height: 24px;
-            margin: -1px auto;
-            padding: 5px;
-            border: 1px solid #aaa;
-            line-height: 24px;
-            vertical-align: top;
-          }
           .unitive-tip {
             display: inline-block;
             margin-left: 7px;
@@ -311,50 +311,13 @@ export default {
 
         .form-field--sms {
           padding: 8px 0;
-          label {
-            display: block;
-            position: absolute;
-            left: 0;
-            width: 100px;
-            padding-top: 6px;
-            font-size: 14px;
-            text-align: right;
-            color: #333;
-          }
-          .f-text {
-            width: 248px;
-            height: 24px;
-            margin: -1px auto;
-            padding: 5px;
-            border: 1px solid #aaa;
-            line-height: 24px;
-            vertical-align: top;
-          }
         }
         .form-field--pwd {
           padding: 8px 0;
           margin-bottom: 5px;
-          label {
-            display: block;
-            position: absolute;
-            left: 0;
-            width: 100px;
-            padding-top: 6px;
-            font-size: 14px;
-            text-align: right;
-            color: #333;
-          }
-          .f-text {
-            width: 248px;
-            height: 24px;
-            margin: -1px auto;
-            padding: 5px;
-            border: 1px solid #aaa;
-            line-height: 24px;
-            vertical-align: top;
-          }
           .pw-strength {
             margin-top: 7px;
+
             span {
               display: block;
               float: left;
@@ -366,31 +329,15 @@ export default {
               background: rgb(238, 238, 238);
               color: #fff;
               border-right: 2px solid #fff;
+              .weak {
+                background-color: #fe8c00;
+              }
             }
           }
         }
         .form-field--pwd2 {
           padding: 8px 0;
           margin-top: 10px;
-          label {
-            display: block;
-            position: absolute;
-            left: 0;
-            width: 100px;
-            padding-top: 6px;
-            font-size: 14px;
-            text-align: right;
-            color: #333;
-          }
-          .f-text {
-            width: 248px;
-            height: 24px;
-            margin: px auto;
-            padding: 5px;
-            border: 1px solid #aaa;
-            line-height: 24px;
-            vertical-align: top;
-          }
         }
         .form-field();
         .regiter-btn {

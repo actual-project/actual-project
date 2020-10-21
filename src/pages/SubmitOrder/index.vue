@@ -160,6 +160,7 @@ export default {
                 setTimeout(this.countTime, 1000);
       },
       toPayment(){
+          let payInfo = 
           //问题是没有这个借口这个怎么搞？？？
           //用来生成二维码图片的地址
         // QRCode.toDataURL(this.payInfo.url).then((imgurl)=>{

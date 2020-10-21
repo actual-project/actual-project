@@ -77,13 +77,13 @@ export default [
         path:"/fooddtaile/:id",
         component:FoodDtaile,
         //判断是否由美食页面跳转
-        // beforeEnter: (to, from, next) => {
-        //     if(from.path === '/food'){
-        //         next()
-        //     }else{
-        //         next('/food')
-        //     }
-        // }
+        beforeEnter: (to, from, next) => {
+            if(from.path === '/food'){
+                next()
+            }else{
+                next('/food')
+            }
+        }
     },
     //跳转到支付成功的界面
     {
