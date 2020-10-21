@@ -134,23 +134,7 @@
         </div>
       </div>
       <!-- 分页 -->
-  <div class="page-wrap">
-      <ul class="page">
-        <li @click="changeCurrenPage(currentPage-1)">
-          &lt;
-        </li>
-        <li v-if="startOrEnd.start>1" @click="changeCurrenPage(1)" >1</li>
-        <li :class="{active:currentPage===num}"
-        v-for="(num) in startOrEnd.end"
-        :key="num"
-        @click="changeCurrenPage(num)">{{num}}</li>
-        <li v-if="startOrEnd.end > totalPages-1">...</li>
-        <li v-if="startOrEnd.end < totalPages" @click="changeCurrenPage(totalPages)">{{totalPages}}</li>
-        <li @click="changeCurrenPage(currentPage+1)">
-          &gt;
-        </li>
-      </ul>
-    </div>
+      <Pagination :info="commentInfo"/>
   </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
@@ -161,6 +145,7 @@
       :total="400">
     </el-pagination> -->
     <!-- 附近商家 -->
+   
     <p class="shop-tit footer-sh">附近商家</p>
     <el-card>
       <div  class="footer-shop">
@@ -178,7 +163,7 @@
 </template>
 
 <script>
-import {getFoodDetail} from '@/api'
+import {getFoodDetail,getDiscuss} from '@/api'
 import {mapState,mapActions,mapMutations} from 'vuex'
 import Pagination from '@/components/Pagination'
 export default {
@@ -208,7 +193,12 @@ export default {
     this.getShop()
     this.getShopLike()
     this.getRightShop()
-    this.getComment()
+    this.getComment(1)
+    //事件总线订阅 获取对应页面评论
+    this.$bus.$on('getCommont',async (currentPage=1)=>{
+      let result = await getDiscuss(currentPage)
+      this.$store.commit('getCommentMutations',result)
+    })
    
   },
   computed: {
