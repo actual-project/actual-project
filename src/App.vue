@@ -4,9 +4,8 @@
   <TypeNav />
   <Banner />
   <Life />
-
   <hr>
-  <!-- <Footer /> -->
+  <Footer />
 </div>
 
 </template>

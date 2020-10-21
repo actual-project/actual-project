@@ -402,10 +402,12 @@ export default {
     .Recommended-waper {
       overflow: hidden;
       width: 1190px;
+      background-color: #ff6600;
       // background-color: chartreuse;
-      margin: 0 auto;
+      margin: 20px auto;
       // text-align: center;
       dd {
+        
         // text-align: center;
         float: left;
         padding: 15px;
