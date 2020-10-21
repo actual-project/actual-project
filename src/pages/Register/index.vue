@@ -51,10 +51,10 @@
             <div class="form-field form-field--pwd">
               <label for="" class="label-item">创建密码</label>
               <input type="text" class="f-text" v-model="password" />
-              <div class="pw-strength">
-                <span>弱</span>
-                <span>中</span>
-                <span>强</span>
+              <div class="pw-strength" >
+                <span   :style="{backgroundColor:a}">弱</span>
+                <span :style="{backgroundColor:b}">中</span>
+                <span  :style="{backgroundColor: c}">强</span>
               </div>
             </div>
             <!-- 确认密码 -->
@@ -112,9 +112,42 @@ export default {
       username: "", //手机号
       password: "", //密码
       password2: "", //确认密码
+      a:'',
+      b:'',
+      c:'',
+     
+      
     };
   },
+  watch:{
+    password(value){
+        
+      let strength = value.length
+
+       if(strength <3 ){
+          this.a = 'green'
+          this.b = ''
+          this.c = ''
+          return
+        }else if(strength <5){
+          this.a = 'pink'
+          this.b = 'pink'
+           this.c = ''
+          return
+        }else{
+          this.a = 'red'
+          this.b = 'red'
+          this.c = 'red'
+        }
+        
+         
+    }
+   
+   
+  },
   methods: {
+   
+
     //注册
     async register(event) {
       event.preventDefault();
@@ -355,6 +388,7 @@ export default {
           }
           .pw-strength {
             margin-top: 7px;
+            
             span {
               display: block;
               float: left;
@@ -366,6 +400,7 @@ export default {
               background: rgb(238, 238, 238);
               color: #fff;
               border-right: 2px solid #fff;
+              .weak{background-color: #fe8c00 ;};
             }
           }
         }
