@@ -123,19 +123,35 @@
    </div>
 </template>
 <script>
+import QRCode from 'qrcode'
 export default {
   name:'SubmitOrder',
   props:['foodName','totalPrice'],
 
   methods:{
       toPayment(){
+          //问题是没有这个借口这个怎么搞？？？
+          //用来生成二维码图片的地址
+        QRCode.toDataURL(this.payInfo.url).then((imgurl)=>{
+            //二维码生成成功了
+            console.log(imgurl);
+            this.$alert(`<img src="${imgurl}"/>`, '请使用微信扫一扫，扫描二维码支付', {
+           dangerouslyUseHTMLString: true
+
+           //判断是否支付
+
+        }).catch((err)=>{
+            alert('二维码生成失败了')
+        })
+        //弹框
+      
          // console.log('路由跳转');
          //`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`
-          this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-      }
-  }
-
-  }
+         // this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+      })
+  },
+  },
+}
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
     .container{
