@@ -18,42 +18,15 @@
             </div>
             <div class="catagoryList">
               <ul>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
-                </li>
-                <li>
-                  <a href="javascript:;">内容11</a>
+                <li v-for="(item, index) in catagoryList" :key="index">
+                  <a href="javascript:;">{{item}}</a>
                 </li>
               </ul>
 
             </div>
           </div>
           <div class="catagoryArea">
-            <div class="catagory">分类</div>
+            <div class="catagory">区域</div>
             <div class="all">
               <a href="javascript:;">全部</a>
             </div>
@@ -94,7 +67,7 @@
             </div>
           </div>
           <div class="catagoryArea">
-            <div class="catagory">分类</div>
+            <div class="catagory">人数</div>
             <div class="all">
               <a href="javascript:;">全部</a>
             </div>
@@ -140,66 +113,28 @@
       <div class="shop">
         <div class="container">
           <div class="recommend">
-            <span>默认</span>
-            <span>销量</span>
+            <span >默认</span>
+            <span >销量</span>
             <span>价格</span>
-            <span>好评最多</span>
+            <span >好评最多</span>
           </div>
-          <div class="shopList">
-            <div class="image">
-            <img src="https://img.meituan.net/msmerchant/b14ad37ac42c07628ce8a6730506ace9151853.jpg@600w_600h_1l" alt="">
-            <span>1</span>
-            </div>
-            <div class="detail">
-              <h2>巴渝老灶重庆火锅</h2>
-              <div class="address">丰台区王佐镇新苑路南宫综合市场美食街10号-13号（热火羊腿烧烤海鲜隔壁）</div>
-              <div class="price">人均￥80</div>
-            </div>
-          </div>
-          <div class="shopList">
-            <div class="image">
-            <img src="https://img.meituan.net/msmerchant/b14ad37ac42c07628ce8a6730506ace9151853.jpg@600w_600h_1l" alt="">
-            <span>1</span>
-            </div>
-            <div class="detail">
-              <h2>巴渝老灶重庆火锅</h2>
-              <div class="address">丰台区王佐镇新苑路南宫综合市场美食街10号-13号（热火羊腿烧烤海鲜隔壁）</div>
-              <div class="price">人均￥80</div>
-            </div>
-          </div>
-          <div class="shopList">
-            <div class="image">
-            <img src="https://img.meituan.net/msmerchant/b14ad37ac42c07628ce8a6730506ace9151853.jpg@600w_600h_1l" alt="">
-            <span>1</span>
-            </div>
-            <div class="detail">
-              <h2>巴渝老灶重庆火锅</h2>
-              <div class="address">丰台区王佐镇新苑路南宫综合市场美食街10号-13号（热火羊腿烧烤海鲜隔壁）</div>
-              <div class="price">人均￥80</div>
-            </div>
-          </div>
-          <div class="shopList">
-            <div class="image">
-            <img src="https://img.meituan.net/msmerchant/b14ad37ac42c07628ce8a6730506ace9151853.jpg@600w_600h_1l" alt="">
-            <span>1</span>
-            </div>
-            <div class="detail">
-              <h2>巴渝老灶重庆火锅</h2>
-              <div class="address">丰台区王佐镇新苑路南宫综合市场美食街10号-13号（热火羊腿烧烤海鲜隔壁）</div>
-              <div class="price">人均￥80</div>
-            </div>
-          </div>
+          <!-- <router-link :to="{name:'FoodDtaile',params:info.poiId}" class="shopInfo"> -->
+            <ShopList v-for="(info, index) in shopList" :key="info.poiId" :info='info' :index='index'/>
+          <!-- </router-link> -->
+          
         </div>
       </div>
       <!-- 分页 -->
-      <div class="pages">
+      <nav style="text-align:center">
         <el-pagination
-          background
-          layout="prev, pager, next"
-          :total="1000"
+        background
+        layout="prev, pager, next"
+        :total="1000"
         >
         </el-pagination>
-      </div>
+      </nav>
+        
+      
       
     </div>
     <div class="right">
@@ -245,26 +180,44 @@
 </template>
 
 <script>
+import ShopList from '../ShopList'
+import {getShopList,getShopLike} from '@/api'
 import {mapState,mapMutations,mapActions} from 'vuex'
 export default {
   name: 'Food',
+  components:{
+    ShopList
+  },
   data() {
     return {
-      shopList:[], //商家列表
-
+      shopList:[], //商家信息
+      catagoryList:['代金券','蛋糕甜点','火锅','自助餐','小吃快餐','日韩料理','西餐','聚餐宴请','烧烤烤肉','东北菜','川湘菜','江浙菜','香锅烤鱼','粤菜','...']
     }
   },
-  computed:{
-    ...mapState({
-      shopList:state => this.state.shopList
-    })
+  //发送请求
+  // async mounted() {
+  //   const result = await getShopList()
+  //   console.log(result)
+  //   //修改商家属性
+  //   this.shopList = result.poiInfos
+  //   console.log(this.shopList)
+
+  // },
+  //简写：mouted中不发送请求，可以将其在computed中发送，在mouted中调用
+  mounted() {
+    this.getShop()
   },
   methods:{
-    //获取商店列表
     ...mapActions({
-      getShopList:'getShopListActions'
-    })
-  }
+      getShopListActions:'getShopListActions'
+    }),
+    //获取商店列表
+    async getShop(){
+      const result = await getShopList()
+      console.log(result)
+      this.shopList = result.poiInfos
+    }
+  },
 }
 </script>
 
@@ -304,7 +257,7 @@ export default {
           font-size:14px;
           .catagory{
             float: left;
-            padding: 10px 20px;
+            padding: 10px 0 0 10px;
           }
           .all{
             float: left;
@@ -367,39 +320,47 @@ export default {
             font-size:14px;
           }
         }
-        .shopList{
-          width: 100%;
-          height: 165px;
-          overflow: hidden;
-          //background: yellow;
-          border-top: 1px solid #e5e5e5 ;
-          .image{
-            float: left;
-            position: relative;
-            img{
-              width: 220px;
-              height: 125px;
-              margin: 20px;
-            }
-            span{
-              position: absolute;
-              top:23px;
-              left: 17px;
-              display: inline-block;
-              width: 20px;
-              text-align: center;
-              background: orange;
-            }
-          }
-          .detail{
-            float: left;
-            height: 125px;
-            margin: 20px;
-            div{
-              margin-top: 10px;
-            }
+        .shopInfo{
+          h2{
+            font-weight: bold;
           }
         }
+        .shopInfo:hover{
+          color:#333
+        }
+        // .shopList{
+        //   width: 100%;
+        //   height: 165px;
+        //   overflow: hidden;
+        //   //background: yellow;
+        //   border-top: 1px solid #e5e5e5 ;
+        //   .image{
+        //     float: left;
+        //     position: relative;
+        //     img{
+        //       width: 220px;
+        //       height: 125px;
+        //       margin: 20px;
+        //     }
+        //     span{
+        //       position: absolute;
+        //       top:23px;
+        //       left: 17px;
+        //       display: inline-block;
+        //       width: 20px;
+        //       text-align: center;
+        //       background: orange;
+        //     }
+        //   }
+        //   .detail{
+        //     float: left;
+        //     height: 125px;
+        //     margin: 20px;
+        //     div{
+        //       margin-top: 10px;
+        //     }
+        //   }
+        // }
         
       }
     }
