@@ -86,15 +86,6 @@ img{
 input,button{
 	outline: none;
 }
-<<<<<<< HEAD
-
-/* 清除浮动 */
-.clearFix:after,.clearFix:before{
-    content: "";
-    display: table;
-    clear: both;
-}
-=======
 button{
 	border: none;
 }
@@ -117,4 +108,3 @@ a:hover{
 	display: table;
 	clear: both;
 }
->>>>>>> 774a952cccd39ab2da5e738db4c33f3be811faa6

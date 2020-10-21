@@ -10,7 +10,7 @@ const mutations ={
     RECEIVE_USER_INFO (state, userInfo) {
         state.userInfo = userInfo
       }, 
-    
+     
 }
 const actions ={
     async register ({commit},userInfo){
@@ -24,7 +24,6 @@ const actions ={
             alert('注册成功,即将跳转登录界面')
             if(result.code == 402){
                 alert('手机号已存在')
-                
             }
         }else  {
             throw new Error(result.message || '注册失败了')
