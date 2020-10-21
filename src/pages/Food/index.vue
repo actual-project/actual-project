@@ -118,9 +118,9 @@
             <span>价格</span>
             <span >好评最多</span>
           </div>
-          <router-link to="/fooddtaile/:id" class="shopInfo">
+          <!-- <router-link :to="{name:'FoodDtaile',params:info.poiId}" class="shopInfo"> -->
             <ShopList v-for="(info, index) in shopList" :key="info.poiId" :info='info' :index='index'/>
-          </router-link>
+          <!-- </router-link> -->
           
         </div>
       </div>
