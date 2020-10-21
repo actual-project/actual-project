@@ -1,0 +1,29 @@
+/* 注册组件 label标签 */
+.label-item {
+    display: block;
+    position: absolute;
+    left: 0;
+    width: 100px;
+    padding-top: 6px;
+    font-size: 14px;
+    text-align: right;
+    color: #333;
+  }
+
+  /* 注册组件 input */
+  .f-text {
+    width: 248px;
+    height: 24px;
+    margin: -1px auto;
+    padding: 5px;
+    border: 1px solid #aaa;
+    line-height: 24px;
+    vertical-align: top;
+  }
+
+  /* // 公共样式 */
+/* .form-field {
+  position: relative;
+  padding: 8px 0 8px 110px;
+  zoom: 1;
+} */
