@@ -617,10 +617,29 @@ export default {
       justify-content: space-around;
       .img-item{
         width: 14%;
+        position: relative;
         img{
           border-radius: 5px;
           width: 100%;
         }
+        p{
+          font-size: 14px;
+          position: absolute;
+          width: 100%;
+          color: #fff;
+          left: 0;
+          bottom: 0;
+          background-color: rgba(0, 0, 0, 0.4);
+          text-align: center;
+            span{
+            vertical-align: bottom;
+            max-width: 60%;
+            display: inline-block;    
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          }
       }
     }
     .font{

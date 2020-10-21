@@ -18,22 +18,21 @@
 export default {
   name: "ShopList",
   props: {
-    info:Object,
-    index:Number
+    info: Object,
+    index: Number,
   },
   data() {
     return {
       shopList: [], //商家信息
     };
   },
-  methods:{
-    toShopDetaile(){
-      this.$router.push(`/fooddtaile/${this.info.poiId}`)
-    }
+  methods: {
+    // 跳转到商家的详细情况地址
+    toShopDetaile() {
+      this.$router.push(`/fooddtaile/${this.info.poiId}`);
+    },
   },
-  computed: {
-    
-  },
+  computed: {},
 };
 </script>
 
@@ -44,6 +43,9 @@ export default {
   overflow: hidden;
   //background: yellow;
   border-top: 1px solid #e5e5e5;
+  &:hover {
+    cursor: pointer;
+  }
   .image {
     float: left;
     position: relative;
@@ -66,6 +68,7 @@ export default {
     float: left;
     height: 125px;
     margin: 20px;
+
     div {
       margin-top: 10px;
     }
