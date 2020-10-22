@@ -1,25 +1,35 @@
 <template>
-  <div class="app">
-   <!--路由视图,就可以显示对应的路由组件内容-->
-    <router-view></router-view>
-  </div>
+<div>
+  <Header v-show="$route.meta.hidHeader" />
+  <!-- v-show="$route.meta.hidHeader"  -->
+  <router-view></router-view>
+  <Footer v-show="$route.meta.hidFooter" />
+</div>
+
 </template>
 
 <script>
+
+import Header from './components/Header/Header.vue'
+
+import Footer from './components/Footer/Footer'
 export default {
   name: 'APP',
-  mounted() {
+  components: {
+    Header,
+    Footer
   },
-  methods:{
-    
+  mounted () {
+
+  },
+  methods: {
+
   }
-  
-  
+
+
 }
 </script>
 
 <style lang='less' rel='stylesheet/less' scoped>
-.app{
-  background: #F8F8F8;
-}
+
 </style>

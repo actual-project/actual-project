@@ -5,7 +5,7 @@
       <router-link to="/">北京美团 ></router-link>
       <router-link to="/food">北京美食 ></router-link>
       <a href="javascript:;">北京火锅</a>
-    </div> 
+    </div>  
     <!-- 店铺介绍 -->
     <div class="dalhead" v-if="shopInfo">
       <h2>{{shopInfo.name}}</h2>

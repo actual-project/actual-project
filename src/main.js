@@ -9,6 +9,7 @@ import router from './router'
 //引入momentjs
 //import moment from 'moment'c
 import './utils/element.js'
+
 //引入moment 进行时间格式转换
 import moment from 'moment'
 Vue.config.productionTip = false
