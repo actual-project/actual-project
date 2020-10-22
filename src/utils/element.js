@@ -13,8 +13,7 @@ Vue.use(Tabs)
 //Vue.use(Rate)
 Vue.use(Pagination);
 Vue.use(Card);
-//Vue.use(Message);
-//Vue.use(MessageBox);
+
 
 Vue.prototype.$msgbox = MessageBox; // 组件中通过this.$msgbox()显示提示框
 Vue.prototype.$alert = MessageBox.alert; // 组件中通过this.$alert()显示对话框
