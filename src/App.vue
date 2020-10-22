@@ -2,7 +2,9 @@
 <div>
   <Header v-show="$route.meta.hidHeader" />
   <!-- v-show="$route.meta.hidHeader"  -->
-  <router-view></router-view>
+  <div>
+    <router-view></router-view>
+  </div>
   <Footer v-show="$route.meta.hidFooter" />
 </div>
 
