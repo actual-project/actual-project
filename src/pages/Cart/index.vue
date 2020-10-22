@@ -84,28 +84,13 @@ export default {
       },
       //获取foodid的对象
       getFoodInfo(){
-        // if(this.shopInfo.combo[0].id == this.foodId){
-        //    //console.log(this.shopInfo.combo[0].id == this.foodId)
-        //     return this.shopInfo.combo[0]
-        // }else{
-        //    return this.shopInfo.consume[0]
-        // }
-        //    if(this.shopInfo.combo.map((item)=>{
-        //      item.id == this.foodId
-        //    }) == this.foodId){
-        //    //console.log(this.shopInfo.combo[0].id == this.foodId)
-        //     return this.shopInfo.combo[0]
-        // }else{
-        //    return this.shopInfo.consume[0]
-        // }
          if(this.shopInfo.consume[0].id == this.foodId){
             return this.shopInfo.consume[0]
         }else{
-          //console.log(111+)
-           this.shopInfo.combo.map((item)=>{
-             if(item.id === this.foodId){
+         return this.shopInfo.combo.find((item)=>{
+             if(item.id == this.foodId){
                 return item
-             }      
+             }     
            })         
         }
       },
