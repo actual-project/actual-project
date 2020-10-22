@@ -1,34 +1,6 @@
 <template>
    <!-- 外部容器 -->
-   <div class="apple">
-       <!--二维码的盒子  -->
-       <!-- <div class="modal-box">
-           <div class="modal-left">
-               <p><span>请使用 
-                 </span>
-                 <span class="orange">微信 
-                </span>
-                <i class="icon icon-qrcode">
-                </i>
-                <span class="orange"> 扫一扫
-                </span>
-                <br>扫描二维码支付
-                </p>
-                <div class="modal-qr">
-                <img class="modal-qrcode" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMsAAADLAQAAAADogFqeAAACFElEQVR42uWYPY6DUAyEjVJQ5gjcJFwsEkhcjNzkHYHyFRHemXmQ/ZG2nUi7FCTko7Ds8dgvkb9dJf4smiPimlnxEX3mPMSNX0czWjL36zNyBY8OkfU737SjErfrHHXcYkCES8GbfHwHWlqJarddst7ehiASXbd4G1K9BmjniUQhQr6ZdiT1LgVxvW7fhG1C57XHPRRmjD/b3INQpbuEm/1juxOhp9xoHvKB/qkdvlWai5qo5dCIMvu1KQa9jJeCKcOjGT2DPwzwM8YKFfWPM1FOlGxedJKCg8vKV0odzQiW0m1NuO3W0/GVKCvKXGOS2cNX4lL6NWI4p54RQTFsnW1CevLZtHNE6EPQyY4IcYs2/oEup8H6EKbtg1pV0To5DCvnRtxCYuIWglkXrWhTi9CK6KhoYxoJTI2xMuo0owWr4VWdxA6m0b0sxYlmemsrVZGzwVLOuWxESMqKHGHyo2gcvrK3w218KI/07HAT+YoCTj/imgqdwFcQHNVL7YxmxHm/TdyIJoTJU4TWRT9iB5PL4rGmBla06kbMERo6zy2kqTfTjVJbiHylnqPv3Od9SNdMxchcJOY5PhdpE9LZAShZOe5Gx/nOjHSSwnbGcaOFtcr27eg43qKNQwL6Uko3kp8FWgePOMy81gMz0iqCyU+zp4CKH7V68YDdNlT6SvlaSgtq/0cVOVvysN8m8GhG/+5fxw+JbsBp1g4vUwAAAABJRU5ErkJggg==" alt="您的浏览器版本太低, 请升级您的浏览器">
-                <div class="modal-info">
-                    <img class="icon-clock" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAMAAAAmopZHAAAAxlBMVEUAAAD/iAD/iQD/iwD/iAD/iAD/iQD/igD/hwD/iAD/hwD/iQD/iAD/igD/jAD/iQD/iwD/iAD/iQD/iAD/iwD/hwD/jgD/iAD/iAD/jgD/hwD/gwD/iAD/iwD/iwD/iAD/igD/iQD/igD/igD/igD/iwD/kQD/hwD/nQD/kAD/iQD/kgD/hwD/iQD/lwD/hwD/gwD/hAD/iQD/jQD/ogD/mwD/rAD/dQD/rQD/iAD/nAD/igD/hgD/iAD/gwD/fgD/gQD/jQCSx2meAAAAPHRSTlMA8d9VGdiZN9TDhXhxb2xaIRwF6LyrqXxgQzAqJBML+evlz8ikoH52aWdkXEo/MvbXzLCqg3h0ZmRNKwwyACdhAAABIklEQVQoz12R53aCQBSEB2liQ1BjN1FjiUbT+1zQ93+p7D1A5OT7sTN3Ge42KOseLlzVClcjNyhoJVLLA2S3bdSZRGaMupRbo6MF6QF2zxIRq2cDnkgQYZmwCb9qJjtuR0jXx0a4wLEa4o5cDhxtFQaUJgYdG4ZtyhZyNNPATN33+XSv2v6aqAyFRyiP6TuUfr7B7amickiMKA3pZ8al/r/iLiubUs9MyBczziX6Nz+lBfzINYo+g9xZMoUjN3lV53OcuYq0MfvLO1d8sIt89jHHFnZ9E6C28EqHna3YB3bUC/WTOS6MYtOBB7VP6SvKvCVVKJNzEuKCzXScuf0pWaOgzvSz8HthpTGOEY9bLvlRWi2gvqIIGfgoM/T0KV1vmNe/YLwjroRqPFIAAAAASUVORK5CYII=">
-                    <span>二维码有效时长为2小时, 请尽快支付
-                    </span>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="modal-right"><i>
-                        </i>
-                        <img src="https://mpay.meituan.com/resource/cashier/img/weixin-qrcode.1xf1oN.jpg" alt="微信扫码"> 
-                    </div>
-        </div> -->
-       <!--  -->
+   <div class="container">
        <div class="top">
            <div class="first-container">
                <i class="iconfont icon-daojishi" ></i>
@@ -151,21 +123,20 @@
    </div>
 </template>
 <script>
-import QRCode from 'qrcode' 
+import QRCode from 'qrcode'
 export default {
-  name:'SubmitOrder',
+  name:'SubmitOrder1',
   props:['foodName','totalPrice'],
   data(){
       return{
-        flag:false,
          h:'',
          m:'',
          s:'',
       }
   },
   mounted(){
-      this.countTime();
-
+      this.countTime()
+     // this.$store.dispatch('getPayInfo', this.orderId)
   },
   methods:{
       //倒计时的函数
@@ -189,76 +160,41 @@ export default {
                 //递归每秒调用countTime方法，显示动态时间效果
                 setTimeout(this.countTime, 1000);
       },
-          toPayment(){
-          
-         let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
-         //let url = 'https://baidu.com'
+      toPayment(){
+          let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
           //问题是没有这个借口这个怎么搞？？？
           //用来生成二维码图片的地址
         QRCode.toDataURL(url).then((imgurl)=>{
             //二维码生成成功了
-            this.$alert(`<div class="modal-box" style="display:flex;width:300px;height:300px">
-           <div class="modal-left" style="box-sizing: border-box;
-            margin: 10%; width:180px >
-               <p><span>请使用 
-                 </span>
-                 <span class="orange">微信 
-                </span>
-                <i class="icon icon-qrcode">
-                </i>
-                <span class="orange"> 扫一扫
-                </span>
-                <br>扫描二维码支付
-                </p>
-                <div class="modal-qr">
-                <img class="modal-qrcode" src="${imgurl}">
-                <div class="modal-info">
-                    <img class="icon-clock" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAMAAAAmopZHAAAAxlBMVEUAAAD/iAD/iQD/iwD/iAD/iAD/iQD/igD/hwD/iAD/hwD/iQD/iAD/igD/jAD/iQD/iwD/iAD/iQD/iAD/iwD/hwD/jgD/iAD/iAD/jgD/hwD/gwD/iAD/iwD/iwD/iAD/igD/iQD/igD/igD/igD/iwD/kQD/hwD/nQD/kAD/iQD/kgD/hwD/iQD/lwD/hwD/gwD/hAD/iQD/jQD/ogD/mwD/rAD/dQD/rQD/iAD/nAD/igD/hgD/iAD/gwD/fgD/gQD/jQCSx2meAAAAPHRSTlMA8d9VGdiZN9TDhXhxb2xaIRwF6LyrqXxgQzAqJBML+evlz8ikoH52aWdkXEo/MvbXzLCqg3h0ZmRNKwwyACdhAAABIklEQVQoz12R53aCQBSEB2liQ1BjN1FjiUbT+1zQ93+p7D1A5OT7sTN3Ge42KOseLlzVClcjNyhoJVLLA2S3bdSZRGaMupRbo6MF6QF2zxIRq2cDnkgQYZmwCb9qJjtuR0jXx0a4wLEa4o5cDhxtFQaUJgYdG4ZtyhZyNNPATN33+XSv2v6aqAyFRyiP6TuUfr7B7amickiMKA3pZ8al/r/iLiubUs9MyBczziX6Nz+lBfzINYo+g9xZMoUjN3lV53OcuYq0MfvLO1d8sIt89jHHFnZ9E6C28EqHna3YB3bUC/WTOS6MYtOBB7VP6SvKvCVVKJNzEuKCzXScuf0pWaOgzvSz8HthpTGOEY9bLvlRWi2gvqIIGfgoM/T0KV1vmNe/YLwjroRqPFIAAAAASUVORK5CYII=">
-                    <span>二维码有效时长为2小时, 请尽快支付
-                    </span>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="modal-right"><i>
-                        </i>
-                        <img style="width:175px;height:300px" src="https://mpay.meituan.com/resource/cashier/img/weixin-qrcode.1xf1oN.jpg" alt="微信扫码"> 
-                    </div>
-        </div>`, '', {
-           dangerouslyUseHTMLString: true,
-           customClass:"app"
+            this.$alert(`<img src="${imgurl}"/>`, '请使用微信扫一扫，扫描二维码支付', {
+           dangerouslyUseHTMLString: true
            })
-             .then(() => { // 这个是点击了对话框的确定按钮
-              // 清除定时器
-              clearInterval(this.timeId)
-              // 关闭二维码
-              this.$msgbox.close()
-              // 提示消息
-              this.$message({
-                message: '支付成功了',
-                type: 'success',
-              })
-              // 路由的跳转
-             this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-            })
-            .catch((error) => { // 点击了对话框的取消
-              //this.$message.error('')
-            })
-            this.timeId = setInterval(() => {
-                let a = 1
-                if (a==1) {
-                  //清除定时器
-                  clearInterval(this.timeId)
-                  // 关闭二维码
-                  this.$msgbox.close()
-                  // 提示消息
-                  this.$message({
-                    message: '支付成功了',
-                    type: 'success',
-                  })
-                  // 路由的跳转
-                  this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-               }
-          }, 3000)
+           .then(()=>{})
+           .catch((error)=>{})
+          // this.timeId = setInterval(()=>{
+               //获取当前的支付状态
+           //从上一个页面跳转到当前页面需要传入OrderId 
+           //调用 orderId的接口获取payInfo的信息对象
+            //this.$API.reqOrderStatus(this.orderId).then(
+                // if(result.code === 200){
+                    //清理定时器
+                   // clearInterval()
+                //关闭二维码 
+                    //this.$msgbox.close()
+                //跳转到支付成功的界面
+                //提示信息：支付成功了
+                // this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+               // }
+           // ).catch(
+                // (err)=>{alert('支付失败')
+                  //清理定时器
+                  //this.$message.success('订单获取失败了')
+              //  }
+            //) 
+           //},3000)
+          
+
+           //判断是否支付
         }).catch((err)=>{
             alert('二维码生成失败了')
         })
@@ -266,15 +202,16 @@ export default {
          //console.log('路由跳转');
         // this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
       //})
-          },
       },
-  }
+      }
+      }
+  
 </script>
-<style lang='less' rel='stylesheet/less' scope>
-    .apple{
+<style lang='less' rel='stylesheet/less' scoped>
+    .container{
         //width: 100%;
         background: #eee;
-        height: 663px;
+        height: 662px;
         //border:1px solid red;
         //    &::before{
         //     content: '';
@@ -282,65 +219,6 @@ export default {
         //     clear: both;
         // }
         padding: 20px 0 40px;
-        .modal-box {
-       // display: flex;
-        width: 300px;
-    //     height: 300px;
-    //    margin: -219px 0 0 -358px;
-    //     top: 50%;
-    //     left: 50%;
-    //    z-index: 101;
-    //     overflow: hidden;
-        //position: absolute;
-        border: 6px solid #bbb;
-        background-color: #fff;
-       -webkit-animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
-       animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;     
-            .modal-left {
-            box-sizing: border-box;
-            margin: 10%;   
-           // float: left;
-            width: 250px;
-            padding: 20px 50px 25px 45px;
-            border:1px solid black
-            span {
-            vertical-align: middle;
-            }
-             .orange {
-            color: #f80;
-            }
-            .modal-info {
-             height: 14px;
-            color: #f80;
-            font-size: 12px;
-            line-height: 1;
-            padding: 13px 0;
-            text-align: center;
-             background-color: #f7f7f7;
-             img{
-                display: inline-block
-             }
-             span{
-                 float: right;
-                 margin-right: 10px;
-             }
-            }
-            p {
-            font-size: 18px;
-            text-align: center;
-            line-height: 32px;
-            margin-bottom: 16px;
-            margin: 0 0 10px;
-            display: block;
-            
-           
-            }
-            }
-        }
-        
-       
-        
-       
         .top{
             margin: 0 auto;
             width: 1180px;
