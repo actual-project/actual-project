@@ -7,25 +7,38 @@
         <!-- 左侧 -->
         <div class="header-bar-left">
           <span class="iconfont icon-dizhi">北京市昌平区北七家镇</span>
-          <span class="login">立即登录</span>
-          <span class="register">注册</span>
+          <span>
+            <!-- <span class="login">立即登录</span> -->
+            <router-link class="login"
+                         to="/login">立即登录</router-link>
+            <!-- <span class="register">注册</span> -->
+            <router-link class="register"
+                         to="/register">注册</router-link>
+          </span>
         </div>
         <!-- 右侧 -->
         <div class="header-bar-right">
           <ul class="right-item">
-            <div class="meituan"> 我的美团
+            <div class="meituan"> <router-link to="/mytuan">我的美团</router-link>
               <div class="Myright-item">
                 <dd>
-                  <a href="">我的订单</a>
+                  <!-- <a href="">我的订单</a> -->
+                     <router-link
+                         to="/mytuan/order">我的订单</router-link>
                 </dd>
                 <dd>
-                  <a href="">我的订单</a>
+                  <!-- <a href="">我的收藏</a> -->
+                  <router-link
+                         to="/mytuan/enshrine">我的收藏</router-link>
                 </dd>
                 <dd>
-                  <a href="">我的订单</a>
+                  <!-- <a href="">抵用券</a> -->
+                   <router-link
+                         to="/mytuan/ticket">抵用券</router-link>
                 </dd>
                 <dd>
-                  <a href="">我的订单</a>
+                  <router-link
+                         to="/mytuan/user">账户设置</router-link>
                 </dd>
               </div>
             </div>
@@ -86,10 +99,11 @@ export default {
         line-height: 40px;
         span {
           font-size: 12px;
-          margin-right: 12px;
+          margin-right: 15px;
         }
         .login {
           color: #fe8c00;
+           margin-right: 15px;
         }
         .register:hover {
           color: #fe8c00;

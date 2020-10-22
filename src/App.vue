@@ -1,29 +1,22 @@
 <template>
 <div>
-  <Header />
-  <TypeNav />
-  <Banner />
-  <Life />
-
-  <hr>
-  <!-- <Footer /> -->
+  <Header v-show="$route.meta.hidHeader" />
+  <!-- v-show="$route.meta.hidHeader"  -->
+  <router-view></router-view>
+  <Footer v-show="$route.meta.hidFooter" />
 </div>
 
 </template>
 
 <script>
-import Banner from './compoment/Banner/Banner.vue'
-import Header from './compoment/Header/Header.vue'
-import TypeNav from './compoment/TypeNav/TypeNav.vue'
-import Life from './compoment/Life/Life'
-import Footer from './compoment/Footer/Footer'
+
+import Header from './components/Header/Header.vue'
+
+import Footer from './components/Footer/Footer'
 export default {
   name: 'APP',
   components: {
-    TypeNav,
     Header,
-    Banner,
-    Life,
     Footer
   },
   mounted () {

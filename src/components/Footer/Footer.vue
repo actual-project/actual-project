@@ -1,6 +1,7 @@
 <template>
   <div class="Footer-waper">
     <div class="Footer">
+      <!-- 用户帮助那五个 -->
       <div class="footer-link  ">
         <div class="footer-column">
           <dl>
@@ -221,6 +222,7 @@
           </dl>
         </div>
       </div>
+      <!-- 备案 -->
       <div class="footer-copyright clearfix">
         <div class="footer-copyright-left">
           <p>©美团网团购 meituan.com<a href="http://www.beian.miit.gov.cn/"
@@ -235,17 +237,19 @@
           <p><a href="https://portal-portm.meituan.com/webpc/protocolmanage/medicalequipment"
                target="_blank">医疗器械网络交易服务第三方平台备案：（京）网械平台备字[2018]第00004号</a></p>
         </div>
-        <div class="footer-copyright-right"><a
-             href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002002052"
-             target="_blank"><img class="beianicon"
-                 src="https://p0.meituan.net/travelcube/d0289dc0a46fc5b15b3363ffa78cf6c719256.png">京公网安备
-            11000002002052号</a>
+        <div class="footer-copyright-right">
+          <a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=11000002002052"
+             target="_blank">
+            <img class="beianicon"
+                 src="https://p0.meituan.net/travelcube/d0289dc0a46fc5b15b3363ffa78cf6c719256.png">
+            <span>京公网安备11000002002052号</span>
+          </a>
           <div class="footer-copyright-cert">
             <a class="bus-license"
                href="https://zzlz.gsxt.gov.cn/businessCheck/verifKey.do?showType=p&amp;serial=11000020190617184241000003572274-SAIC_SHOW_10002020190618102726868&amp;signData=MEQCIMo7nivRikGQc6WsX/jx0IcZ46irhkjszdhhg4kv17uBAiD78duadRu3XX5WyuE+duSrhPmdVUFgr7cN1iV/WSv4uw=="
                title="营业执照"
-               target="_blank"><img
-                   src="https://p1.meituan.net/travelcube/3e7f8a17e55bace814166b667618b459366061.png@76h_76w_2e">
+               target="_blank">
+              <img src="https://p1.meituan.net/travelcube/3e7f8a17e55bace814166b667618b459366061.png@76h_76w_2e">
               <p>北京三快科技有限公司</p>
             </a>
             <!-- <a class="sp-ft sp-ft--record"
@@ -280,40 +284,58 @@ export default {
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
-a{
+// 公共a
+a {
   text-decoration: none !important;
   font-size: 12px;
   color: #333;
-  &:hover{
-   color: #fe8c00 !important;
+  &:hover {
+    color: #fe8c00 !important;
   }
 }
+
 .Footer-waper {
+  margin-bottom: 60px;
+  // padding-bottom: 30px;
   width: 100%;
   // height: 1000px;
-  background-color: #f8f8f8;
-
+  background-color: #fff;
+  // position: relative;
   .Footer {
     padding: 40px 45px;
-    position: relative;
+    // position: relative;
     display: block;
     width: 1190px;
-    height: 1000px;
-    background-color: #f8f8f8;
+    // position: absolute;
+    bottom: 100%;
+    left: 0;
+
+    // height: 1000px;
+    background-color: #fff;
     margin: 0 auto;
     // float: left;
+    // 用户帮助 那五个
     .footer-link {
+      border-bottom: 4px solid #f8f8f8;
+      padding: 30px;
       display: flex;
       justify-content: space-evenly;
       .footer-column {
         width: 18%;
+        dl {
+          font-size: 16px;
+          font-weight: 400px;
+          color: #333;
+        }
         a {
           display: block;
           padding: 5px 0;
         }
       }
     }
+    // 下方备案的左右部分
     .footer-copyright {
+      padding-top: 30px;
       .footer-copyright-left {
         float: left;
         p {
@@ -327,21 +349,27 @@ a{
       }
       .footer-copyright-right {
         float: right;
+        margin-top: -17px;
         .footer-copyright-cert {
           float: left;
-          margin-right: -345px;
-          margin-top: 48px;
+          margin-right: -290px;
+          margin-top: -7px;
           width: 460px;
           display: block;
           .bus-license {
             a {
               display: block;
               width: 50px;
+              img {
+                margin-top: 20px;
+                // margin-left: 100px;
+              }
             }
             p {
               display: block;
               width: 180px;
               text-align: center;
+              color: #333;
             }
           }
           a {
@@ -352,7 +380,23 @@ a{
             float: left;
             width: 38px;
             height: 38px;
-            margin: -10px 0;
+            margin: -10px 10px;
+            font-size: 12px;
+          }
+        }
+        a {
+          margin-top: 20px;
+          .beianicon {
+            margin-top: 20px;
+            margin-left: 148px;
+          }
+          img {
+            display: block;
+            margin-left: 90px;
+          }
+          span {
+            position: relative;
+            top: -17px;
           }
         }
       }

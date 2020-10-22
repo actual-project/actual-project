@@ -26,7 +26,9 @@ const actions ={
                 alert('手机号已存在')
             }
         }else  {
+            
             throw new Error(result.message || '注册失败了')
+            
         }
         
         

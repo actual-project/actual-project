@@ -134,7 +134,7 @@
         </div>
       </div>
       <!-- 分页 -->
-      <Pagination :info="commentInfo"/>
+      <PaginationQi :info="commentInfo"/>
   </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
@@ -165,7 +165,7 @@
 <script>
 import {getFoodDetail,getDiscuss} from '@/api'
 import {mapState,mapActions,mapMutations} from 'vuex'
-import Pagination from '@/components/Pagination'
+import PaginationQi from '@/components/PaginationQi'
 
 export default {
   name: 'FoodDtaile',
@@ -184,7 +184,7 @@ export default {
       }
   },
   components:{
-    Pagination
+    PaginationQi
   },
   props:["id"],
   mounted() {
@@ -411,9 +411,12 @@ export default {
         margin-top: 10px;
         li{
           padding: 4px;
+          width: 22%;
+          height: 50px;
           img{
             border-radius: 10px;
             width: 100%;
+            height: 100%;
           }
         }
       }

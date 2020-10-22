@@ -16,20 +16,14 @@
         <div class="swiper-container"
              ref="swiper">
           <div class="swiper-wrapper">
-            <!-- <div class="swiper-slide" v-for="(item, index) in
-                                                           cartMovies" :key="item.id">
-              <img :src="item.img"
-                   alt="11">
-            </div> -->
+            <!-- 遍历商品列表 -->
             <div class="swiper-slide"
                  v-for="item in cartMovies"
                  :key="item.id">
               <img :src="item.img"
                    alt="">
             </div>
-
           </div>
-
           <!-- 如果需要导航按钮 -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
@@ -55,8 +49,8 @@
         <dd>北京</dd>
       </div>
       <div class="Recommended-waper-List">
-
         <div class="Recommended">
+          <!--商品列表 -->
           <ul class="Recommended-waper-List-item"
               v-if="houseList">
             <li class="Responsive"
@@ -269,8 +263,6 @@
       </div>
     </div>
 
-
-
   </div>
 
 </template>
@@ -287,7 +279,9 @@ export default {
   computed: {
     ...mapState({
       // state后边应该去store里边去找自己定义的vuex的文件
+      // 猫眼电影
       cartMovies: state => state.Home.cartMovies,
+      // 民宿
       houseList: state => state.House.houseList
     }),
 
@@ -354,7 +348,7 @@ export default {
     width: 1190px;
     // height: 49px;
     background-color: pink;
-    margin: 0 auto;
+    margin: -29px auto;
     .moveis-item {
       margin: 0 auto;
       width: 1190px;
@@ -396,19 +390,22 @@ export default {
   // 民宿
   .house-waper {
     width: 100%;
+    // height: 900px;
+    // z-index: 1;
     overflow: hidden;
     background-color: #f8f8f8;
     // height: 1000px;
     .Recommended-waper {
       overflow: hidden;
       width: 1190px;
-      // background-color: chartreuse;
-      margin: 0 auto;
+      background-color: chartreuse;
+      margin: 50px auto;
+      // z-index: 1;
       // text-align: center;
       dd {
         // text-align: center;
         float: left;
-        padding: 15px;
+        margin: 15px;
         line-height: 20px;
         font-size: 16px;
       }
@@ -421,8 +418,10 @@ export default {
       .Recommended {
         width: 1190px;
         // border: 4px solid black;
-        margin: -25px auto;
-        height: 684px;
+        margin: 0 auto;
+        margin-top: -80px;
+        margin-bottom: 50px;
+        // height: 684px;
         .Recommended-waper-List-item {
           width: 1190px;
           margin: 0 auto;
@@ -562,10 +561,10 @@ export default {
               font-weight: 400px;
               color: #222222;
             }
-           .money{
-             color:#ff6600;
-             font-size: 20px;
-           }
+            .money {
+              color: #ff6600;
+              font-size: 20px;
+            }
           }
 
           // .describe{

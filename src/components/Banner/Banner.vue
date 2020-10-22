@@ -37,8 +37,14 @@
 
             <img src="../../static/images/banners/avatar.jpg"
                  alt="">
-            <button>注册</button>
-            <button>立即注册</button>
+            <button>
+              <router-link to="/login">注册</router-link>
+            </button>
+
+            <button>
+              <router-link to="/register">立即登录</router-link>
+            </button>
+
           </div>
         </div>
       </div>
@@ -47,7 +53,7 @@
           <img src="../../static/images/banners/banner-bottom1.png"
                alt="">
         </div>
-        <div class="banner-bottom-tow">
+        <div class="banner-bottom-two">
           <img src="../../static/images/banners/banner-bottom2-2.jpg"
                alt="">
         </div>
@@ -59,6 +65,7 @@
           </div>
           <div class="banner-bottom-four">
             <!-- <img src="../../static/images/banners/banner-right2.jpg" alt=""> -->
+            <img src="../../static/images/banners/qcod.png" alt="">
           </div>
         </div>
       </div>
@@ -81,8 +88,8 @@ export default {
     bannerContainer () {
       let mySwiper = new Swiper(this.$refs.banner, {
         loop: true, // 循环模式选项
-        observer:true,
-        observerParents:true,
+        observer: true,
+        observerParents: true,
 
         // 如果需要分页器
         // pagination: {
@@ -104,7 +111,7 @@ export default {
 // @media screen and (min-width: 990px) {
 .banner-background {
   width: 100%;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   margin: 0 auto;
   .banner-wraper {
     position: relative;
@@ -136,12 +143,12 @@ export default {
     .banner-bottom {
       width: 950px;
       height: 177px;
-      background-color: burlywood;
+      // background-color: burlywood;
       margin-top: 10px;
       .banner-bottom-one {
         width: 270px;
-        height: 165px;
-        background-color: #bfa;
+        height: 175px;
+        // background-color: #bfa;
         position: absolute;
         margin-left: 201.5px;
         img {
@@ -149,15 +156,15 @@ export default {
           height: 100%;
         }
       }
-      .banner-bottom-tow {
+      .banner-bottom-two {
         width: 270px;
-        height: 165px;
-        background-color: blue;
+        height: 175px;
+        // background-color: blue;
         position: absolute;
         margin-left: 481px;
         img {
           width: 100%;
-          height: 100%px;
+          height: 175px;
         }
       }
       .cooperation-code {
@@ -167,13 +174,15 @@ export default {
         left: 385px;
 
         .banner-bottom-three {
+          position: relative;
           float: left;
           display: none;
-          height: 175px;
-          width: 175px;
-          img {     
-            width: 100%;
-            height: 100%;
+          height: 165 px;
+          // width: 175px;
+          img {
+            position: absolute;
+            width: 175px;
+            height: 175px;
             margin-left: -35px;
           }
         }
@@ -185,9 +194,14 @@ export default {
         .banner-bottom-four {
           width: 230px;
           height: 175px;
-          background-color: black;
+          // background-color: black;
           float: left;
-          margin-left: -20px;
+          margin-left: 154px;
+          img{
+            width: 100%;
+            height: 100%;
+          }
+
         }
       }
     }
@@ -196,7 +210,7 @@ export default {
       height: 240px;
       margin-top: 10px;
       margin-left: 3px;
-      background-color: #E8E8E8;
+      background-color: #e8e8e8;
       .swiper-container {
         width: 550px;
         height: 240px;
@@ -226,15 +240,15 @@ export default {
             border-radius: 50%;
             margin: 0 auto;
           }
-          button{
+          button {
             display: block;
             width: 120px;
             height: 40px;
             border-radius: 30px 30px 30px 30px;
             // text-align: center;
-            margin: 0 auto ;
+            margin: 0 auto;
           }
-          button:hover{
+          button:hover {
             background-color: gray;
           }
         }

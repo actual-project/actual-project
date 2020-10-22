@@ -8,7 +8,6 @@ const mutations = {
   // 获取商店列表mutations
   getCatMoviesMutations(state,cartMovies){
     state.cartMovies = cartMovies
-   
   },
   
 }

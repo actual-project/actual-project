@@ -1,6 +1,34 @@
 <template>
    <!-- 外部容器 -->
    <div class="container">
+       <!--二维码的盒子  -->
+       <div class="modal-box">
+           <div class="modal-left">
+               <p><span>请使用 
+                 </span>
+                 <span class="orange">微信 
+                </span>
+                <i class="icon icon-qrcode">
+                </i>
+                <span class="orange"> 扫一扫
+                </span>
+                <br>扫描二维码支付
+                </p>
+                <div class="modal-qr">
+                <img class="modal-qrcode" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMsAAADLAQAAAADogFqeAAACFElEQVR42uWYPY6DUAyEjVJQ5gjcJFwsEkhcjNzkHYHyFRHemXmQ/ZG2nUi7FCTko7Ds8dgvkb9dJf4smiPimlnxEX3mPMSNX0czWjL36zNyBY8OkfU737SjErfrHHXcYkCES8GbfHwHWlqJarddst7ehiASXbd4G1K9BmjniUQhQr6ZdiT1LgVxvW7fhG1C57XHPRRmjD/b3INQpbuEm/1juxOhp9xoHvKB/qkdvlWai5qo5dCIMvu1KQa9jJeCKcOjGT2DPwzwM8YKFfWPM1FOlGxedJKCg8vKV0odzQiW0m1NuO3W0/GVKCvKXGOS2cNX4lL6NWI4p54RQTFsnW1CevLZtHNE6EPQyY4IcYs2/oEup8H6EKbtg1pV0To5DCvnRtxCYuIWglkXrWhTi9CK6KhoYxoJTI2xMuo0owWr4VWdxA6m0b0sxYlmemsrVZGzwVLOuWxESMqKHGHyo2gcvrK3w218KI/07HAT+YoCTj/imgqdwFcQHNVL7YxmxHm/TdyIJoTJU4TWRT9iB5PL4rGmBla06kbMERo6zy2kqTfTjVJbiHylnqPv3Od9SNdMxchcJOY5PhdpE9LZAShZOe5Gx/nOjHSSwnbGcaOFtcr27eg43qKNQwL6Uko3kp8FWgePOMy81gMz0iqCyU+zp4CKH7V68YDdNlT6SvlaSgtq/0cVOVvysN8m8GhG/+5fxw+JbsBp1g4vUwAAAABJRU5ErkJggg==" alt="您的浏览器版本太低, 请升级您的浏览器">
+                <div class="modal-info">
+                    <img class="icon-clock" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAMAAAAmopZHAAAAxlBMVEUAAAD/iAD/iQD/iwD/iAD/iAD/iQD/igD/hwD/iAD/hwD/iQD/iAD/igD/jAD/iQD/iwD/iAD/iQD/iAD/iwD/hwD/jgD/iAD/iAD/jgD/hwD/gwD/iAD/iwD/iwD/iAD/igD/iQD/igD/igD/igD/iwD/kQD/hwD/nQD/kAD/iQD/kgD/hwD/iQD/lwD/hwD/gwD/hAD/iQD/jQD/ogD/mwD/rAD/dQD/rQD/iAD/nAD/igD/hgD/iAD/gwD/fgD/gQD/jQCSx2meAAAAPHRSTlMA8d9VGdiZN9TDhXhxb2xaIRwF6LyrqXxgQzAqJBML+evlz8ikoH52aWdkXEo/MvbXzLCqg3h0ZmRNKwwyACdhAAABIklEQVQoz12R53aCQBSEB2liQ1BjN1FjiUbT+1zQ93+p7D1A5OT7sTN3Ge42KOseLlzVClcjNyhoJVLLA2S3bdSZRGaMupRbo6MF6QF2zxIRq2cDnkgQYZmwCb9qJjtuR0jXx0a4wLEa4o5cDhxtFQaUJgYdG4ZtyhZyNNPATN33+XSv2v6aqAyFRyiP6TuUfr7B7amickiMKA3pZ8al/r/iLiubUs9MyBczziX6Nz+lBfzINYo+g9xZMoUjN3lV53OcuYq0MfvLO1d8sIt89jHHFnZ9E6C28EqHna3YB3bUC/WTOS6MYtOBB7VP6SvKvCVVKJNzEuKCzXScuf0pWaOgzvSz8HthpTGOEY9bLvlRWi2gvqIIGfgoM/T0KV1vmNe/YLwjroRqPFIAAAAASUVORK5CYII=">
+                    <span>二维码有效时长为2小时, 请尽快支付
+                    </span>
+                    </div>
+                    </div>
+                    </div>
+                    <div class="modal-right"><i>
+                        </i>
+                        <!-- <img src="./img/weixin-qrcode.1xf1oN.jpg" alt="微信扫码"> --> -->
+                    </div>
+        </div>
+       <!--  -->
        <div class="top">
            <div class="first-container">
                <i class="iconfont icon-daojishi" ></i>
@@ -26,7 +54,7 @@
                           <div class="f1">
                             <el-tabs type="border-card" class="paymentmunu">
                             <el-tab-pane>
-                             <span slot="label"></i> 支付宝/微信</span>
+                             <span slot="label"> 支付宝/微信</span>
                                <div class="ip">
                                      <div class="f2">
                                      <ul>
@@ -123,7 +151,7 @@
    </div>
 </template>
 <script>
-import QRCode from 'qrcode'
+//import QRCode from 'qrcode'
 export default {
   name:'SubmitOrder',
   props:['foodName','totalPrice'],
@@ -158,30 +186,9 @@ export default {
                // console.log(this.s);
                 //递归每秒调用countTime方法，显示动态时间效果
                 setTimeout(this.countTime, 1000);
+      }
       },
-      toPayment(){
-          let payInfo = 
-          //问题是没有这个借口这个怎么搞？？？
-          //用来生成二维码图片的地址
-        // QRCode.toDataURL(this.payInfo.url).then((imgurl)=>{
-        //     //二维码生成成功了
-        //     console.log(imgurl);
-        //     this.$alert(`<img src="${imgurl}"/>`, '请使用微信扫一扫，扫描二维码支付', {
-        //    dangerouslyUseHTMLString: true
-
-        //    //判断是否支付
-
-        // }).catch((err)=>{
-        //     alert('二维码生成失败了')
-        // })
-        //弹框
-      
-         //console.log('路由跳转');
-         this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-      //})
-  },
-  },
-}
+  }
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
     .container{
@@ -195,6 +202,21 @@ export default {
         //     clear: both;
         // }
         padding: 20px 0 40px;
+        //二维码盒子的样式
+        .modal-box {
+        width: 716px;
+        height: 438px;
+        margin: -219px 0 0 -358px;
+        top: 50%;
+        left: 50%;
+        z-index: 101;
+        overflow: hidden;
+        position: absolute;
+        border: 6px solid #bbb;
+        background-color: #fff;
+       -webkit-animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
+       animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
+       }
         .top{
             margin: 0 auto;
             width: 1180px;
@@ -322,9 +344,9 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
+                                                // span{
+                                                //    // color: tomato;
+                                                // }
                                                 i{
                                                     font-size:24px;
 
@@ -372,7 +394,7 @@ export default {
                                          margin-top: 8px;
                                         padding: 8px;
                                             .payment-bank-tip{
-                                                width: ;
+                                              
                                                 height: 17.6px;
                                                // background: yellow;
                                                 padding-bottom:10px;
@@ -408,9 +430,7 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
+                                               
                                                 i{
                                                     font-size:24px;
 

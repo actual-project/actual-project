@@ -11,7 +11,8 @@
             <div class="all-sort-list2">
               <div class="item bo">
                 <h3>
-                  <a href="">图书、音像、数字商品</a>
+                  <!-- <a href=""></a> -->
+                  <router-link to="/food" class="iconfont icon-fenzu"> &nbsp;美团/美食</router-link>
                 </h3>
                 <div class="item-list clearfix">
                   <div class="subitem">
@@ -39,7 +40,8 @@
               </div>
               <div class="item">
                 <h3>
-                  <a href="">家用电器</a>
+                  <!-- <a href="">民宿</a> -->
+                  <router-link to="/minsu" class="iconfont icon-jiudian">&nbsp;民宿</router-link>
                 </h3>
                 <div class="item-list clearfix">
                   <div class="subitem">
