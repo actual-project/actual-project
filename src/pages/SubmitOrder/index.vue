@@ -126,7 +126,7 @@
                                              </div>  
                                       
                                             <div class="m2">
-                                                <span>返回修改订单</span>
+                                                <span @click="toUpdate">返回修改订单</span>
                                                 <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
@@ -174,7 +174,7 @@ export default {
                 var date = new Date();
                 var now = date.getTime();
                 //设置截止时间
-                var endDate = new Date("2020-10-22 12:23:23");
+                var endDate = new Date("2020-10-28 12:23:23");
                // var leftTime2 = new Date('24:00:00').getTime()
                 var end = endDate.getTime();
                 //时间差
@@ -188,6 +188,9 @@ export default {
                // console.log(this.s);
                 //递归每秒调用countTime方法，显示动态时间效果
                 setTimeout(this.countTime, 1000);
+      },
+      toUpdate(){
+          this.$router.push(`/cart`)
       },
           toPayment(){
           
@@ -262,10 +265,6 @@ export default {
         }).catch((err)=>{
             alert('二维码生成失败了')
         })
-        
-         //console.log('路由跳转');
-        // this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-      //})
           },
       },
   }
