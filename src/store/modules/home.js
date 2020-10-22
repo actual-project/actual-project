@@ -16,7 +16,6 @@ const actions = {
   // 获取商店列表actions
   async getCatMoviesActions({commit}){
     let result = await getCatMovies()
-    // console.log(result.hot);
     commit('getCatMoviesMutations',result.hot)
   }
 }
