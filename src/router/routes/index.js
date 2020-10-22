@@ -53,7 +53,7 @@ export default [
     component: Home,
     meta: {
       hidFooter: true,
-      hidHeader: true
+      hidHeader: true,
     },
   },
   {
@@ -114,6 +114,10 @@ export default [
   {
     path: "/paysuccess",
     component: PaySuccess,
+    meta: {
+      hidHeader: true,
+      hidFooter: true,
+    },
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
@@ -131,19 +135,38 @@ export default [
   {
     path: "/mytuan",
     component: MyTuan,
+    meta: {
+      hidHeader: true,
+      hidFooter: true,
+    },
+    beforeEnter: (to, from, next) => {
+      let userInfo = localStorage.getItem('MTuserInfo')
+      // userInfo = JSON.parse(userInfo)
+      if(userInfo){
+
+        next()
+      }else{
+        console.log('11111')
+        next('/login')
+        
+      }
+    },
     children: [
       {
         path: "/",
         component: Tuan,
         meta: {
+          hidHeader: true,
           hidFooter: true,
         },
       },
+
       {
         //收藏
         path: "/mytuan/enshrine",
         component: Enshrine,
         meta: {
+          hidHeader: true,
           hidFooter: true,
         },
       },
@@ -152,6 +175,7 @@ export default [
         path: "/mytuan/ticket",
         component: Ticket,
         meta: {
+          hidHeader: true,
           hidFooter: true,
         },
       },
@@ -160,6 +184,7 @@ export default [
         path: "/mytuan/user",
         component: User,
         meta: {
+          hidHeader: true,
           hidFooter: true,
         },
       },
@@ -168,6 +193,7 @@ export default [
         path: "/mytuan/order",
         component: Order,
         meta: {
+          hidHeader: true,
           hidFooter: true,
         },
       },
@@ -177,16 +203,17 @@ export default [
   {
     path: "/food",
     component: Food,
+    meta: {
+      hidFooter: true,
+      hidHeader: true,
+    },
     children: [
       {
         path: "/shopList",
         component: ShopList,
         meta: {
-          hidFooter: false,
-          meta: {
-            hidFooter: true,
-            hidHeader: true,
-          },
+          hidFooter: true,
+          hidHeader: true,
         },
       },
     ],

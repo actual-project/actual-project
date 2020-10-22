@@ -398,15 +398,9 @@ export default {
     .Recommended-waper {
       overflow: hidden;
       width: 1190px;
-<<<<<<< HEAD:src/compoment/Life/Life.vue
-      background-color: #ff6600;
-      // background-color: chartreuse;
-      margin: 20px auto;
-=======
       background-color: chartreuse;
       margin: 50px auto;
       // z-index: 1;
->>>>>>> master:src/components/Life/Life.vue
       // text-align: center;
       dd {
         

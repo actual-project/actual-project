@@ -1,18 +1,9 @@
 <template>
 <div>
-<<<<<<< HEAD
-  <Header />
-  <TypeNav />
-  <Banner />
-  <Life />
-  <hr>
-  <Footer />
-=======
   <Header v-show="$route.meta.hidHeader" />
   <!-- v-show="$route.meta.hidHeader"  -->
   <router-view></router-view>
   <Footer v-show="$route.meta.hidFooter" />
->>>>>>> master
 </div>
 
 </template>
@@ -25,10 +16,12 @@ import Footer from './components/Footer/Footer'
 export default {
   name: 'APP',
   components: {
+
     Header,
     Footer
   },
   mounted () {
+ 
 
   },
   methods: {
