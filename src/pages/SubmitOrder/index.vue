@@ -54,7 +54,7 @@
                           <div class="f1">
                             <el-tabs type="border-card" class="paymentmunu">
                             <el-tab-pane>
-                             <span slot="label"></i> 支付宝/微信</span>
+                             <span slot="label"> 支付宝/微信</span>
                                <div class="ip">
                                      <div class="f2">
                                      <ul>
@@ -344,9 +344,9 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
+                                                // span{
+                                                //    // color: tomato;
+                                                // }
                                                 i{
                                                     font-size:24px;
 
