@@ -90,6 +90,7 @@ export default {
   mounted () {
     this.bannerContainer()
     this.getUserInfo()
+    // 事件总线通信
     this.$bus.$on('ishow',(val)=>{
       this.isShow = val
     })
@@ -108,6 +109,7 @@ export default {
 
       })
     },
+    // 判断是否有用户名 来切换轮播图右侧的登陆与不登陆界面
     getUserInfo () {
       let userInfo = localStorage.getItem('MTuserInfo')
       this.userInfo = JSON.parse(userInfo)

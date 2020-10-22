@@ -120,6 +120,7 @@ export default {
       this.userInfo = {},
         this.isShow = true,
         localStorage.removeItem('MTuserInfo')
+        // 事件总线通信
         this.$bus.$emit('ishow',this.isShow)
     }
   },
