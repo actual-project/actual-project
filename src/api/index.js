@@ -28,3 +28,5 @@ export const getLikeList = ()=>ajax.get('/like')
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
 // export const getCommentList = ()=>ajax.get('/pinglun')
+// 获取订单支付信息
+export const reqPayInfo = (orderId) => ajax.get(`/payment/weixin/createNative/${orderId}`)
