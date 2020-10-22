@@ -87,9 +87,14 @@ export default [
   {
     path: "/submitorder",
     component: SubmitOrder,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
+      orderId:route.query.orderId
     }),
     //判断是否由cart页面跳转
     beforeEnter: (to, from, next) => {

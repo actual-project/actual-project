@@ -80,7 +80,10 @@ export default {
       //提交订单的时候跳转到提交订单的页面
       summitOrder(){
         // this.$router.push(`/cart?foodId=${good.id}`)
-        this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}`)
+        //当提交订单的时候 获取当前的orderId
+        let orderId = this.foodInfo.orderId;
+       // console.log('当前的orderId为'+orderId)
+        this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}&orderId=${orderId}`)
       },
       //获取foodid的对象
       getFoodInfo(){
@@ -129,7 +132,7 @@ export default {
       width: 980px;
       height: 250.6px;
      // background: #ddd;
-      margin: 0 auto;
+      margin: 0 205px;
       display: block;
       margin-top:30px;
       //border:1px solid green

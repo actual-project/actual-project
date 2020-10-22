@@ -78,7 +78,7 @@
                                              </div>  
                                       
                                             <div class="m2">
-                                                <span>返回修改订单</span>
+                                                <span @click="toBack">返回修改订单</span>
                                                 <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                              </div>  
                                       
                                             <div class="m2">
-                                                <span @click="toUpdate">返回修改订单</span>
+                                                <button @click="toBack">返回修改订单</button>
                                                 <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
@@ -150,11 +150,12 @@
        </div>
    </div>
 </template>
-<script>
+<script> 
+import {reqPayStatus} from '@/api'
 import QRCode from 'qrcode' 
 export default {
   name:'SubmitOrder',
-  props:['foodName','totalPrice'],
+  props:['foodName','totalPrice','orderId'],
   data(){
       return{
         flag:false,
@@ -189,8 +190,9 @@ export default {
                 //递归每秒调用countTime方法，显示动态时间效果
                 setTimeout(this.countTime, 1000);
       },
-      toUpdate(){
-          this.$router.push(`/cart`)
+      toBack(){
+          //console.log('qqqqq')
+          this.$router.go(-1)
       },
           toPayment(){
           
@@ -246,10 +248,34 @@ export default {
             .catch((error) => { // 点击了对话框的取消
               //this.$message.error('')
             })
-            this.timeId = setInterval(() => {
-                let a = 1
-                if (a==1) {
-                  //清除定时器
+        //     this.timeId = setInterval(() => {
+        //         let a = 1
+        //         if (a==1) {
+        //           //清除定时器
+        //           clearInterval(this.timeId)
+        //           // 关闭二维码
+        //           this.$msgbox.close()
+        //           // 提示消息
+        //           this.$message({
+        //             message: '支付成功了',
+        //             type: 'success',
+        //           })
+        //           // 路由的跳转
+        //           this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+        //        }
+        //   }, 3000)
+        //console.log('进到这个判断')
+         this.timeId = setInterval(async() => {
+             //console.log('进到这个判断')
+            // 定时器中每隔3秒就获取一次支付的状态
+            try{
+                 
+                 let result = await reqPayStatus(this.orderId)
+                // console.log('进到这个判断')
+                 console.log(result)
+                  if (result.code === 200) {
+                      console.log(result.code)
+                  // 清除定时器
                   clearInterval(this.timeId)
                   // 关闭二维码
                   this.$msgbox.close()
@@ -259,10 +285,18 @@ export default {
                     type: 'success',
                   })
                   // 路由的跳转
-                  this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-               }
+                   this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+                }
+            }catch{
+                this.$message({
+                  message: '获取订单失败了',
+                  type: 'warning',
+                })
+              }
           }, 3000)
-        }).catch((err)=>{
+        })
+
+        .catch((err)=>{
             alert('二维码生成失败了')
         })
           },
@@ -273,7 +307,7 @@ export default {
     .apple{
         //width: 100%;
         background: #eee;
-        height: 663px;
+        height: 598px;
         //border:1px solid red;
         //    &::before{
         //     content: '';
