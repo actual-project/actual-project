@@ -168,7 +168,8 @@ export default {
       //前端验证
       let usernameReg = /^1(3|4|5|6|7|8|9)\d{9}$/;
       let passwordReg = /^\d{4,6}/;
-
+      // let passwordReg = /^[a-zA-Z0-9]{4,10}$/;
+      // let passwordReg = /^(([A-Z]*|[a-z]*|\d*|[-_\~!@#\$%\^&\*\.\(\)\[\]\{\}<>\?\\\/\'\"]*)|.{6,20})$|\s/
       //手机号与密码不能为空
       if (!username || !password) {
         alert("手机号/密码部能为空");
@@ -192,10 +193,15 @@ export default {
       }
 
       try {
+        //分发action
         await this.$store.dispatch("register", { username, password });
         // 成功则跳转到登录界面
         this.$router.replace("/login");
       } catch (error) {
+        //清除输入框信息
+        this.username = ''
+        this.password = ''
+        this.password2 = ''
         alert(error);
       }
     },
