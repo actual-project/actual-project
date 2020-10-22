@@ -272,10 +272,7 @@ export default {
                                                 float: right;
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
-                                                //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
+                                                //overflow: hidde
                                                 i{
                                                     font-size:24px;
 
@@ -323,7 +320,7 @@ export default {
                                          margin-top: 8px;
                                         padding: 8px;
                                             .payment-bank-tip{
-                                                width: ;
+                                              
                                                 height: 17.6px;
                                                // background: yellow;
                                                 padding-bottom:10px;
@@ -359,9 +356,7 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
+                                               
                                                 i{
                                                     font-size:24px;
 

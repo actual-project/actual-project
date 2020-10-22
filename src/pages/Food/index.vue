@@ -94,7 +94,7 @@
         <h2>猜你喜欢</h2>
         <div
           class="like"
-          v-for="(item, index) in rightLikeList"
+          v-for="item in rightLikeList"
           :key="item.id"
           @click="toShopDetail(item)"
         >
