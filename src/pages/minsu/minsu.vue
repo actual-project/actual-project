@@ -123,7 +123,7 @@
           <span>BRAND</span>
         </div>
         <div class="pinpaiminsubody">
-          <minsuzujian />
+          <minsuzujian :brand="brand" />
           <!-- <minsuzujian />
         <minsuzujian />
         <minsuzujian />
@@ -167,9 +167,8 @@ export default {
         { city: "北京" },
         { city: "北京" },
         { city: "北京" },
-        
       ],
-      shuju: [
+      brand: [
         {
           url: "./img/pinpaiminsu/1.jpg",
           title: "【壹捌】极简北欧风现代艺术大3居/1层/三里屯太古里@CactusSpace",
