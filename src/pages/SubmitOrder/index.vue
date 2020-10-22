@@ -374,10 +374,6 @@ export default {
             }
             }
         }
-        
-       
-        
-       
         .top{
             margin: 0 auto;
             width: 1180px;
