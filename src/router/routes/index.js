@@ -56,9 +56,14 @@ export default [
       hidHeader: true
     },
   },
+  //订单路由
   {
     path: "/cart",
     component: Cart,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     props: (route) => ({
       shopId: route.query.shopId,
       foodId: route.query.foodId,
@@ -78,6 +83,7 @@ export default [
       }
     },
   },
+  //提交订单组件
   {
     path: "/submitorder",
     component: SubmitOrder,
@@ -98,6 +104,10 @@ export default [
   {
     path: "/fooddtaile/:id",
     component: FoodDtaile,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     //判断是否由美食页面跳转
     beforeEnter: (to, from, next) => {
       if (from.path === "/food") {
@@ -114,6 +124,10 @@ export default [
   {
     path: "/paysuccess",
     component: PaySuccess,
+    meta: {
+      hidFooter: true,
+      hidHeader: true,
+    },
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
@@ -131,13 +145,19 @@ export default [
   {
     path: "/mytuan",
     component: MyTuan,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     children: [
       {
-        path: "/",
+        path: "/mytuan/tuan",
         component: Tuan,
         meta: {
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //收藏
@@ -145,7 +165,9 @@ export default [
         component: Enshrine,
         meta: {
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //券
@@ -153,7 +175,9 @@ export default [
         component: Ticket,
         meta: {
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //个人信息
@@ -161,7 +185,9 @@ export default [
         component: User,
         meta: {
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //个人信息
@@ -169,24 +195,30 @@ export default [
         component: Order,
         meta: {
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
+      // {
+      //   path:'/mytuan/tuan',
+      //   redirect:'/'
+      // }
     ],
   },
   //美食页面的信息
   {
     path: "/food",
     component: Food,
+    meta: {
+      hidFooter: true,
+      hidHeader: true,
+    },
     children: [
       {
         path: "/shopList",
         component: ShopList,
         meta: {
           hidFooter: false,
-          meta: {
-            hidFooter: true,
-            hidHeader: true,
-          },
         },
       },
     ],
