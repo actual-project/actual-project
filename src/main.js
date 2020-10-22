@@ -6,14 +6,11 @@ import App from './App.vue'
 import store from '@/store'
 //引入路由器对象
 import router from './router'
-<<<<<<< HEAD
 //引入momentjs
 //import moment from 'moment'
-=======
->>>>>>> 2defc7c313dd0bdaba1515e942e5ccb0872a36d2
 import './utils/element.js'
 //引入moment 进行时间格式转换
-import moment from 'moment'
+//import moment from 'moment'
 Vue.config.productionTip = false
 Vue.config.productionTip = false
 Vue.prototype.$moment = moment
