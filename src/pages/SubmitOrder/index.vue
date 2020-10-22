@@ -78,7 +78,7 @@
                                              </div>  
                                       
                                             <div class="m2">
-                                                <span>返回修改订单</span>
+                                                <span @click="back">返回修改订单</span>
                                                 <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
@@ -192,7 +192,7 @@ export default {
       toUpdate(){
           this.$router.push(`/cart`)
       },
-          toPayment(){
+    toPayment(){
           
          let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
          //let url = 'https://baidu.com'
@@ -266,6 +266,9 @@ export default {
             alert('二维码生成失败了')
         })
           },
+    back(){
+        this.$router.go(-1)
+    }
       },
   }
 </script>
