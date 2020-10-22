@@ -347,12 +347,12 @@ export default {
   .movies {
     width: 1190px;
     // height: 49px;
-    background-color: pink;
+    // background-color: pink;
     margin: -29px auto;
     .moveis-item {
       margin: 0 auto;
       width: 1190px;
-      background-color: #f8f8f8;
+      // background-color: #f8f8f8;
       // height: 500px;
       clear: both;
       overflow: hidden;
@@ -398,7 +398,7 @@ export default {
     .Recommended-waper {
       overflow: hidden;
       width: 1190px;
-      background-color: chartreuse;
+      // background-color: chartreuse;
       margin: 50px auto;
       // z-index: 1;
       // text-align: center;
@@ -508,7 +508,7 @@ export default {
       width: 1190px;
       line-height: 50px;
       margin: auto;
-      background-color: brown;
+      // background-color: brown;
       overflow: hidden;
       .Food-recommendation {
         display: flex;
@@ -567,11 +567,6 @@ export default {
               font-size: 20px;
             }
           }
-
-          // .describe{
-          //   display: flex;
-          //   flex-direction: column;
-          // }
         }
       }
     }

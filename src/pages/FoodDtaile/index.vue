@@ -49,7 +49,7 @@
       <div  class="login" v-if="!userInfo">
         <img src="../../static/images/shopDetail/toLogin.png" alt="">
         <p>请登录后查看详细团购优惠</p>
-        <el-button round>立即登录</el-button>
+        <el-button round @click="toLogin">立即登录</el-button>
       </div>
       <div  v-else>
               <!-- 菜品介绍 -->
@@ -254,6 +254,9 @@ export default {
       }
       return { start, end }
     },
+    toLogin(){
+      this.$router.push('/login')
+    }
   },
   watch: {
     // 如果你要监视的数据是对象中的某个属性值,那么请用成对的单引号可以括起来
@@ -485,6 +488,7 @@ export default {
       height: 124px;
       display: flex;
       border-bottom: 1px solid #ddd;
+      position: relative;
       &:last-of-type{
         border-bottom: none;
       }
@@ -540,9 +544,7 @@ export default {
           margin-left: 10px;
         }
       }
-
-    }
-    .buy{
+          .buy{
       position: absolute;
       right: 20px;
       top: 50%;
@@ -550,6 +552,8 @@ export default {
       background-color: #FF9900;
       border-color: #FF9900;
       color: #fff;
+      }
+
     }
   }
   //猜你喜欢列表

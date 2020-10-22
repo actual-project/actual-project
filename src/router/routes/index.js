@@ -56,9 +56,14 @@ export default [
       hidHeader: true,
     },
   },
+  //订单路由
   {
     path: "/cart",
     component: Cart,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     props: (route) => ({
       shopId: route.query.shopId,
       foodId: route.query.foodId,
@@ -78,12 +83,18 @@ export default [
       }
     },
   },
+  //提交订单组件
   {
     path: "/submitorder",
     component: SubmitOrder,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
+      orderId:route.query.orderId
     }),
     //判断是否由cart页面跳转
     beforeEnter: (to, from, next) => {
@@ -98,6 +109,10 @@ export default [
   {
     path: "/fooddtaile/:id",
     component: FoodDtaile,
+    meta: {
+      hidFooter: true,
+      hidHeader: true
+    },
     //判断是否由美食页面跳转
     beforeEnter: (to, from, next) => {
       if (from.path === "/food") {
@@ -115,8 +130,8 @@ export default [
     path: "/paysuccess",
     component: PaySuccess,
     meta: {
-      hidHeader: true,
       hidFooter: true,
+      hidHeader: true,
     },
     props: (route) => ({
       foodName: route.query.foodName,
@@ -136,29 +151,19 @@ export default [
     path: "/mytuan",
     component: MyTuan,
     meta: {
-      hidHeader: true,
       hidFooter: true,
-    },
-    beforeEnter: (to, from, next) => {
-      let userInfo = localStorage.getItem('MTuserInfo')
-      // userInfo = JSON.parse(userInfo)
-      if(userInfo){
-
-        next()
-      }else{
-        console.log('11111')
-        next('/login')
-        
-      }
+      hidHeader: true
     },
     children: [
       {
-        path: "/",
+        path: "/mytuan/tuan",
         component: Tuan,
         meta: {
           hidHeader: true,
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
 
       {
@@ -168,7 +173,9 @@ export default [
         meta: {
           hidHeader: true,
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //券
@@ -177,7 +184,9 @@ export default [
         meta: {
           hidHeader: true,
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //个人信息
@@ -186,7 +195,9 @@ export default [
         meta: {
           hidHeader: true,
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
       {
         //个人信息
@@ -195,8 +206,14 @@ export default [
         meta: {
           hidHeader: true,
           hidFooter: true,
+          hidHeader: true
         },
+    
       },
+      // {
+      //   path:'/mytuan/tuan',
+      //   redirect:'/'
+      // }
     ],
   },
   //美食页面的信息
@@ -212,8 +229,7 @@ export default [
         path: "/shopList",
         component: ShopList,
         meta: {
-          hidFooter: true,
-          hidHeader: true,
+          hidFooter: false,
         },
       },
     ],

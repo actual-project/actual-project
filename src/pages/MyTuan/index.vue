@@ -54,13 +54,14 @@ export default {
       status: 0
     }
   },
+  mounted() {
+    this.$router.replace('/mytuan/tuan')
+  },
   methods: {
     
   },
   watch:{
     '$route'(val){
-      // console.log(val); 
-      // console.log(val.query.status)
       this.status = val.query.status*1
     }
   }
@@ -73,7 +74,7 @@ a {
 }
 .body {
   width: 100%;
-  height: 100%;
+  height: 1350px;
   // background-image: linear-gradient(#dedede, #f8f8f8);
 }
 .container {

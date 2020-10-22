@@ -61,8 +61,9 @@
       <!-- logo小包裹器 -->
       <div class="header-logo-warper-little">
         <div class="logo">
-          <img src="../../static/images/logo.png"
-               alt="">
+          <router-link to="/">
+            <img src="../../static/images/logo.png" alt="">
+          </router-link>
         </div>
         <div class="search">
           <input type="text">
