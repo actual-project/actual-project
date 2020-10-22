@@ -54,6 +54,9 @@ export default {
       status: 0
     }
   },
+  mounted() {
+    this.$router.replace('/mytuan/tuan')
+  },
   methods: {
     
   },
