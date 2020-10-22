@@ -1,6 +1,6 @@
 <template>
  <div class="app">
-  <div class="container">
+  <div class="con">
      <div class="top1" data-reactid="5">
        <div class="result-box" data-reactid="6">
          <h3 data-reactid="7">
@@ -126,7 +126,7 @@ export default {
    .app{
      //width: 1190px;
      height: 915px;
-      .container{
+      .con{
       // margin-top:20px;
       width: 928px;
       // height:214.8px ;

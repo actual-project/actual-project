@@ -1,6 +1,6 @@
 <template>
    <!-- 外部容器 -->
-   <div class="apple">
+   <div class="container">
        <!--二维码的盒子  -->
        <!-- <div class="modal-box">
            <div class="modal-left">
@@ -54,7 +54,7 @@
                           <div class="f1">
                             <el-tabs type="border-card" class="paymentmunu">
                             <el-tab-pane>
-                             <span slot="label"> 支付宝/微信</span>
+                             <span slot="label"></i> 支付宝/微信</span>
                                <div class="ip">
                                      <div class="f2">
                                      <ul>
@@ -151,7 +151,7 @@
    </div>
 </template>
 <script>
-import QRCode from 'qrcode' 
+import QRCode from 'qrcode'
 export default {
   name:'SubmitOrder',
   props:['foodName','totalPrice'],
@@ -164,8 +164,7 @@ export default {
       }
   },
   mounted(){
-      this.countTime();
-
+      this.countTime()
   },
   methods:{
       //倒计时的函数
@@ -191,12 +190,15 @@ export default {
       },
           toPayment(){
           
-         let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
-         //let url = 'https://baidu.com'
+         // let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
+         let url = 'https://baidu.com'
           //问题是没有这个借口这个怎么搞？？？
           //用来生成二维码图片的地址
+          //`<img src="${imgurl}"/>`
         QRCode.toDataURL(url).then((imgurl)=>{
             //二维码生成成功了
+            //style="box-sizing: border-box;
+            //margin: 10% "
             this.$alert(`<div class="modal-box" style="display:flex;width:300px;height:300px">
            <div class="modal-left" style="box-sizing: border-box;
             margin: 10%; width:180px >
@@ -227,38 +229,32 @@ export default {
            dangerouslyUseHTMLString: true,
            customClass:"app"
            })
-             .then(() => { // 这个是点击了对话框的确定按钮
-              // 清除定时器
-              clearInterval(this.timeId)
-              // 关闭二维码
-              this.$msgbox.close()
-              // 提示消息
-              this.$message({
-                message: '支付成功了',
-                type: 'success',
-              })
-              // 路由的跳转
-             this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-            })
-            .catch((error) => { // 点击了对话框的取消
-              //this.$message.error('')
-            })
-            this.timeId = setInterval(() => {
-                let a = 1
-                if (a==1) {
-                  //清除定时器
-                  clearInterval(this.timeId)
-                  // 关闭二维码
-                  this.$msgbox.close()
-                  // 提示消息
-                  this.$message({
-                    message: '支付成功了',
-                    type: 'success',
-                  })
-                  // 路由的跳转
-                  this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-               }
-          }, 3000)
+           .then(()=>{})
+           .catch((error)=>{})
+          // this.timeId = setInterval(()=>{
+               //获取当前的支付状态
+           //从上一个页面跳转到当前页面需要传入OrderId 
+           //调用 orderId的接口获取payInfo的信息对象
+            //this.$API.reqOrderStatus(this.orderId).then(
+                // if(result.code === 200){
+                    //清理定时器
+                   // clearInterval()
+                //关闭二维码 
+                    //this.$msgbox.close()
+                //跳转到支付成功的界面
+                //提示信息：支付成功了
+                // this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+               // }
+           // ).catch(
+                // (err)=>{alert('支付失败')
+                  //清理定时器
+                  //this.$message.success('订单获取失败了')
+              //  }
+            //) 
+           //},3000)
+          
+
+           //判断是否支付
         }).catch((err)=>{
             alert('二维码生成失败了')
         })
@@ -271,10 +267,10 @@ export default {
   }
 </script>
 <style lang='less' rel='stylesheet/less' scope>
-    .apple{
+    .container{
         //width: 100%;
         background: #eee;
-        height: 663px;
+        height: 662px;
         //border:1px solid red;
         //    &::before{
         //     content: '';
@@ -468,9 +464,9 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                                // span{
-                                                //    // color: tomato;
-                                                // }
+                                                span{
+                                                   // color: tomato;
+                                                }
                                                 i{
                                                     font-size:24px;
 
@@ -518,7 +514,7 @@ export default {
                                          margin-top: 8px;
                                         padding: 8px;
                                             .payment-bank-tip{
-                                              
+                                                width: ;
                                                 height: 17.6px;
                                                // background: yellow;
                                                 padding-bottom:10px;
@@ -554,7 +550,9 @@ export default {
                                                 margin-right: 20px;
                                                 line-height: 44.8px;
                                                 //overflow: hidden;
-                                               
+                                                span{
+                                                   // color: tomato;
+                                                }
                                                 i{
                                                     font-size:24px;
 

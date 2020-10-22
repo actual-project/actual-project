@@ -111,7 +111,7 @@ export default {
     }
 </script>
 
-<style lang='less' rel='stylesheet/less' scoped>
+<style lang='less' rel='stylesheet/less' >
 // 注意还没有做适配
   .container{
     width: 100%;
