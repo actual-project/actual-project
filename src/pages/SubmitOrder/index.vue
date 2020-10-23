@@ -1,6 +1,7 @@
 <template>
    <!-- 外部容器 -->
    <div class="apple">
+       <div class="apple2"></div>
        <!--二维码的盒子  -->
        <!-- <div class="modal-box">
            <div class="modal-left">
@@ -127,7 +128,7 @@
                                              </div>  
                                       
                                             <div class="m2">
-                                                <button @click="toBack">返回修改订单</button>
+                                                <text @click="toBack">返回修改订单</text>
                                                 <button @click="toPayment">去付款</button>
                                         </div>
                                     </div>
@@ -176,7 +177,8 @@ export default {
                 var date = new Date();
                 var now = date.getTime();
                 //设置截止时间
-                var endDate = new Date("2020-10-28 12:23:23");
+                var endDate = new Date("2020-10-28 09:23:23");
+              // var endDate = new Date(now+1000*59*59*24);
                // var leftTime2 = new Date('24:00:00').getTime()
                 var end = endDate.getTime();
                 //时间差
@@ -247,45 +249,20 @@ export default {
              this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
             })
             .catch((error) => { // 点击了对话框的取消
-              //this.$message.error('')
+              this.$message.error('订单提交失败了')
+                 clearInterval(this.timeId)         
             })
-        //     this.timeId = setInterval(() => {
-        //         let a = 1
-        //         if (a==1) {
-        //           //清除定时器
-        //           clearInterval(this.timeId)
-        //           // 关闭二维码
-        //           this.$msgbox.close()
-        //           // 提示消息
-        //           this.$message({
-        //             message: '支付成功了',
-        //             type: 'success',
-        //           })
-        //           // 路由的跳转
-        //           this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-        //        }
-        //   }, 3000)
-        //console.log('进到这个判断')
-         this.timeId = setInterval(async() => {
-             //console.log('进到这个判断')
-            // 定时器中每隔3秒就获取一次支付的状态
-            try{
-                 
-                 let result = await reqPayStatus(this.orderId)
-                // console.log('进到这个判断')
-                 console.log(result)
+            //开启定时器
+             this.timeId = setInterval(async() => {
+             try{ 
+                 let result = await reqPayStatus('10')
                   if (result.code === 200) {
-                      console.log(result.code)
-                  // 清除定时器
                   clearInterval(this.timeId)
-                  // 关闭二维码
                   this.$msgbox.close()
-                  // 提示消息
                   this.$message({
                     message: '支付成功了',
                     type: 'success',
                   })
-                  // 路由的跳转
                    this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
                 }
             }catch{
@@ -294,9 +271,8 @@ export default {
                   type: 'warning',
                 })
               }
-          }, 3000)
-        })
-
+             }, 3000)
+            }) 
         .catch((err)=>{
             alert('二维码生成失败了')
         })
@@ -309,8 +285,10 @@ export default {
 </script>
 <style lang='less' rel='stylesheet/less' scope>
     .apple{
+        
         //width: 100%;
-        background: #eee;
+       // background: #eee;
+        background: black;
         height: 598px;
         //border:1px solid red;
         //    &::before{
