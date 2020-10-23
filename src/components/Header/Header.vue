@@ -114,7 +114,7 @@ export default {
     },
     // 判断是否
     toOrder () {
-      this.$router.push('/mytuan/order')
+      // this.$router.push('/mytuan/order')
     },
     // 点击退出
     loginOut () {

@@ -2,16 +2,18 @@
   <div class="bacc">
 
     <!-- 电影 -->
-    <ul class="movies"
-        clearFix>
-      <li>
-        <h1>猫眼电影</h1>
-      </li>
-      <li class="switch">正在热映</li>
-      <li>即将上映</li>
-      <span><a href="javascript:;">
-          更多
-        </a></span>
+    <div class="movies"
+         clearFix>
+      <ul class="movies-title">
+        <li>
+          <h1>猫眼电影</h1>
+        </li>
+        <li class="switch">正在热映</li>
+        <li>即将上映</li>
+        <span><a href="javascript:;">
+            更多
+          </a></span>
+      </ul>
       <div class="moveis-item">
         <div class="swiper-container"
              ref="swiper">
@@ -30,7 +32,7 @@
 
         </div>
       </div>
-    </ul>
+    </div>
 
     <!-- 民宿 -->
     <div class="house-waper">
@@ -346,44 +348,48 @@ export default {
   // 电影
   .movies {
     width: 1190px;
-    // height: 49px;
-    // background-color: pink;
-    margin: -29px auto;
-    .moveis-item {
-      margin: 0 auto;
-      width: 1190px;
-      // background-color: #f8f8f8;
-      // height: 500px;
-      clear: both;
-      overflow: hidden;
-      .swiper-container {
-        top: 3px;
-        width: 100%;
-        height: 298px;
-        img {
-          // width: 267px;
-          // height: 371px;
-          display: block;
-          padding: 5px;
-          width: 220px;
+    background-color: pink;
+    margin: -10px auto;
+    .movies-title {
+      width: 100%;
+      height: 49px;
+      background-color: #ff6600;
+      .moveis-item {
+        margin: 0 auto;
+        width: 1190px;
+        // background-color: #f8f8f8;
+        // height: 500px;
+        clear: both;
+        overflow: hidden;
+        .swiper-container {
+          top: 3px;
+          width: 100%;
           height: 298px;
+          img {
+            // width: 267px;
+            // height: 371px;
+            display: block;
+            padding: 5px;
+            width: 220px;
+            height: 298px;
+          }
         }
       }
-    }
-    li {
-      float: left;
-      font-size: 14px;
-      padding: 0 15px;
-      text-align: center;
-      line-height: 49px;
-      cursor: pointer;
-    }
-    span {
-      float: right;
-      text-align: center;
-      font-size: 14px;
-      line-height: 49px;
-      font-weight: 30px;
+      li {
+        float: left;
+        font-size: 14px;
+        padding: 0 15px;
+        text-align: center;
+        line-height: 49px;
+        cursor: pointer;
+      }
+      span {
+        float: right;
+        text-align: center;
+        font-size: 14px;
+        line-height: 49px;
+        font-weight: 30px;
+      }
     }
   }
 
@@ -403,7 +409,6 @@ export default {
       // z-index: 1;
       // text-align: center;
       dd {
-        
         // text-align: center;
         float: left;
         margin: 15px;
