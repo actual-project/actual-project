@@ -8,37 +8,41 @@
         <div class="header-bar-left">
           <span class="iconfont icon-dizhi">北京市昌平区北七家镇</span>
           <span>
-            <!-- <span class="login">立即登录</span> -->
-            <router-link class="login"
-                         to="/login">立即登录</router-link>
-            <!-- <span class="register">注册</span> -->
-            <router-link class="register"
-                         to="/register">注册</router-link>
+            <i v-if="isShow">
+              <!-- <span class="login" @click="$router.replace('/login')">立即登录</span> -->
+              <router-link class="login"
+                           to="/login">立即登录</router-link>
+              <!-- <span class="register">注册</span> -->
+              <router-link class="register"
+                           to="/register">注册</router-link>
+            </i>
+            <i v-else>
+              <span v-if="userInfo">{{userInfo.username}}</span>
+              <a href="javascript:;"
+                 @click="loginOut"> 退出</a>
+            </i>
           </span>
         </div>
         <!-- 右侧 -->
         <div class="header-bar-right">
           <ul class="right-item">
-            <div class="meituan"> <router-link to="/mytuan">我的美团</router-link>
+            <div class="meituan">
+              <router-link to="/mytuan">我的美团</router-link>
               <div class="Myright-item">
                 <dd>
                   <!-- <a href="">我的订单</a> -->
-                     <router-link
-                         to="/mytuan/order">我的订单</router-link>
+                  <i @click="toOrder">我的订单</i>
                 </dd>
                 <dd>
                   <!-- <a href="">我的收藏</a> -->
-                  <router-link
-                         to="/mytuan/enshrine">我的收藏</router-link>
+                  <router-link to="/mytuan/enshrine">我的收藏</router-link>
                 </dd>
                 <dd>
                   <!-- <a href="">抵用券</a> -->
-                   <router-link
-                         to="/mytuan/ticket">抵用券</router-link>
+                  <router-link to="/mytuan/ticket">抵用券</router-link>
                 </dd>
                 <dd>
-                  <router-link
-                         to="/mytuan/user">账户设置</router-link>
+                  <router-link to="/mytuan/user">账户设置</router-link>
                 </dd>
               </div>
             </div>
@@ -62,10 +66,10 @@
           </router-link>
         </div>
         <div class="search">
-          <input type="text">
+          <input type="text" v-model="content" placeholder="请输入要搜索的内容">
         </div>
         <!-- 放大镜 -->
-        <div class="magnifier">
+        <div class="magnifier" @click="clickSearch">
           <span class="iconfont icon-fangdajing"></span>
         </div>
       </div>
@@ -76,10 +80,60 @@
 export default {
   name: 'Header',
   data () {
-    return {
 
+    return {
+      userInfo: {},
+      isShow: true, // 标识未登录状态
+      isLogin: false,  // 标识是登录 默认为false 如果登录就位true
+      content:''
     };
+
   },
+  mounted () {
+    // 获取用户名对象
+    this.getUserInfo()
+  },
+  // 因为header组件一直存在 第二次界面不能更新 所以监视
+  watch: {
+    $route () {
+      this.getUserInfo()
+    },
+  },
+  methods: {
+    //首页搜索
+    clickSearch(){
+      if(this.content.indexOf('美食')!==-1){
+        this.$router.push('/food')
+      }else if(this.content.indexOf('民宿')!==-1){
+        this.$router.push('/minsu')
+      }else{
+        alert('没找到搜索内容')
+      }
+    },
+    getUserInfo () {
+      let userInfo = localStorage.getItem('MTuserInfo')
+      this.userInfo = JSON.parse(userInfo)
+      // 判断userInfo是否有值  有的话就改变用户名展示退出
+      if (this.userInfo) {
+        this.isShow = false
+        //  标识是否登录
+        this.isLogin = true
+      }
+    },
+    // 判断是否
+    toOrder () {
+      this.$router.push('/mytuan/order')
+    },
+    // 点击退出
+    loginOut () {
+      this.userInfo = {},
+        this.isShow = true,
+        localStorage.removeItem('MTuserInfo')
+        // 事件总线通信
+        this.$bus.$emit('ishow',this.isShow)
+    }
+  },
+
 };
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
@@ -104,7 +158,7 @@ export default {
         }
         .login {
           color: #fe8c00;
-           margin-right: 15px;
+          margin-right: 15px;
         }
         .register:hover {
           color: #fe8c00;
@@ -122,11 +176,17 @@ export default {
           z-index: 9;
           .Myright-item {
             position: absolute;
+            left: 0;
             display: none;
+            dd{
+              width: 88px;
+              text-align: center;
+            }
           }
         }
         .right-item:hover .Myright-item {
           display: block;
+          background-color: #fff;
         }
         .right-item:hover {
           color: #fe8c00;
@@ -135,8 +195,10 @@ export default {
         .right-item:nth-of-type(2):hover {
           background-color: #f8f8f8;
         }
-        .Myright-item dd a:hover {
+        .Myright-item dd :hover {
           color: #fe8c00;
+          background-color: #fff;
+          cursor: pointer;
         }
       }
     }
@@ -186,12 +248,10 @@ export default {
         width: 80px;
         height: 42px;
         background-color: #ffc300;
-        // float: right;
         position: absolute;
         right: 429px;
         top: 122px;
         margin-top: -81px;
-        // margin-right: 440px;
         border-radius: 0 4px 4px 0;
         span {
           display: block;

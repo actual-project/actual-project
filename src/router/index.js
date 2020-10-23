@@ -29,11 +29,10 @@ router.beforeEach((to,from,next)=>{
         //如果存在
         //判断当前有没有登陆 从vuex中看
         if(JSON.parse(localStorage.getItem("MTuserInfo"))){
-            if(JSON.parse(localStorage.getItem("MTuserInfo")).username){    
-            next()
+            if(JSON.parse(localStorage.getItem("MTuserInfo"))){    
+                next()
             }
         }else{
-           // console.log('去登陆')
             next('/login')
         }       
     }else{
