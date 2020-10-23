@@ -13,6 +13,8 @@ import PaySuccess from '../../pages/PaySuccess'
 
 // 引入Home
 import Home from '../../pages/Home/index.vue'
+//引入订单超时
+import Overtime from '@/pages/Overtime'
 
 //引入民宿
 import minsu from '@/pages/minsu/minsu.vue'
@@ -52,7 +54,7 @@ export default [
     component: Home,
     meta: {
       hidFooter: true,
-      hidHeader: true
+      hidHeader: true,
     },
   },
   //订单路由
@@ -64,16 +66,14 @@ export default [
       hidHeader: true
     },
     props: (route) => ({
-      shopId: route.query.shopId,
+      // shopId: route.query.shopId,
       foodId: route.query.foodId,
     }),
     // 路由独享守卫
     // 只有detail页面携带了foodId 才可以跳转这个界面
     beforeEnter: (to, from, next) => {
       const { foodId } = to.query
-      console.log("foodId", +foodId)
       if (foodId) {
-        console.log("携带了foodId")
         next()
       } else {
         console.log("从哪里来" + from.path)
@@ -93,7 +93,8 @@ export default [
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
-      orderId:route.query.orderId
+      orderId:route.query.orderId,
+      shopName:route.query.shopName
     }),
     //判断是否由cart页面跳转
     beforeEnter: (to, from, next) => {
@@ -120,9 +121,6 @@ export default [
         next("/food")
       }
     },
-    // meta:{
-    //   hidFooter:true
-    // }
   },
   //跳转到支付成功的界面
   {
@@ -167,18 +165,19 @@ export default [
         path: "/mytuan/tuan",
         component: Tuan,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
+
       {
         //收藏
         path: "/mytuan/enshrine",
         component: Enshrine,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -187,8 +186,8 @@ export default [
         path: "/mytuan/ticket",
         component: Ticket,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -197,8 +196,8 @@ export default [
         path: "/mytuan/user",
         component: User,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -207,15 +206,10 @@ export default [
         path: "/mytuan/order",
         component: Order,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
-    
       },
-      // {
-      //   path:'/mytuan/tuan',
-      //   redirect:'/'
-      // }
     ],
   },
   //美食页面的信息
@@ -241,4 +235,9 @@ export default [
     path: "/minsu",
     component: minsu,
   },
+  //订单超时取消
+  {
+    path:'/overtime',
+    component:Overtime
+  }
 ]
