@@ -309,37 +309,21 @@ export default {
 </script>
 <style lang='less' rel='stylesheet/less' scope>
     .apple{
-        //width: 100%;
         background: #eee;
         height: 598px;
-        //border:1px solid red;
-        //    &::before{
-        //     content: '';
-        //     display: block;
-        //     clear: both;
-        // }
         padding: 20px 0 40px;
         .modal-box {
-       // display: flex;
         width: 300px;
-    //     height: 300px;
-    //    margin: -219px 0 0 -358px;
-    //     top: 50%;
-    //     left: 50%;
-    //    z-index: 101;
-    //     overflow: hidden;
-        //position: absolute;
         border: 6px solid #bbb;
         background-color: #fff;
-       -webkit-animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
-       animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;     
+        -webkit-animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
+        animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;     
             .modal-left {
             box-sizing: border-box;
             margin: 10%;   
-           // float: left;
             width: 250px;
             padding: 20px 50px 25px 45px;
-            border:1px solid black
+            border:1px solid black;
             span {
             vertical-align: middle;
             }
@@ -368,23 +352,14 @@ export default {
             line-height: 32px;
             margin-bottom: 16px;
             margin: 0 0 10px;
-            display: block;
-            
-           
+            display: block;           
             }
             }
         }
-        
-       
-        
-       
         .top{
             margin: 0 auto;
             width: 1180px;
             height:494.4px ;
-            //background: #fff;
-            //border:1px solid green;
-            //background-origin: content-box;
             .first-container{
                 height: 40px;
                 line-height: 40px;
@@ -404,7 +379,6 @@ export default {
             }
             .second-container{
                 height: 434.4px;
-                //background:red;
                 .project{
                     padding: 20;
                     height: 28.8px;

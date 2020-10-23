@@ -28,7 +28,6 @@ import Order from '@/pages/Order'
 import Enshrine from '@/pages/Enshrine'
 import Ticket from '@/pages/Ticket'
 import User from '@/pages/User'
-import store from '@/store'
 
 export default [
   //注册Login路由组件
@@ -150,6 +149,15 @@ export default [
   {
     path: "/mytuan",
     component: MyTuan,
+    //判断是否由美食页面跳转
+    beforeEnter: (to, from, next) => {
+      let userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
+      if(userInfo){
+        next()
+      }else{
+        next('/login')
+      }
+    },
     meta: {
       hidFooter: true,
       hidHeader: true
