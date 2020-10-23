@@ -32,5 +32,13 @@ export const getHouse = ()=>ajax.get('/guesthouse')
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
 // export const getCommentList = ()=>ajax.get('/pinglun')
+<<<<<<< HEAD
 // 获取订单的支付状态
 export const reqPayStatus = (orderId) => ajax.get(`/tijiao/?orderId=${orderId}`)
+=======
+// 获取订单支付信息
+export const reqPayInfo = (orderId) => ajax.get(`/payment/weixin/createNative/${orderId}`)
+
+//获取美食中选择区域的数据
+export const catagoryInfo = ()=>ajax.get('/catagory')
+>>>>>>> food
