@@ -128,16 +128,12 @@
       <!-- 猜你喜欢列表 -->
       <div class="right">
         <h2>猜你喜欢</h2>
-<<<<<<< HEAD
         <div
           class="like"
           v-for="(item, index) in rightLikeList"
           :key="item.id"
           @click="toShopDetail(item)"
         >
-=======
-        <div class="like" v-for="item in rightLikeList" :key="item.id" @click="toShopDetail(item)">
->>>>>>> food
           <img :src="item.img" :alt="item.name" />
           <span>{{item.name}}</span>
           <span>{{item.address}}</span>
