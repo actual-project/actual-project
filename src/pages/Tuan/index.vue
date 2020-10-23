@@ -15,15 +15,15 @@
           </div>
         </div>
 
-        <div class="user-right">个人信息设置 ></div>
+        <div class="user-right"><router-link to="/mytuan/user">个人信息设置 ></router-link></div>
       </div>
       <div class="userInfo-order">
         <ul>
-          <li><i class="iconfont icon-daishiyong"></i><span>全部订单</span></li>
-          <li><i class="iconfont icon-daifukuan"></i><span>待付款</span></li>
-          <li><i class="iconfont icon-daishiyong1"></i><span>待使用</span></li>
-          <li><i class="iconfont icon-pinglun"></i><span>待评论</span></li>
-          <li><i class="iconfont icon-tuikuan"></i><span>退货/售后</span></li>
+          <li><router-link to="/mytuan/order?status=0"><i class="iconfont icon-daishiyong"></i><span>全部订单</span></router-link></li>
+          <li><router-link to="/mytuan/order?status=1"><i class="iconfont icon-daifukuan"></i><span>待付款</span></router-link></li>
+          <li><router-link to="/mytuan/order?status=2"><i class="iconfont icon-daishiyong1"></i><span>待使用</span></router-link></li>
+          <li><router-link to="/mytuan/order?status=3"><i class="iconfont icon-pinglun"></i><span>待评论</span></router-link></li>
+          <li><router-link to="/mytuan/order?status=4"><i class="iconfont icon-tuikuan"></i><span>退货/售后</span></router-link></li>
         </ul>
       </div>
     </div>
@@ -37,7 +37,7 @@
             <div></div>
             <div class="area">{{ item.areaName }}</div>
             <div class="price">
-              ￥<span>{{ item.lowPrice }}</span> 起
+              ￥<span>{{ item.lowPrice }}</span>
             </div>
           </div>
         </a>
@@ -71,7 +71,7 @@ export default {
       let result = await getUserInfo();
       this.userInfo = result;
     },
-  },
+  }
 };
 </script>
 
@@ -86,25 +86,29 @@ a {
   overflow: hidden;
   .userInfo-top {
     height: 200px;
+    width: 948px;
     background-image: linear-gradient(to right, #ffcd00, #ffbf00);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     .user-img {
-      display: flex;
-      align-items: center;
       .user-user {
         width: 110px;
         height: 110px;
         border-radius: 50%;
         border: 10px solid rgba(248, 248, 248, 0.5);
-        margin-left: 30px;
+        position: relative;
+        float: left;
+        top: 38px;
+        left: 30px;
         img {
           width: 100%;
         }
       }
       .user-message {
-        margin-left: 20px;
+        float: left;
+        color: #222222;
+        position: relative;
+        left: 51px;
+        top: 70px;
+        font-weight: 500;
         .user-level {
           font-size: 26px;
           color: #222222;
@@ -115,7 +119,11 @@ a {
       }
     }
     .user-right {
-      margin-right: 30px;
+      float: right;
+      font-size: 14px;
+      position: relative;
+      left: -30px;
+      top: -35px;
     }
   }
   .userInfo-order {

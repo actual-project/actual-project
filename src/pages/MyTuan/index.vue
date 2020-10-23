@@ -3,7 +3,7 @@
     <div class="container">
       <div class="leftContainer">
         <div class="link-group">
-          <router-link to="/mytuan"><p>我的美团</p></router-link>
+          <router-link to="/mytuan/tuan"><p>我的美团</p></router-link>
           <router-link to="/mytuan/order?status=0"><p>我的订单</p></router-link>
           <ul class="link-ul">  
             <li><router-link to="/mytuan/order?status=0">全部订单<i class="icon-right">></i></router-link></li>
@@ -48,19 +48,20 @@
 
 <script>
 export default {
-  name: "Like",
+  name: "Mytuan",
   data(){
     return {
       status: 0
     }
+  },
+  mounted() {
+    this.$router.replace('/mytuan/tuan')
   },
   methods: {
     
   },
   watch:{
     '$route'(val){
-      // console.log(val); 
-      // console.log(val.query.status)
       this.status = val.query.status*1
     }
   }
@@ -73,11 +74,12 @@ a {
 }
 .body {
   width: 100%;
-  height: 100%;
+  height: 1350px;
   // background-image: linear-gradient(#dedede, #f8f8f8);
 }
 .container {
   width: 1200px;
+  // min-width: 1200px;
   margin: 0px auto;
   padding-top: 20px;
   font-size: 14px;

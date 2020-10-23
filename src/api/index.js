@@ -23,10 +23,19 @@ export const getRegister = ({username,password})=>ajax.post('/register',{usernam
 export const getLogin = ({username,password})=>ajax.post('/login',{username,password})
 
 export const getLikeList = ()=>ajax.get('/like')
+// 猫眼电影
+export const getCatMovies  = ()=>ajax.get('/catmovie')
+// 民宿
+export const getHouse = ()=>ajax.get('/guesthouse')
 
 //获取右侧猜你喜欢商家
 export const getLeftLikeList = ()=>ajax.get('/leftLike')
 //获取食客评论
 // export const getCommentList = ()=>ajax.get('/pinglun')
+// 获取订单的支付状态
+export const reqPayStatus = (orderId) => ajax.get(`/tijiao/?orderId=${orderId}`)
 // 获取订单支付信息
 export const reqPayInfo = (orderId) => ajax.get(`/payment/weixin/createNative/${orderId}`)
+
+//获取美食中选择区域的数据
+export const catagoryInfo = ()=>ajax.get('/catagory')

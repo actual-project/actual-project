@@ -24,10 +24,12 @@
                 name="mobile"
                 class="f-text J-mobile"
                 v-model="username"
+                v-validate="'required|checkMobile'"
               />
               <span class="J-unitive-tip unitive-tip"
                 >注册成功后，全美团通用</span
               >
+              <span style="color:red">{{ errors.first('mobile') }}</span>
             </div>
             <!-- 获取短信动态码 -->
             <div class="form-field form-field--vbtn">
@@ -36,6 +38,7 @@
                 class="verify-code"
                 value="免费获取短信动态码"
               />
+              
             </div>
             <!-- 短信动态码 -->
             <div class="form-field form-field--sms">
@@ -45,7 +48,8 @@
             <!-- 创建密码 -->
             <div class="form-field form-field--pwd">
               <label for="" class="label-item">创建密码</label>
-              <input type="text" class="f-text" v-model="password" />
+              <input type="text" class="f-text" v-model="password" name="password" v-validate="'required|passwd'"/>
+              <span style="color:red">{{ errors.first('password') }}</span>
               <div class="pw-strength">
                 <span id="one">弱</span>
                 <span id="two">中</span>
@@ -55,7 +59,8 @@
             <!-- 确认密码 -->
             <div class="form-field form-field--pwd2">
               <label for="" class="label-item">确认密码</label>
-              <input type="text" class="f-text" v-model="password2" />
+              <input type="text" class="f-text" v-model="password2" name="password2" v-validate="'required|passwd'"/>
+              <span style="color:red">{{ errors.first('password2') }}</span>
             </div>
             <!-- 注册 -->
             <div class="form-field regiter-btn">

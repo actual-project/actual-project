@@ -36,7 +36,21 @@
           </div>
         </div>
         <div class="noOrder" v-else>
-          <p>没有订单哦</p>
+          <!-- <p>没有订单哦</p> -->
+          <div class="orderItem" v-for="item in foodOrderList" :key="item.orderid">
+            <img :src="item.dealpic" alt="">
+            <div class="one">
+              <p>{{item.shopName}}</p>
+              <p>{{$moment(Date.now()).format('YYYY-MM-DD')}}</p>
+              <p>{{item.count}}</p>
+            </div>
+            <div class="flag">
+              {{item.totalPrice}}
+            </div>
+            <div class="flag">
+              {{item.showstatus}}
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -46,6 +60,7 @@
 <script>
 import { getOrderList } from "@/api/index";
 import { status } from "nprogress";
+import {mapState} from 'vuex'
 export default {
   name: "Order",
   data() {
@@ -57,6 +72,11 @@ export default {
   props: {
     status: Number,
     required: true,
+  },
+  computed: {
+      ...mapState({
+      foodOrderList:state =>state.shopList.foodOrderList
+    })
   },
   mounted() {
     this.showorderList();
@@ -146,9 +166,29 @@ a {
       }
     }
     .noOrder{
-      p{
-        margin: 30px;
+      // p{
+      //   margin: 30px;
+      //   text-align: center;
+      // }
+      .one{
+        p{
+          height: 30px;
+          line-height: 30px;
+          margin: 10px 0;
+        }
+      }
+      .orderItem{
+        display: flex;
         text-align: center;
+        img{
+          margin-right: 50px;
+          width: 120px;
+          // height: 100%;
+        }
+        .flag{
+          width: 20%;
+          line-height: 112px
+        }
       }
     }
     .orderDetail {

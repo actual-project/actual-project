@@ -5,7 +5,7 @@
       <router-link to="/">北京美团 ></router-link>
       <router-link to="/food">北京美食 ></router-link>
       <a href="javascript:;">北京火锅</a>
-    </div> 
+    </div>  
     <!-- 店铺介绍 -->
     <div class="dalhead" v-if="shopInfo">
       <h2>{{shopInfo.name}}</h2>
@@ -49,7 +49,7 @@
       <div  class="login" v-if="!userInfo">
         <img src="../../static/images/shopDetail/toLogin.png" alt="">
         <p>请登录后查看详细团购优惠</p>
-        <el-button round>立即登录</el-button>
+        <el-button round @click="toLogin">立即登录</el-button>
       </div>
       <div  v-else>
               <!-- 菜品介绍 -->
@@ -62,7 +62,7 @@
               <p class="slod">已售{{item.sold}}</p>
               <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
             </div>
-            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <el-button class="buy" round @click="toOrderCart(item)">立即抢购</el-button>
             <i>团</i>
           </div>
         </div>
@@ -79,7 +79,7 @@
               <p class="slod">已售{{item.sold}}</p>
               <!-- <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p> -->
             </div>
-            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <el-button class="buy" round @click="toOrderCart(item)">立即抢购</el-button>
           </div>
         </div>
 
@@ -134,7 +134,7 @@
         </div>
       </div>
       <!-- 分页 -->
-      <Pagination :info="commentInfo"/>
+      <PaginationQi :info="commentInfo"/>
   </div>
     <!-- 分页组件 -->
     <!-- <el-pagination
@@ -165,7 +165,7 @@
 <script>
 import {getFoodDetail,getDiscuss} from '@/api'
 import {mapState,mapActions,mapMutations} from 'vuex'
-import Pagination from '@/components/Pagination'
+import PaginationQi from '@/components/PaginationQi'
 
 export default {
   name: 'FoodDtaile',
@@ -184,7 +184,7 @@ export default {
       }
   },
   components:{
-    Pagination
+    PaginationQi
   },
   props:["id"],
   mounted() {
@@ -254,6 +254,9 @@ export default {
       }
       return { start, end }
     },
+    toLogin(){
+      this.$router.push('/login')
+    }
   },
   watch: {
     // 如果你要监视的数据是对象中的某个属性值,那么请用成对的单引号可以括起来
@@ -291,7 +294,7 @@ export default {
       getComment:'getCommentListActions'
      }),
     //去下单
-    toOrder(good){
+    toOrderCart(good){
       this.$router.push(`/cart?foodId=${good.id}`)
     },
     //commitMutation
@@ -411,9 +414,12 @@ export default {
         margin-top: 10px;
         li{
           padding: 4px;
+          width: 22%;
+          height: 50px;
           img{
             border-radius: 10px;
             width: 100%;
+            height: 100%;
           }
         }
       }
@@ -482,6 +488,7 @@ export default {
       height: 124px;
       display: flex;
       border-bottom: 1px solid #ddd;
+      position: relative;
       &:last-of-type{
         border-bottom: none;
       }
@@ -537,9 +544,7 @@ export default {
           margin-left: 10px;
         }
       }
-
-    }
-    .buy{
+          .buy{
       position: absolute;
       right: 20px;
       top: 50%;
@@ -547,6 +552,8 @@ export default {
       background-color: #FF9900;
       border-color: #FF9900;
       color: #fff;
+      }
+
     }
   }
   //猜你喜欢列表

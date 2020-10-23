@@ -19,8 +19,12 @@
               <span>+</span>
               <span>86</span>
               <i> > </i>
-              <input type="text" placeholder="手机号" class="phInput"  v-model="username"/>
+              <input type="text" placeholder="手机号" class="phInput"  v-model="username"
+                name="mobile"
+                v-validate="'required|checkMobile'"
+              />
             </div>
+            <span style="color:red">{{ errors.first('mobile') }}</span>
             <!-- 密码 -->
             <div class="pwCode">
               <!-- <i class="icon icon-password"></i> -->
@@ -31,8 +35,10 @@
                 id="login-password"
                 placeholder="密码"
                 v-model="password"
+                v-validate="'required|passwd'"
               />
             </div>
+            <span style="color:red">{{ errors.first('password') }}</span>
             <!-- 忘记密码 -->
             <div class="auto-login">
               <a

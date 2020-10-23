@@ -1,9 +1,15 @@
+import Home from './home'
+import House from './house'
 import shopList from './shopList'
 import register from './register'
 import login from './login'
-// console.log('shopList',shopList)
+import food from './food'
+
 export default {
-    shopList,
-    register,
-    login
+  Home,
+  House,
+  shopList,
+  register,
+  login,
+  food
 }

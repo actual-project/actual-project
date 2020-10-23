@@ -1,6 +1,6 @@
 <template>
  <div class="app">
-  <div class="container">
+  <div class="con">
      <div class="top1" data-reactid="5">
        <div class="result-box" data-reactid="6">
          <h3 data-reactid="7">
@@ -10,7 +10,7 @@
            </h3>
            <p class="result__orders" data-reactid="12">
            您可以随时进入“
-             <a href="/mytuan/order" target="_blank" data-reactid="14">我的订单</a>
+             <router-link to="/mytuan/order" data-reactid="14">我的订单</router-link>
             ”查看美团劵密码，到店出示美团券密码即可消费。
              </p><p class="result__growth" data-reactid="16">
              本次购买获得1点
@@ -126,7 +126,7 @@ export default {
    .app{
      //width: 1190px;
      height: 915px;
-      .container{
+      .con{
       // margin-top:20px;
       width: 928px;
       // height:214.8px ;

@@ -3,12 +3,12 @@
     <div class="header">
       <div class="headerTop">
         <div class="headerIn">
-          <div class="logo">
-            <img src="./img/minsulogo.png" alt="" />
+          <div class="logo" @click="goHome">
+              <img src="./img/minsulogo.png" alt="" />
           </div>
           <a href="#">下载App</a>
           <a href="#">成为房东</a>
-          <a href="#">登录 / 注册</a>
+          <router-link to="/login">登录 / 注册</router-link>
         </div>
       </div>
       <div class="headerBottom">
@@ -323,10 +323,12 @@ export default {
     };
   },
   methods: {
+    // 地址显示/隐藏
     address() {
       this.add = !this.add;
       this.showArea = !this.showArea;
     },
+    //创建轮播
     initSwiper() {
       var mySwiper = new Swiper(".swiper-container", {
         /* ... */
@@ -351,6 +353,10 @@ export default {
         // },
       });
     },
+    //去首页
+    goHome(){
+      this.$router.replace('/')
+    }
   },
   mounted() {
     this.initSwiper();
