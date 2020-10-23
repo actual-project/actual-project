@@ -18,10 +18,12 @@ import Footer from './components/Footer/Footer'
 export default {
   name: 'APP',
   components: {
+
     Header,
     Footer
   },
   mounted () {
+ 
 
   },
   methods: {
