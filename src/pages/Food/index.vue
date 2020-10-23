@@ -13,7 +13,7 @@
           <div class="container clearFix">
             <!-- 已选条件 -->
             <div class="hasSeleter" v-if="this.selected.length>0">
-              <div class="check" >已选条件</div>
+              <div class="check">已选条件</div>
               <ul>
                 <li v-for="(item, index) in selected" :key="index" @click="remove(index)">
                   {{item}}
@@ -22,12 +22,12 @@
               </ul>
             </div>
             <!-- 分类 -->
-            <div class="catagoryArea ">
+            <div class="catagoryArea">
               <div class="catagory">分类</div>
               <div class="all">
                 <a href="javascript:;">全部</a>
               </div>
-              <div class="catagoryList  " >
+              <div class="catagoryList">
                 <ul>
                   <li v-for="(item, index) in catagoryList" :key="item.cid">
                     <a
@@ -47,8 +47,9 @@
               </div>
               <div class="catagoryList">
                 <ul>
-                  <li v-for="area in areaList" :key="area.aId">
-                    <a
+                  <div ></div>
+                  <li v-for="area in areaList" :key="area.aId" >
+                    <a class="iconfont icon-xialasanjiao" style="font-size: 12px; font-weight:normal"
                       href="javascript:;"
                       @click="handleSeleted(area.name,area.aId)"
                       :class="{bacc:area.aId===cid}"
@@ -394,6 +395,7 @@ export default {
     }
     .container {
       width: 100%;
+      height: auto;
       // overflow: hidden;
       .catagoryArea {
         font-size: 14px;
@@ -433,6 +435,7 @@ export default {
               height: 30px;
               a {
                 position: relative;
+                font-size: 12px;
                 .extend {
                   position: absolute;
                   top: 20px;
@@ -454,10 +457,19 @@ export default {
                     margin-top: 8px;
                   }
                 }
+                &.iconfont{
+                  color: #333;
+                  //font-size: 12px;
+                  
+                  font-weight: normal;
+                }
               }
               .bacc {
+                font-size: 12px; 
+                font-weight:normal;
                 background: red;
-                padding: 0 10px;
+                padding:4px 8px;
+                padding-right: 5px;
                 margin-left: -10px;
                 border-radius: 10px;
               }

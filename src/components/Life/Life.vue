@@ -417,7 +417,7 @@ export default {
       }
     }
     .Recommended-waper-List {
-      display: box;
+      display: flex;
       display: -moz-box;
       display: -webkit-box;
       text-align: left;
