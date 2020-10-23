@@ -46,7 +46,7 @@
                 <a href="javascript:;">全部</a>
               </div>
               <div class="catagoryList">
-                <ul>
+                <ul class="">
                   <li v-for="area in areaList" :key="area.aId">
                     <a
                       href="javascript:;"
