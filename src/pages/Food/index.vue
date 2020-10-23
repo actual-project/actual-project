@@ -46,9 +46,10 @@
                 <a href="javascript:;">全部</a>
               </div>
               <div class="catagoryList">
-                <ul class="">
-                  <li v-for="area in areaList" :key="area.aId">
-                    <a
+                <ul>
+                  <div ></div>
+                  <li v-for="area in areaList" :key="area.aId" >
+                    <a class="iconfont icon-xialasanjiao" style="font-size: 12px; font-weight:normal"
                       href="javascript:;"
                       @click="handleSeleted(area.name,area.aId)"
                       :class="{bacc:area.aId===cid}"
@@ -434,6 +435,7 @@ export default {
               height: 30px;
               a {
                 position: relative;
+                font-size: 12px;
                 .extend {
                   position: absolute;
                   top: 20px;
@@ -455,10 +457,19 @@ export default {
                     margin-top: 8px;
                   }
                 }
+                &.iconfont{
+                  color: #333;
+                  //font-size: 12px;
+                  
+                  font-weight: normal;
+                }
               }
               .bacc {
+                font-size: 12px; 
+                font-weight:normal;
                 background: red;
-                padding: 0 10px;
+                padding:4px 8px;
+                padding-right: 5px;
                 margin-left: -10px;
                 border-radius: 10px;
               }

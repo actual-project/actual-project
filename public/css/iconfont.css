@@ -15,7 +15,7 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-xialasanjiao:before {
+.icon-xialasanjiao:after {
   content: "\e623";
 }
 
