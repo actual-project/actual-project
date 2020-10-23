@@ -8,23 +8,20 @@
         <a href="javascript:;">北京美食</a>
       </div>
       <div class="left">
-        <!-- 点击条件 -->
+        <!-- 选择的区域 -->
         <div class="select">
-          <div class="container">
-            <div class="hasSeleter" v-if="selected.length>2">已选条件</div>
-            <div class="catagoryArea">
-              <div class="catagory">分类</div>
-              <div class="all">
-                <a href="javascript:;">全部</a>
-              </div>
-              <div class="catagoryList" @click="handleSeleter()">
-                <ul>
-                  <li v-for="(item, index) in catagoryList" :key="index">
-                    <a href="javascript:;">{{item}}</a>
-                  </li>
-                </ul>
-              </div>
+          <div class="container clearFix">
+            <!-- 已选条件 -->
+            <div class="hasSeleter" v-if="this.selected.length>0">
+              <div class="check">已选条件</div>
+              <ul>
+                <li v-for="(item, index) in selected" :key="index" @click="remove(index)">
+                  {{item}}
+                  <i>×</i>
+                </li>
+              </ul>
             </div>
+            <!-- 分类 -->
             <div class="catagoryArea">
               <div class="catagory">分类</div>
               <div class="all">
@@ -32,21 +29,60 @@
               </div>
               <div class="catagoryList">
                 <ul>
-                  <li v-for="(item, index) in catagoryList" :key="index">
-                    <a href="javascript:;">{{item}}</a>
+                  <li v-for="(item, index) in catagoryList" :key="item.cid">
+                    <a
+                      href="javascript:;"
+                      @click="handleSeleted(item.name,item.cid)"
+                      :class="{bacc:item.cid===cid}"
+                    >{{item.name}}</a>
                   </li>
                 </ul>
               </div>
             </div>
+            <!-- 区域 -->
+            <div class="catagoryArea mid">
+              <div class="catagory">区域</div>
+              <div class="all">
+                <a href="javascript:;">全部</a>
+              </div>
+              <div class="catagoryList">
+                <ul class="">
+                  <li v-for="area in areaList" :key="area.aId">
+                    <a
+                      href="javascript:;"
+                      @click="handleSeleted(area.name,area.aId)"
+                      :class="{bacc:area.aId===cid}"
+                    >
+                      {{area.name}}
+                      <!-- 鼠标移入，地区详情显示 -->
+                      <div class="extend">
+                        <h3>{{area.name}}</h3>
+                        <div v-for="(local, index) in area.detail" :key="local.dId" class="detail">
+                          <span
+                            @click="handleSeleted(local.title,local.dId)"
+                            :class="{bacc:local.dId===cid}"
+                          >{{local.title}}</span>
+                        </div>
+                      </div>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- 用餐人数 -->
             <div class="catagoryArea">
-              <div class="catagory">分类</div>
+              <div class="catagory">人数</div>
               <div class="all">
                 <a href="javascript:;">全部</a>
               </div>
               <div class="catagoryList">
                 <ul style="border-bottom:none">
-                  <li v-for="(item, index) in catagoryList" :key="index">
-                    <a href="javascript:;">{{item}}</a>
+                  <li v-for="(item, index) in num" :key="item.nId">
+                    <a
+                      href="javascript:;"
+                      @click="handleSeleted(item.name,item.nId)"
+                      :class="{bacc:item.nId===cid}"
+                    >{{item.name}}</a>
                   </li>
                 </ul>
               </div>
@@ -122,52 +158,119 @@ export default {
   },
   data() {
     return {
+      radio1: "上海",
+      radio2: "上海",
+      radio3: "上海",
+      radio4: "上海",
+      a: "",
       shopList: [], //商家信息
-      catagoryList: [
-        "代金券",
-        "蛋糕甜点",
-        "火锅",
-        "自助餐",
-        "小吃快餐",
-        "日韩料理",
-        "西餐",
-        "聚餐宴请",
-        "烧烤烤肉",
-        "东北菜",
-        "川湘菜",
-        "江浙菜",
-        "香锅烤鱼",
-        "粤菜",
-        "...",
-      ],
-      selected:[''],//已选的条件
+      selected: [], //已选的条件
       order: "1:desc", //1=默认，2=销量 3=价格 4=销售最多  desc=降序  asc=升序
       pageInfo: {
         pageNo: 1, // 当前显示第几页的数据,默认是第一页
         pageSize: 5, // 每页显示几条数据
       },
+      cid: "",
+      areaList: [
+        {
+          aId: "1",
+          name: "朝阳区",
+          detail: [
+            { title: "全部", dId: 10 },
+            { title: "大望路", dId: 11 },
+            { title: "双井", dId: 12 },
+            { title: "北苑家园", dId: 13 },
+            { title: "酒仙桥", dId: 14 },
+            { title: "望京", dId: 15 },
+            { title: "世贸", dId: 16 },
+            { title: "朝阳公园", dId: 17 },
+            { title: "三元桥", dId: 18 },
+          ],
+        },
+        {
+          aId: "2",
+          name: "海淀区",
+        },
+        {
+          aId: "3",
+          name: "房山区",
+        },
+        {
+          aId: "4",
+          name: "丰台区",
+        },
+        {
+          aId: "5",
+          name: "顺义区",
+        },
+        {
+          aId: "6",
+          name: "大兴区",
+        },
+        {
+          aId: "7",
+          name: "昌平区",
+        },
+        {
+          aId: "8",
+          name: "东城区",
+        },
+        {
+          aId: "9",
+          name: "西城区",
+        },
+        {
+          aId: "10",
+          name: "房山区",
+        },
+        {
+          aId: "11",
+          name: "丰台区",
+        },
+      ], //区域详情
+      num: [
+        {
+          nId: "110",
+          name: "单人餐",
+        },
+        {
+          nId: "120",
+          name: "双人餐",
+        },
+        {
+          nId: "130",
+          name: "3-4人",
+        },
+        {
+          nId: "140",
+          name: "5-6人",
+        },
+        {
+          nId: "150",
+          name: "7-8人",
+        },
+        {
+          nId: "160",
+          name: "10人以上",
+        },
+        {
+          nId: "170",
+          name: "其他",
+        },
+      ], //用餐人数详情
     };
   },
-  //发送请求
-  // async mounted() {
-  //   const result = await getShopList()
-  //   console.log(result)
-  //   //修改商家属性
-  //   this.shopList = result.poiInfos
-  //   console.log(this.shopList)
-
-  // },
-  //简写：mouted中不发送请求，可以将其在computed中发送，在mouted中调用
   mounted() {
     this.getShop();
     this.getRightShopLikeListActions();
     this.getShopListActions();
+    this.getCatagoryAction();
   },
   methods: {
     ...mapActions({
       getShopListActions: "getShopListActions",
       getRightShopLikeListActions: "getRightShopLikeListActions",
-      //跳转页面
+      getCatagoryAction: "getCatagoryAction",
     }),
     // 获取商品信息数据
     getShopListActions(pageNo = 1) {
@@ -214,10 +317,26 @@ export default {
         return "";
       }
     },
+    //获取点击的事件
+    handleSeleted(item, id) {
+      window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
+      this.selected.push(item);
+      this.cid = id;
+      // if (this.selected.length > 1) {
+      //   this.selected.splice(0, 1);
+      // }
+    },
+    //删除已选条件
+    remove(index) {
+      console.log(index);
+      this.selected.splice(index, 1);
+      this.cid = "";
+    },
   },
   computed: {
     ...mapState({
       rightLikeList: (state) => state.shopList.rightLikeList,
+      catagoryList: (state) => state.food.catagoryList,
     }),
   },
 };
@@ -247,23 +366,39 @@ export default {
   // 筛选
   .select {
     width: 950px;
-    //height: 350px;
     border: 1px solid #e5e5ee;
     border-radius: 5px;
     background: #fff;
+    .hasSeleter {
+      border-bottom: 1px solid #e5e5e5;
+      display: flex;
+      .check {
+        border-top: none;
+        padding: 10px 15px;
+        height: 27px;
+        line-height: 27px;
+      }
+      ul {
+        //padding: 10px 5px 10px 20px;
+        margin-left: 10px;
+        display: flex;
+        li {
+          align-self: center;
+          padding: 5px 10px;
+          margin-left: 10px;
+          color: #009f7f;
+          border-radius: 40px;
+          border: 1px solid #009f7f;
+        }
+      }
+    }
     .container {
       width: 100%;
-      //height: 100%;
-      //margin-left: 20px;
-      //background: palegreen;
-      //padding: 10px 0 0 10px;
-      overflow: hidden;
-      .hasSeleter {
-        padding: 10px 0 10px 20px;
-        border-bottom: 1px solid #e5e5e5;
-      }
+      height: auto;
+      // overflow: hidden;
       .catagoryArea {
         font-size: 14px;
+        color: #333;
         .catagory {
           float: left;
           padding: 10px 0 0 20px;
@@ -297,11 +432,51 @@ export default {
               float: left;
               width: 125px;
               height: 30px;
+              a {
+                position: relative;
+                .extend {
+                  position: absolute;
+                  top: 20px;
+                  left: -10px;
+                  display: none;
+                  z-index: 999;
+                  width: 400px;
+                  border: 1px solid #ccc;
+                  //overflow: hidden;
+                  padding: 15px;
+                  h3 {
+                    color: #ccc;
+                    padding-bottom: 10px;
+                  }
+                  .detail {
+                    width: 100px;
+                    float: left;
+                    color: #666;
+                    margin-top: 8px;
+                  }
+                }
+              }
+              .bacc {
+                background: red;
+                padding: 0 10px;
+                margin-left: -10px;
+                border-radius: 10px;
+              }
+              a:hover {
+                color: #333;
+              }
+              a:hover .extend {
+                display: block;
+                background: #fff;
+              }
             }
           }
         }
       }
     }
+  }
+  .left .select:last-of-type {
+    border: none;
   }
   // 店铺信息
   .shop {

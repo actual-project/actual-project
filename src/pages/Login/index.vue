@@ -19,7 +19,7 @@
               <span>+</span>
               <span>86</span>
               <i> > </i>
-              <input type="text" placeholder="手机号" class="phInput"  v-model="username"/>
+              <input type="text" placeholder="手机号" class="phInput"  v-model="username" value="17600000000"/>
             </div>
             <!-- 密码 -->
             <div class="pwCode">
@@ -31,6 +31,7 @@
                 id="login-password"
                 placeholder="密码"
                 v-model="password"
+                value="00000000"
               />
             </div>
             <!-- 忘记密码 -->

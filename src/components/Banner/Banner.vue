@@ -33,8 +33,8 @@
             <img src="../../static/images/banners/banner-right1.jpg"
                  alt="">
           </div>
-          <div class="Login-block">
-
+          <div class="Login-block"
+               v-if="isShow">
             <img src="../../static/images/banners/avatar.jpg"
                  alt="">
             <button>
@@ -44,7 +44,11 @@
             <button>
               <router-link to="/register">立即登录</router-link>
             </button>
-
+          </div>
+          <div class="Login-block"
+               v-else>
+            <img src="../../static/images/banners/dengluhou.jpg"
+                 alt="" style="width:230px;height:240px;  border-radius:0 ">
           </div>
         </div>
       </div>
@@ -65,7 +69,8 @@
           </div>
           <div class="banner-bottom-four">
             <!-- <img src="../../static/images/banners/banner-right2.jpg" alt=""> -->
-            <img src="../../static/images/banners/qcod.png" alt="">
+            <img src="../../static/images/banners/qcod.png"
+                 alt="">
           </div>
         </div>
       </div>
@@ -78,11 +83,17 @@ export default {
   name: 'Banner',
   data () {
     return {
-
+      isShow: true,
+      userInfo: {},
     };
   },
   mounted () {
     this.bannerContainer()
+    this.getUserInfo()
+    // 事件总线通信
+    this.$bus.$on('ishow',(val)=>{
+      this.isShow = val
+    })
   },
   methods: {
     bannerContainer () {
@@ -90,12 +101,6 @@ export default {
         loop: true, // 循环模式选项
         observer: true,
         observerParents: true,
-
-        // 如果需要分页器
-        // pagination: {
-        //   el: '.swiper-pagination',
-        // },
-
         // 如果需要前进后退按钮
         navigation: {
           nextEl: '.swiper-button-next',
@@ -104,6 +109,22 @@ export default {
 
       })
     },
+    // 判断是否有用户名 来切换轮播图右侧的登陆与不登陆界面
+    getUserInfo () {
+      let userInfo = localStorage.getItem('MTuserInfo')
+      this.userInfo = JSON.parse(userInfo)
+      if(this.userInfo.username){
+        this.isShow = false
+      }else{
+         this.isShow = true
+      }
+    }
+  },
+  watch:{
+    isShow(){
+      console.log(1111)
+      // this.getUserInfo()
+    }
   }
 };
 </script>
@@ -197,11 +218,10 @@ export default {
           // background-color: black;
           float: left;
           margin-left: 154px;
-          img{
+          img {
             width: 100%;
             height: 100%;
           }
-
         }
       }
     }

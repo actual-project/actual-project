@@ -53,7 +53,7 @@ export default [
     component: Home,
     meta: {
       hidFooter: true,
-      hidHeader: true
+      hidHeader: true,
     },
   },
   //订单路由
@@ -121,9 +121,6 @@ export default [
         next("/food")
       }
     },
-    // meta:{
-    //   hidFooter:true
-    // }
   },
   //跳转到支付成功的界面
   {
@@ -159,18 +156,19 @@ export default [
         path: "/mytuan/tuan",
         component: Tuan,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
+
       {
         //收藏
         path: "/mytuan/enshrine",
         component: Enshrine,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -179,8 +177,8 @@ export default [
         path: "/mytuan/ticket",
         component: Ticket,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -189,8 +187,8 @@ export default [
         path: "/mytuan/user",
         component: User,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
     
       },
@@ -199,15 +197,10 @@ export default [
         path: "/mytuan/order",
         component: Order,
         meta: {
+          hidHeader: true,
           hidFooter: true,
-          hidHeader: true
         },
-    
       },
-      // {
-      //   path:'/mytuan/tuan',
-      //   redirect:'/'
-      // }
     ],
   },
   //美食页面的信息
