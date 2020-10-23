@@ -18,6 +18,120 @@
             <span>{{this.totalPrice}}</span>
           </div>
         </div>
+<<<<<<< HEAD
+       <!--  -->
+       <div class="top">
+           <div class="first-container">
+               <i class="iconfont icon-daojishi" ></i>
+               <span class="bd">
+                   请在
+                   <span class="cd">{{h}}:{{m}}:{{s}}</span>
+                   内完成支付，超时订单会自动取消
+               </span>
+           </div>
+           <div class="second-container">
+               <div class="project"> 
+                        <div class="one">
+                            项目：{{this.foodName}}
+                        </div> 
+                        <div class="two">
+                            应付金额：￥
+                           <span>{{this.totalPrice}}</span>
+                        </div>       
+               </div>
+               <div class="payment">
+                   <div class="paycon">
+                      <div class="paymenttype">
+                          <div class="f1">
+                            <el-tabs type="border-card" class="paymentmunu">
+                            <el-tab-pane>
+                             <span slot="label"> 支付宝/微信</span>
+                               <div class="ip">
+                                     <div class="f2">
+                                     <ul>
+                                     <li>
+                                        <input type="radio" name="thirdpart_pay" id="thirdpart_pay_wxqrpay"  checked="">
+                                        <label class="payment-icon" for="thirdpart_pay_wxqrpay"><img src="https://p1.meituan.net/pay/pc_wxqrpay.png" disabled="" alt="微信"></label>
+                                     </li>
+                                     <li>
+                                         <input type="radio" name="thirdpart_pay" id="thirdpart_pay_alipay" >
+                                        <label class="payment-icon" for="thirdpart_pay_wxqrpay">  <img src="https://p0.meituan.net/pay/alipaypcnew.png" disabled="" alt="支付宝"></label>
+                                    
+                                     </li>
+                                    </ul>
+                                    </div> 
+                                     <!-- 支付金额 -->
+                                    <div class="money clearFix">
+                                            <div class="m1 ">
+                                            <span>支付￥
+                                                <i>{{this.totalPrice}}</i>
+                                            </span>
+                                             </div>  
+                                      
+                                            <div class="m2">
+                                                <span>返回修改订单</span>
+                                                <button @click="toPayment">去付款</button>
+                                        </div>
+                                    </div>
+                               </div>
+                            </el-tab-pane>
+                            <el-tab-pane label="个人网银支付">
+                                <div class="ipi">
+                                    <div class="cendiv">
+                                        <div class="payment-bank-tip">支持储蓄卡和信用卡，需要开通网银</div>
+                                        <ul>
+                                            <li>
+                                                <input type="radio" name="b2cebank" id="b2cebank_189" data-type="qdbpay" data-banktypeid="189" data-bankcode="b2c">
+                                                <label class="payment-icon" for="b2cebank_189"><img src="https://p1.meituan.net/pay/icbc.png" disabled="" alt="中国工商银行"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="b2cebank" id="b2cebank_190" data-type="qdbpay" data-banktypeid="190" data-bankcode="b2c">
+                                                <label class="payment-icon" for="b2cebank_190"><img src="https://p1.meituan.net/pay/cmb.png" disabled="" alt="招商银行"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="b2cebank" id="b2cebank_191" data-type="qdbpay" data-banktypeid="191" data-bankcode="b2c">
+                                                <label class="payment-icon" for="b2cebank_191"><img src="https://p1.meituan.net/pay/ccb.png" disabled="" alt="中国建设银行"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="b2cebank" id="b2cebank_192" data-type="qdbpay" data-banktypeid="192" data-bankcode="b2c">
+                                                <label class="payment-icon" for="b2cebank_192"><img src="https://p1.meituan.net/pay/abc.png" disabled="" alt="中国农业银行"></label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" name="b2cebank" id="b2cebank_193" data-type="qdbpay" data-banktypeid="193" data-bankcode="b2c">
+                                                <label class="payment-icon" for="b2cebank_193"><img src="https://p0.meituan.net/pay/boc.png" disabled="" alt="交通银行"></label>
+                                            </li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_194" data-type="qdbpay" data-banktypeid="194" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_194"><img src="https://p1.meituan.net/pay/bofc.png" disabled="" alt="中国银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_195" data-type="qdbpay" data-banktypeid="195" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_195"><img src="https://p0.meituan.net/pay/spdb.png" disabled="" alt="浦发银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_196" data-type="qdbpay" data-banktypeid="196" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_196"><img src="https://p1.meituan.net/pay/pspc.png" disabled="" alt="中国邮政储蓄银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_197" data-type="qdbpay" data-banktypeid="197" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_197"><img src="https://p1.meituan.net/pay/other.png" disabled="" alt="其他银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_352" data-type="qdbpay" data-banktypeid="352" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_352"><img src="http://p0.meituan.net/pay/ee150864df5119f003009fa1ae154f902918.png" disabled="" alt="中国民生银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                            <li><input type="radio" name="b2cebank" id="b2cebank_400" data-type="qdbpay" data-banktypeid="400" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_400"><img src="https://p1.meituan.net/pay/gfyh.png" disabled="" alt="广发银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                           <li><input type="radio" name="b2cebank" id="b2cebank_506" data-type="qdbpay" data-banktypeid="506" data-bankcode="b2c"><label class="payment-icon" for="b2cebank_506"><img src="http://p0.meituan.net/pay/d727f7b4c245a263b73b31871fa301fe2643.png" disabled="" alt="北京银行"></label><span class="payment-weak-tip" style="visibility:hidden;"></span></li>
+                                        </ul>
+                                           <!-- 支付金额 -->{
+                                        <div class="money clearFix">
+                                            <div class="m1 ">
+                                            <span>支付￥
+                                                <i>{{this.totalPrice}}</i>
+                                            </span>
+                                             </div>  
+                                      
+                                            <div class="m2">
+                                                <span>返回修改订单</span>
+                                                <button @click="toPayment">去付款</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                            </el-tab-pane>    
+                            </el-tabs>
+                              <ul class="paymenttips">
+                                 <li>支付帮助</li>
+                                 <li>
+                                     <a href="">意见反馈</a>
+                                </li>
+                            </ul> 
+=======
         <div class="payment">
           <div class="paycon">
             <div class="paymenttype">
@@ -260,6 +374,7 @@
                               支付￥
                               <i>{{this.totalPrice}}</i>
                             </span>
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                           </div>
 
                           <div class="m2">
@@ -289,11 +404,18 @@
 import { reqPayStatus } from "@/api";
 import QRCode from "qrcode";
 export default {
+<<<<<<< HEAD
+  name: "SubmitOrder",
+  props: ["foodName", "totalPrice"],
+  data() {
+    return {
+=======
   name: 'SubmitOrder',
   props: ['foodName', 'totalPrice', 'orderId','shopName'],
   data () {
     return {
       flag: false,
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
       h: "",
       m: "",
       s: "",
@@ -309,13 +431,57 @@ export default {
       var date = new Date();
       var now = date.getTime();
       //设置截止时间
+<<<<<<< HEAD
+      var endDate = new Date("2020-10-22 12:23:23");
+=======
       var endDate = new Date("2020-10-28 12:23:23");
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
       // var leftTime2 = new Date('24:00:00').getTime()
       var end = endDate.getTime();
       //时间差
       var leftTime = end - now;
       //定义变量 d,h,m,s保存倒计时的时间
       if (leftTime >= 0) {
+<<<<<<< HEAD
+        this.h = Math.floor((leftTime / 1000 / 60 / 60) % 24);
+        this.m = Math.floor((leftTime / 1000 / 60) % 60);
+        this.s = Math.floor((leftTime / 1000) % 60);
+      }
+      // console.log(this.s);
+      //递归每秒调用countTime方法，显示动态时间效果
+      setTimeout(this.countTime, 1000);
+    },
+  },
+};
+</script>
+<style lang='less' rel='stylesheet/less' scoped>
+.container {
+  //width: 100%;
+  background: #eee;
+  height: 662px;
+  //border:1px solid red;
+  //    &::before{
+  //     content: '';
+  //     display: block;
+  //     clear: both;
+  // }
+  padding: 20px 0 40px;
+  //二维码盒子的样式
+  .modal-box {
+    width: 716px;
+    height: 438px;
+    margin: -219px 0 0 -358px;
+    top: 50%;
+    left: 50%;
+    z-index: 101;
+    overflow: hidden;
+    position: absolute;
+    border: 6px solid #bbb;
+    background-color: #fff;
+    -webkit-animation: scale-in both cubic-bezier(0.4, 0, 0, 1.5) 0.3s;
+    animation: scale-in both cubic-bezier(0.4, 0, 0, 1.5) 0.3s;
+  }
+=======
         this.h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
         this.m = Math.floor(leftTime / 1000 / 60 % 60);
         this.s = Math.floor(leftTime / 1000 % 60);
@@ -482,10 +648,17 @@ export default {
     }
   }
 
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
   .top {
     margin: 0 auto;
     width: 1180px;
     height: 494.4px;
+<<<<<<< HEAD
+    //background: #fff;
+    //border:1px solid green;
+    //background-origin: content-box;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
     .first-container {
       height: 40px;
       line-height: 40px;
@@ -505,6 +678,10 @@ export default {
     }
     .second-container {
       height: 434.4px;
+<<<<<<< HEAD
+      //background:red;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
       .project {
         padding: 20;
         height: 28.8px;
@@ -553,6 +730,16 @@ export default {
               // height: 80px;
               .paymentmunu {
                 float: left;
+<<<<<<< HEAD
+                // li{
+                //     float: left;
+                //     height: 20px;
+                //     padding: 9px 15px;
+                //     background: green;
+                //     font-size: 14px;
+                // }
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                 .ip {
                   width: 1108px;
                   height: 236pxpx;
@@ -561,6 +748,12 @@ export default {
                     width: 1108px;
                     height: 52px;
                     padding-top: 13px;
+<<<<<<< HEAD
+                    //line-height: 52px;
+                    // margin-top:30px;
+                    // background: pink;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                     ul {
                       position: relative;
                       li {
@@ -580,6 +773,10 @@ export default {
                   .money {
                     width: 100%;
                     height: 99.6px;
+<<<<<<< HEAD
+                    // background: red;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                     margin-top: 50px;
                     margin-bottom: 30px;
                     overflow: hidden;
@@ -587,24 +784,50 @@ export default {
                     .m1 {
                       color: coral;
                       height: 44.8px;
+<<<<<<< HEAD
+                      // background: pink;
                       float: right;
                       margin-right: 20px;
                       line-height: 44.8px;
+                      //overflow: hidden;
+                    //   span {
+                    //     // color: tomato;
+                    //   }
+=======
+                      float: right;
+                      margin-right: 20px;
+                      line-height: 44.8px;
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       i {
                         font-size: 24px;
                       }
                     }
                     .m2 {
                       position: absolute;
+<<<<<<< HEAD
+                      //margin-top:24px;
+                      right: 21px;
+                      bottom: 0;
+                      // width: 192px;
+                      height: 44.8px;
+                      //background: yellow;
+                      line-height: 44.8px;
+                      //margin-bottom: 30px;
+=======
                       right: 21px;
                       bottom: 0;
                       height: 44.8px;
                       line-height: 44.8px;
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       span {
                         width: 72px;
                         height: 44.8px;
                         font-size: 12px;
                         display: inline-block;
+<<<<<<< HEAD
+                        //background: blue;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       }
                       button {
                         width: 100px;
@@ -624,15 +847,30 @@ export default {
                   border: 0;
                   .cendiv {
                     height: 183.6px;
+<<<<<<< HEAD
+                    //  background: red;
+                    margin-top: 8px;
+                    padding: 8px;
+                    .payment-bank-tip {
+                    //   width: ;
+                      height: 17.6px;
+                      // background: yellow;
+=======
                     margin-top: 8px;
                     padding: 8px;
                     .payment-bank-tip {
                       height: 17.6px;
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       padding-bottom: 10px;
                     }
                     ul {
                       width: 100%;
                       height: 156px;
+<<<<<<< HEAD
+                      // background: green;
+                      // float: left;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       li {
                         float: left;
                         width: 214px;
@@ -647,30 +885,58 @@ export default {
                     .money {
                       width: 100%;
                       height: 99.6px;
+<<<<<<< HEAD
+                      // background: red;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                       margin-top: 50px;
                       overflow: hidden;
                       position: relative;
                       .m1 {
                         color: coral;
                         height: 44.8px;
+<<<<<<< HEAD
+                        // background: pink;
                         float: right;
                         margin-right: 20px;
                         line-height: 44.8px;
+                        //overflow: hidden;
+                        // span {
+                        //   // color: tomato;
+                        // }
+=======
+                        float: right;
+                        margin-right: 20px;
+                        line-height: 44.8px;
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                         i {
                           font-size: 24px;
                         }
                       }
                       .m2 {
                         position: absolute;
+<<<<<<< HEAD
+                        //margin-top:24px;
+                        right: 21px;
+                        bottom: 0;
+                        // width: 192px;
+                        height: 44.8px;
+                        //background: yellow;
+=======
                         right: 21px;
                         bottom: 0;
                         height: 44.8px;
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                         line-height: 44.8px;
                         span {
                           width: 72px;
                           height: 44.8px;
                           font-size: 12px;
                           display: inline-block;
+<<<<<<< HEAD
+                          //background: blue;
+=======
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
                         }
                         button {
                           width: 100px;
@@ -684,6 +950,23 @@ export default {
                       }
                     }
                   }
+<<<<<<< HEAD
+                }
+              }
+              .paymenttips {
+                position: absolute;
+                right: 0;
+                //float: right;
+                z-index: 9;
+                li {
+                  float: left;
+                  height: 20px;
+                  line-height: 40px;
+                  font-size: 12px;
+                  padding: 9px 15px;
+                }
+              }
+=======
                 }
               }
               .paymenttips {
@@ -698,6 +981,7 @@ export default {
                   padding: 9px 15px;
                 }
               }
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
             }
           }
         }

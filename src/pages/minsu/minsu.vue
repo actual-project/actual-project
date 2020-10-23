@@ -59,7 +59,7 @@
                 <div class="usefulCity">
                   <ul>
                     <li
-                      class="liCity"
+                      class="liCity2"
                       v-for="(item, index) in items"
                       :key="index"
                     >
@@ -124,21 +124,124 @@
         </div>
         <div class="pinpaiminsubody">
           <minsuzujian :brand="brand" />
-          <!-- <minsuzujian />
-        <minsuzujian />
-        <minsuzujian />
-        <minsuzujian />
-        <minsuzujian /> -->
         </div>
       </div>
-      <div class="remenruzhudi"></div>
+      <div class="enter">
+        <div class="enterTitle">
+          <h2>热门入住地</h2>
+          <span> LDA </span>
+        </div>
+        <div class="hotPlace">
+          <ul>
+            <li class="current">
+              <div class="name">北京大兴国际机场</div>
+              <div class="score">13%选择</div>
+            </li>
+            <li>
+              <div class="name">国贸CBD/四惠</div>
+              <div class="score">11%选择</div>
+            </li>
+            <li>
+              <div class="name">果园环岛/通州区</div>
+              <div class="score">11%选择</div>
+            </li>
+            <li>
+              <div class="name">劲松/潘家园/宋家庄</div>
+              <div class="score">15%选择</div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
     <div class="footer">
-      <div class="footerTop"></div>
-      <div class="footerMid"></div>
-      <div class="footerBottom"></div>
+      <div class="footerTop">
+        <div class="more">查看更多民宿</div>
+        <div class="insurance">
+          <img src="./img/foot/1.png" alt="">
+          </div>
+        </div>
+        <div class="footerMid">
+          <ul>
+            <li>
+              热门城市
+            </li>
+            <li>
+              北京的民宿
+            </li>
+            <li>
+              上海的民宿
+            </li>
+            <li>
+              上海的民宿
+            </li>
+            <li>
+              上海的民宿
+            </li>
+            <li>
+              上海的民宿
+            </li>
+            <li>
+              上海的民宿
+            </li>
+            </ul>
+        
+          <ul>
+            <li>
+              热门房源
+            </li>
+            <li>
+              有厨具的民宿
+            </li>
+            <li>
+              有洗衣机的民宿
+            </li>
+            <li>
+              有洗衣机的民宿
+            </li>
+            <li>
+              有洗衣机的民宿
+            </li>
+            <li>
+              有洗衣机的民宿
+            </li>
+            <li>
+              有洗衣机的民宿
+            </li>
+            </ul>
+      </div>
+      <div class="footerBottom">
+        <div class="bottom1">
+          <h5>公司信息</h5>
+          <ul>
+            <li>关于我们</li>
+            <li>工作机会</li>
+            </ul>
+        </div>
+        <div class="bottom2">
+          <h5>网站帮助</h5>
+          <ul>
+            <li>规则中心</li>
+            <li>网站地图</li>
+            <li>民宿推荐</li>
+            </ul>
+        </div>
+        <div class="bottom3">
+          <h5>人工客服</h5>
+          <ul>
+            <li>客服电话</li>
+            <li>登录问题</li>
+            </ul>
+        </div>
+        <div class="bottom4">
+          <img src="./img/foot/2.png" alt="">
+          <span>扫码下载美团民宿 APP</span>
+        </div>
+        
+      </div>
+      </div>
+      
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -153,6 +256,7 @@ export default {
     return {
       add: false,
       showArea: false,
+      change :0,
       items: [
         { city: "北京" },
         { city: "石家庄" },
@@ -170,41 +274,47 @@ export default {
       ],
       brand: [
         {
-          url: "./img/pinpaiminsu/1.jpg",
+          url:
+            "https://p1.meituan.net/iphoenix/afb237f10e4ec01f09065791bcf2bf413056184.jpg",
           title: "【壹捌】极简北欧风现代艺术大3居/1层/三里屯太古里@CactusSpace",
           price: 850,
           address: "北京·朝阳区",
         },
         {
-          url: "./img/pinpaiminsu/2.jpg",
+          url:
+            "https://p0.meituan.net/phoenix/08d0010014002f0e4b91a3d2a40f791e1658172.jpg",
           title:
             "含早晚餐「森岚·逸云」5# 舒适家庭房 | <隐市乡居>Hazy Forest Hill Room5",
           price: 485,
           address: "北京·怀柔区",
         },
         {
-          url: "./img/pinpaiminsu/3.jpg",
+          url:
+            "https://p0.meituan.net/iphoenix/a9c03a7be2d87aac0ea0ffa33503cc121489725.jpg",
           title:
             "延庆大隐于世《冬奥小镇三号院》野鸭湖·玉渡山·龙庆峡拍照拍摄小院",
           price: 2999,
           address: "北京·延庆区",
         },
         {
-          url: "./img/pinpaiminsu/4.jpg",
+          url:
+            "https://p0.meituan.net/iphoenix/69bd0e345c634356880d124a8901912a8830064.jpg",
           title:
             "藏幽山水境 | 茶道别院 | 青瓦【怀柔民宿】怀柔雁栖湖风景区 怀柔虹鳟鱼一条沟/神堂峪 怀柔慕田峪/红螺寺 怀柔风景区",
           price: 2620,
           address: "北京·怀柔区",
         },
         {
-          url: "./img/pinpaiminsu/5.jpg",
+          url:
+            "https://p1.meituan.net/iphoenix/78c3cb44b8dc1ba57ec565f6020c9dac5236149.jpg",
           title:
             "NUTS「私院」泡池客厅餐厅厨房茶室III【怀柔民宿】怀柔青龙峡 怀柔雁栖湖风景区 怀北漂流 雁栖湖 红螺寺 怀柔风景区",
           price: 2980,
           address: "北京·怀柔区",
         },
         {
-          url: "./img/pinpaiminsu/6.jpg",
+          url:
+            "https://p1.meituan.net/iphoenix/234589825d6f0b4b8980815a89862d4a1667333.jpg",
           title: "「肆舍」玉渡山 龙庆峡 原生态独立小院",
           price: 798,
           address: "北京·延庆区",
@@ -260,6 +370,11 @@ export default {
 <style lang='less' rel='stylesheet/less' scoped>
 @import "../../../node_modules/swiper/css/swiper.css";
 @import "../../../public/css/iconfont.css";
+body {
+  width: 100%;
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+}
 .header {
   background-color: rgb(255, 255, 255);
 
@@ -371,6 +486,14 @@ export default {
                 flex-wrap: wrap;
               }
               .liCity {
+                line-height: 36px;
+                margin: 0px 3px 10px 0px;
+                padding: 0px 13px;
+                border: 1px solid #333;
+                border-radius: 4px;
+                font-size: 14px;
+              }
+              .liCity2{
                 line-height: 36px;
                 margin: 0px 3px 10px 0px;
                 padding: 0px 13px;
@@ -516,11 +639,140 @@ export default {
     }
     .pinpaiminsubody {
       width: 1180px;
+      height: 759px;
       margin: 0 auto;
     }
   }
+  .enter {
+    height: 120px;
+    width: 1180px;
+    margin: 0 auto;
+    .enterTitle {
+      width: 1150px;
+      height: 24px;
+      margin: 0 auto;
+      position: relative;
+      h2 {
+        font-size: 24px;
+        line-height: 24px;
+        display: inline-block;
+      }
+      span {
+        position: absolute;
+        font-size: 10px;
+        margin-left: 4px;
+        color: #cbcccd;
+        font-style: oblique;
+        display: inline-block;
+        left: 120px;
+        top: 20px;
+      }
+    }
+    .hotPlace {
+      ul {
+        height: 48px;
+        width: 1165px;
+        li {
+          height: 36px;
+          padding: 0 15px 12px 15px;
+          float: left;
+          margin-top: 30px;
+          .name {
+            font-size: 16px;
+            color: #7d7e80;
+          }
+          .score {
+            font-size: 12px;
+            color: #cbcccd;
+            margin-top: 6px;
+          }
+        }
+      }
+    }
+  }
 }
-footer {
+.footer {
+  width: 100%;
   background-color: rgb(255, 255, 255);
+  .footerTop {
+    width: 1180px;
+    margin: 0 auto;
+    .more {
+      box-sizing: border-box;
+      width: 1150px;
+      height: 49px;
+      margin: 0 auto;
+      padding: 16px 0;
+      font-weight: 700;
+      font-size: 16px;
+      display: block;
+      background: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 16px 0;
+    }
+  }
+  .footerMid {
+    width: 1170px;
+    height: 80px;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    ul {
+      background-color: rgb(255, 255, 255);
+      min-width: 1170px;
+      height: 40px;
+      padding: 0 0 20px;
+      margin: 10px auto;
+      box-sizing: border-box;
+      li {
+        color: #666;
+        font-size: 14px;
+        float: left;
+        margin-right: 20px;
+      }
+    }
+  }
+
+  .footerBottom {
+    width: 1170px;
+    height: 211px;
+    background-color: rgb(255, 255, 255);
+    margin: 20px auto 100px;
+    position: relative;
+    h5 {
+      color: #333;
+      font-size: 18px;
+    }
+    li {
+      font-size: 14px;
+      margin: 15px 15px 15px 0;
+      color: #7d7e80;
+    }
+    .bottom1 {
+      width: 90px;
+      height: 93px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .bottom2 {
+      width: 90px;
+      height: 130px;
+      position: absolute;
+      left: 300px;
+    }
+    .bottom3 {
+      width: 185px;
+      height: 118px;
+      position: absolute;
+      left: 600px;
+    }
+    .bottom4 {
+      width: 200px;
+      height: 200px;
+      position: absolute;
+      left: 900px;
+    }
+  }
 }
 </style>
