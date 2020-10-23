@@ -12,27 +12,43 @@
         <div class="select">
           <div class="container clearFix">
             <!-- 已选条件 -->
-            <div class="hasSeleter" v-if="this.selected.length>0">
-              <div class="check" >已选条件</div>
+            <!--  v-if="this.selected.length>0" -->
+            <div
+              class="hasSeleter"
+              v-show="!(itemName===null&&areaName===null&&areaListName===null&&numName===null)"
+            >
+              <div class="check">已选条件</div>
               <ul>
-                <li v-for="(item, index) in selected" :key="index" @click="remove(index)">
-                  {{item}}
+                <li v-show="itemName" @click="remove('a')">
+                  {{itemName}}
+                  <i>×</i>
+                </li>
+                <li v-show="areaName" @click="remove('b')">
+                  {{areaName}}
+                  <i>×</i>
+                </li>
+                <li v-show="numName" @click="remove('c')">
+                  {{numName}}
+                  <i>×</i>
+                </li>
+                <li v-show="areaListName" @click="remove('d')">
+                  {{areaListName}}
                   <i>×</i>
                 </li>
               </ul>
             </div>
             <!-- 分类 -->
-            <div class="catagoryArea ">
+            <div class="catagoryArea">
               <div class="catagory">分类</div>
               <div class="all">
                 <a href="javascript:;">全部</a>
               </div>
-              <div class="catagoryList  " >
+              <div class="catagoryList">
                 <ul>
-                  <li v-for="item in catagoryList" :key="item.cid">
+                  <li v-for="(item, index) in catagoryList" :key="item.cid">
                     <a
                       href="javascript:;"
-                      @click="handleSeleted(item.name,item.cid)"
+                      @click="handleSeleted(item.name,item.cid,1)"
                       :class="{bacc:item.cid===cid}"
                     >{{item.name}}</a>
                   </li>
@@ -46,20 +62,23 @@
                 <a href="javascript:;">全部</a>
               </div>
               <div class="catagoryList">
-                <ul class="iconfont icon-xialasanjiao">
+                <ul>
+                  <div></div>
                   <li v-for="area in areaList" :key="area.aId">
                     <a
+                      class="iconfont icon-xialasanjiao"
+                      style="font-size: 12px; font-weight:normal"
                       href="javascript:;"
-                      @click="handleSeleted(area.name,area.aId)"
+                      @click="handleSeleted(area.name,area.aId,2)"
                       :class="{bacc:area.aId===cid}"
                     >
                       {{area.name}}
                       <!-- 鼠标移入，地区详情显示 -->
                       <div class="extend">
                         <h3>{{area.name}}</h3>
-                        <div v-for="local in area.detail" :key="local.dId" class="detail">
+                        <div v-for="(local, index) in area.detail" :key="local.dId" class="detail">
                           <span
-                            @click="handleSeleted(local.title,local.dId)"
+                            @click="handleSeleted(local.title,local.dId,3)"
                             :class="{bacc:local.dId===cid}"
                           >{{local.title}}</span>
                         </div>
@@ -77,10 +96,10 @@
               </div>
               <div class="catagoryList">
                 <ul style="border-bottom:none">
-                  <li v-for="item in num" :key="item.nId">
+                  <li v-for="(item, index) in num" :key="item.nId">
                     <a
                       href="javascript:;"
-                      @click="handleSeleted(item.name,item.nId)"
+                      @click="handleSeleted(item.name,item.nId,4)"
                       :class="{bacc:item.nId===cid}"
                     >{{item.name}}</a>
                   </li>
@@ -128,7 +147,12 @@
       <!-- 猜你喜欢列表 -->
       <div class="right">
         <h2>猜你喜欢</h2>
-        <div class="like" v-for="item in rightLikeList" :key="item.id" @click="toShopDetail(item)">
+        <div
+          class="like"
+          v-for="(item, index) in rightLikeList"
+          :key="item.id"
+          @click="toShopDetail(item)"
+        >
           <img :src="item.img" :alt="item.name" />
           <span>{{item.name}}</span>
           <span>{{item.address}}</span>
@@ -159,7 +183,7 @@ export default {
       radio4: "上海",
       a: "",
       shopList: [], //商家信息
-      selected: [], //已选的条件
+      //selected: [], //已选的条件
       order: "1:desc", //1=默认，2=销量 3=价格 4=销售最多  desc=降序  asc=升序
       pageInfo: {
         pageNo: 1, // 当前显示第几页的数据,默认是第一页
@@ -253,6 +277,10 @@ export default {
           name: "其他",
         },
       ], //用餐人数详情
+      itemName: null, //分类
+      areaName: null, //区域
+      areaListName: null,
+      numName: null, //人数
     };
   },
   mounted() {
@@ -313,18 +341,55 @@ export default {
       }
     },
     //获取点击的事件
-    handleSeleted(item, id) {
+    handleSeleted(item, id, data) {
       window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
-      this.selected.push(item);
+      //this.selected.push(item);
       this.cid = id;
+      if (data === 1) {
+        this.itemName = item;
+        return;
+      } else if (data === 2) {
+        this.areaName = item;
+        this.areaListName = null;
+        return;
+      } else if (data === 4) {
+        this.numName = item;
+        return;
+      } else if (data === 3) {
+        this.areaName = null;
+        this.areaListName = item;
+        return;
+      }
+
       // if (this.selected.length > 1) {
       //   this.selected.splice(0, 1);
       // }
     },
     //删除已选条件
-    remove(index) {
-      console.log(index);
-      this.selected.splice(index, 1);
+    remove(flag) {
+      // console.log(index);
+      // this.selected.splice(index, 1);
+      if (flag === "a") {
+        console.log(111);
+        this.itemName = null;
+        return;
+      }
+      if (flag === "b") {
+        console.log(111);
+        this.areaName = null;
+        return;
+      }
+      if (flag === "c") {
+        console.log(111);
+        this.numName = null;
+        return;
+      }
+      if (flag === "d") {
+        console.log(111);
+        this.areaListName = null;
+        return;
+      }
+
       this.cid = "";
     },
   },
@@ -389,6 +454,7 @@ export default {
     }
     .container {
       width: 100%;
+      height: auto;
       // overflow: hidden;
       .catagoryArea {
         font-size: 14px;
@@ -428,6 +494,7 @@ export default {
               height: 30px;
               a {
                 position: relative;
+                font-size: 12px;
                 .extend {
                   position: absolute;
                   top: 20px;
@@ -449,20 +516,29 @@ export default {
                     margin-top: 8px;
                   }
                 }
+                &.iconfont {
+                  color: #333;
+                  //font-size: 12px;
+
+                  font-weight: normal;
+                }
               }
               .bacc {
+                font-size: 12px;
+                font-weight: normal;
                 background: red;
-                padding: 0 10px;
+                padding: 4px 8px;
+                padding-right: 5px;
                 margin-left: -10px;
                 border-radius: 10px;
               }
               a:hover {
                 color: #333;
               }
-              a:hover .extend {
-                display: block;
-                background: #fff;
-              }
+            }
+            li:hover .extend {
+              display: block;
+              background: #fff;
             }
           }
         }
