@@ -42,20 +42,6 @@ export default {
       },
     },
   },
-  // mounted() {
-  //   console.log('mounted',this)
-  // },
-  // beforeUpdate() {
-  //   console.log('beforeUpdate',this.info)
-  // },
-  // watch: {
-  //   "this.info":{
-  //     handler:()=>{
-  //       console.log('watch',info)
-  //     },
-  //     // immediate:true
-  //   }
-  // },
   data() {
     return {
       // 当前的页码数(因为按钮的点击操作,修改显示不同数据的页码数)

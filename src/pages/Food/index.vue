@@ -13,7 +13,7 @@
           <div class="container clearFix">
             <!-- 已选条件 -->
             <div class="hasSeleter" v-if="this.selected.length>0">
-              <div class="check" >已选条件</div>
+              <div class="check">已选条件</div>
               <ul>
                 <li v-for="(item, index) in selected" :key="index" @click="remove(index)">
                   {{item}}
@@ -22,12 +22,12 @@
               </ul>
             </div>
             <!-- 分类 -->
-            <div class="catagoryArea ">
+            <div class="catagoryArea">
               <div class="catagory">分类</div>
               <div class="all">
                 <a href="javascript:;">全部</a>
               </div>
-              <div class="catagoryList  " >
+              <div class="catagoryList">
                 <ul>
                   <li v-for="(item, index) in catagoryList" :key="item.cid">
                     <a
