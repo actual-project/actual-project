@@ -29,7 +29,7 @@
               </div>
               <div class="catagoryList  " >
                 <ul>
-                  <li v-for="(item, index) in catagoryList" :key="item.cid">
+                  <li v-for="item in catagoryList" :key="item.cid">
                     <a
                       href="javascript:;"
                       @click="handleSeleted(item.name,item.cid)"
@@ -46,7 +46,7 @@
                 <a href="javascript:;">全部</a>
               </div>
               <div class="catagoryList">
-                <ul>
+                <ul class="iconfont icon-xialasanjiao">
                   <li v-for="area in areaList" :key="area.aId">
                     <a
                       href="javascript:;"
@@ -57,7 +57,7 @@
                       <!-- 鼠标移入，地区详情显示 -->
                       <div class="extend">
                         <h3>{{area.name}}</h3>
-                        <div v-for="(local, index) in area.detail" :key="local.dId" class="detail">
+                        <div v-for="local in area.detail" :key="local.dId" class="detail">
                           <span
                             @click="handleSeleted(local.title,local.dId)"
                             :class="{bacc:local.dId===cid}"
@@ -77,7 +77,7 @@
               </div>
               <div class="catagoryList">
                 <ul style="border-bottom:none">
-                  <li v-for="(item, index) in num" :key="item.nId">
+                  <li v-for="item in num" :key="item.nId">
                     <a
                       href="javascript:;"
                       @click="handleSeleted(item.name,item.nId)"
