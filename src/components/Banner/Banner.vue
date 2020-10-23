@@ -113,7 +113,7 @@ export default {
     getUserInfo () {
       let userInfo = localStorage.getItem('MTuserInfo')
       this.userInfo = JSON.parse(userInfo)
-      if(this.userInfo.username){
+      if(this.userInfo){
         this.isShow = false
       }else{
          this.isShow = true

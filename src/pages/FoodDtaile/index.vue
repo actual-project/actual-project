@@ -62,7 +62,7 @@
               <p class="slod">已售{{item.sold}}</p>
               <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p>
             </div>
-            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <el-button class="buy" round @click="toOrderCart(item)">立即抢购</el-button>
             <i>团</i>
           </div>
         </div>
@@ -79,7 +79,7 @@
               <p class="slod">已售{{item.sold}}</p>
               <!-- <p class="price">￥<span>{{item.price}}</span><i>门店价￥{{item.shopprice}}</i></p> -->
             </div>
-            <el-button class="buy" round @click="toOrder(item)">立即抢购</el-button>
+            <el-button class="buy" round @click="toOrderCart(item)">立即抢购</el-button>
           </div>
         </div>
 
@@ -294,7 +294,7 @@ export default {
       getComment:'getCommentListActions'
      }),
     //去下单
-    toOrder(good){
+    toOrderCart(good){
       this.$router.push(`/cart?foodId=${good.id}`)
     },
     //commitMutation

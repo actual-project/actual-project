@@ -49,9 +49,9 @@
       </div>
       <div class="formSummit">
         <input type="button"
-               class="btn"
-               value="提交订单"
-               @click="summitOrder">
+              class="btn"
+              value="提交订单"
+              @click="summitOrder">
       </div>
     </form>
   </div>
@@ -89,7 +89,7 @@ export default {
       //当提交订单的时候 获取当前的orderId
       let orderId = this.foodInfo.orderId;
       // console.log('当前的orderId为'+orderId)
-      this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}&orderId=${orderId}`)
+      this.$router.push(`/submitorder?foodName=${this.foodInfo.name}&totalPrice=${this.totalPrice}&orderId=${orderId}&shopName=${this.shopInfo.name}`)
     },
     //获取foodid的对象
     getFoodInfo () {

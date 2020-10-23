@@ -17,7 +17,7 @@
                            to="/register">注册</router-link>
             </i>
             <i v-else>
-              <span>{{userInfo.username}}</span>
+              <span v-if="userInfo">{{userInfo.username}}</span>
               <a href="javascript:;"
                  @click="loginOut"> 退出</a>
             </i>
@@ -66,10 +66,10 @@
           </router-link>
         </div>
         <div class="search">
-          <input type="text">
+          <input type="text" v-model="content" placeholder="请输入要搜索的内容">
         </div>
         <!-- 放大镜 -->
-        <div class="magnifier">
+        <div class="magnifier" @click="clickSearch">
           <span class="iconfont icon-fangdajing"></span>
         </div>
       </div>
@@ -85,6 +85,7 @@ export default {
       userInfo: {},
       isShow: true, // 标识未登录状态
       isLogin: false,  // 标识是登录 默认为false 如果登录就位true
+      content:''
     };
 
   },
@@ -95,17 +96,24 @@ export default {
   // 因为header组件一直存在 第二次界面不能更新 所以监视
   watch: {
     $route () {
-      console.log(1111)
       this.getUserInfo()
-    }
+    },
   },
   methods: {
-    //
+    //首页搜索
+    clickSearch(){
+      if(this.content.indexOf('美食')!==-1){
+        this.$router.push('/food')
+      }else if(this.content.indexOf('民宿')!==-1){
+        this.$router.push('/minsu')
+      }else{
+        alert('没找到搜索内容')
+      }
+    },
     getUserInfo () {
       let userInfo = localStorage.getItem('MTuserInfo')
       this.userInfo = JSON.parse(userInfo)
       // 判断userInfo是否有值  有的话就改变用户名展示退出
-      // console.log(this.userInfo.username);
       if (this.userInfo) {
         this.isShow = false
         //  标识是否登录
@@ -114,7 +122,7 @@ export default {
     },
     // 判断是否
     toOrder () {
-      // this.$router.push('/mytuan/order')
+      this.$router.push('/mytuan/order')
     },
     // 点击退出
     loginOut () {
@@ -168,14 +176,17 @@ export default {
           z-index: 9;
           .Myright-item {
             position: absolute;
+            left: 0;
             display: none;
+            dd{
+              width: 88px;
+              text-align: center;
+            }
           }
         }
         .right-item:hover .Myright-item {
           display: block;
           background-color: #fff;
-
-          // color: #fe8c00;
         }
         .right-item:hover {
           color: #fe8c00;
@@ -237,12 +248,10 @@ export default {
         width: 80px;
         height: 42px;
         background-color: #ffc300;
-        // float: right;
         position: absolute;
         right: 429px;
         top: 122px;
         margin-top: -81px;
-        // margin-right: 440px;
         border-radius: 0 4px 4px 0;
         span {
           display: block;

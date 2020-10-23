@@ -1,34 +1,6 @@
 <template>
   <!-- 外部容器 -->
   <div class="apple">
-    <!--二维码的盒子  -->
-    <!-- <div class="modal-box">
-           <div class="modal-left">
-               <p><span>请使用 
-                 </span>
-                 <span class="orange">微信 
-                </span>
-                <i class="icon icon-qrcode">
-                </i>
-                <span class="orange"> 扫一扫
-                </span>
-                <br>扫描二维码支付
-                </p>
-                <div class="modal-qr">
-                <img class="modal-qrcode" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMsAAADLAQAAAADogFqeAAACFElEQVR42uWYPY6DUAyEjVJQ5gjcJFwsEkhcjNzkHYHyFRHemXmQ/ZG2nUi7FCTko7Ds8dgvkb9dJf4smiPimlnxEX3mPMSNX0czWjL36zNyBY8OkfU737SjErfrHHXcYkCES8GbfHwHWlqJarddst7ehiASXbd4G1K9BmjniUQhQr6ZdiT1LgVxvW7fhG1C57XHPRRmjD/b3INQpbuEm/1juxOhp9xoHvKB/qkdvlWai5qo5dCIMvu1KQa9jJeCKcOjGT2DPwzwM8YKFfWPM1FOlGxedJKCg8vKV0odzQiW0m1NuO3W0/GVKCvKXGOS2cNX4lL6NWI4p54RQTFsnW1CevLZtHNE6EPQyY4IcYs2/oEup8H6EKbtg1pV0To5DCvnRtxCYuIWglkXrWhTi9CK6KhoYxoJTI2xMuo0owWr4VWdxA6m0b0sxYlmemsrVZGzwVLOuWxESMqKHGHyo2gcvrK3w218KI/07HAT+YoCTj/imgqdwFcQHNVL7YxmxHm/TdyIJoTJU4TWRT9iB5PL4rGmBla06kbMERo6zy2kqTfTjVJbiHylnqPv3Od9SNdMxchcJOY5PhdpE9LZAShZOe5Gx/nOjHSSwnbGcaOFtcr27eg43qKNQwL6Uko3kp8FWgePOMy81gMz0iqCyU+zp4CKH7V68YDdNlT6SvlaSgtq/0cVOVvysN8m8GhG/+5fxw+JbsBp1g4vUwAAAABJRU5ErkJggg==" alt="您的浏览器版本太低, 请升级您的浏览器">
-                <div class="modal-info">
-                    <img class="icon-clock" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAYCAMAAAAmopZHAAAAxlBMVEUAAAD/iAD/iQD/iwD/iAD/iAD/iQD/igD/hwD/iAD/hwD/iQD/iAD/igD/jAD/iQD/iwD/iAD/iQD/iAD/iwD/hwD/jgD/iAD/iAD/jgD/hwD/gwD/iAD/iwD/iwD/iAD/igD/iQD/igD/igD/igD/iwD/kQD/hwD/nQD/kAD/iQD/kgD/hwD/iQD/lwD/hwD/gwD/hAD/iQD/jQD/ogD/mwD/rAD/dQD/rQD/iAD/nAD/igD/hgD/iAD/gwD/fgD/gQD/jQCSx2meAAAAPHRSTlMA8d9VGdiZN9TDhXhxb2xaIRwF6LyrqXxgQzAqJBML+evlz8ikoH52aWdkXEo/MvbXzLCqg3h0ZmRNKwwyACdhAAABIklEQVQoz12R53aCQBSEB2liQ1BjN1FjiUbT+1zQ93+p7D1A5OT7sTN3Ge42KOseLlzVClcjNyhoJVLLA2S3bdSZRGaMupRbo6MF6QF2zxIRq2cDnkgQYZmwCb9qJjtuR0jXx0a4wLEa4o5cDhxtFQaUJgYdG4ZtyhZyNNPATN33+XSv2v6aqAyFRyiP6TuUfr7B7amickiMKA3pZ8al/r/iLiubUs9MyBczziX6Nz+lBfzINYo+g9xZMoUjN3lV53OcuYq0MfvLO1d8sIt89jHHFnZ9E6C28EqHna3YB3bUC/WTOS6MYtOBB7VP6SvKvCVVKJNzEuKCzXScuf0pWaOgzvSz8HthpTGOEY9bLvlRWi2gvqIIGfgoM/T0KV1vmNe/YLwjroRqPFIAAAAASUVORK5CYII=">
-                    <span>二维码有效时长为2小时, 请尽快支付
-                    </span>
-                    </div>
-                    </div>
-                    </div>
-                    <div class="modal-right"><i>
-                        </i>
-                        <img src="https://mpay.meituan.com/resource/cashier/img/weixin-qrcode.1xf1oN.jpg" alt="微信扫码"> 
-                    </div>
-        </div> -->
-    <!--  -->
     <div class="top">
       <div class="first-container">
         <i class="iconfont icon-daojishi"></i>
@@ -40,9 +12,7 @@
       </div>
       <div class="second-container">
         <div class="project">
-          <div class="one">
-            项目：{{this.foodName}}
-          </div>
+          <div class="one">项目：{{this.foodName}}</div>
           <div class="two">
             应付金额：￥
             <span>{{this.totalPrice}}</span>
@@ -52,45 +22,49 @@
           <div class="paycon">
             <div class="paymenttype">
               <div class="f1">
-                <el-tabs type="border-card"
-                         class="paymentmunu">
+                <el-tabs type="border-card" class="paymentmunu">
                   <el-tab-pane>
-                    <span slot="label"> 支付宝/微信</span>
+                    <span slot="label">支付宝/微信</span>
                     <div class="ip">
                       <div class="f2">
                         <ul>
                           <li>
-                            <input type="radio"
-                                   name="thirdpart_pay"
-                                   id="thirdpart_pay_wxqrpay"
-                                   checked="">
-                            <label class="payment-icon"
-                                   for="thirdpart_pay_wxqrpay"><img src="https://p1.meituan.net/pay/pc_wxqrpay.png"
-                                   disabled=""
-                                   alt="微信"></label>
+                            <input
+                              type="radio"
+                              name="thirdpart_pay"
+                              id="thirdpart_pay_wxqrpay"
+                              checked
+                            />
+                            <label class="payment-icon" for="thirdpart_pay_wxqrpay">
+                              <img
+                                src="https://p1.meituan.net/pay/pc_wxqrpay.png"
+                                disabled
+                                alt="微信"
+                              />
+                            </label>
                           </li>
                           <li>
-                            <input type="radio"
-                                   name="thirdpart_pay"
-                                   id="thirdpart_pay_alipay">
-                            <label class="payment-icon"
-                                   for="thirdpart_pay_wxqrpay"> <img src="https://p0.meituan.net/pay/alipaypcnew.png"
-                                   disabled=""
-                                   alt="支付宝"></label>
-
+                            <input type="radio" name="thirdpart_pay" id="thirdpart_pay_alipay" />
+                            <label class="payment-icon" for="thirdpart_pay_wxqrpay">
+                              <img
+                                src="https://p0.meituan.net/pay/alipaypcnew.png"
+                                disabled
+                                alt="支付宝"
+                              />
+                            </label>
                           </li>
                         </ul>
                       </div>
                       <!-- 支付金额 -->
                       <div class="money clearFix">
-                        <div class="m1 ">
-                          <span>支付￥
+                        <div class="m1">
+                          <span>
+                            支付￥
                             <i>{{this.totalPrice}}</i>
                           </span>
                         </div>
 
                         <div class="m2">
-
                           <span @click="toBack">返回修改订单</span>
                           <button @click="toPayment">去付款</button>
                         </div>
@@ -103,142 +77,187 @@
                         <div class="payment-bank-tip">支持储蓄卡和信用卡，需要开通网银</div>
                         <ul>
                           <li>
-                            <input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_189"
-                                   data-type="qdbpay"
-                                   data-banktypeid="189"
-                                   data-bankcode="b2c">
-                            <label class="payment-icon"
-                                   for="b2cebank_189"><img src="https://p1.meituan.net/pay/icbc.png"
-                                   disabled=""
-                                   alt="中国工商银行"></label>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_189"
+                              data-type="qdbpay"
+                              data-banktypeid="189"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_189">
+                              <img src="https://p1.meituan.net/pay/icbc.png" disabled alt="中国工商银行" />
+                            </label>
                           </li>
                           <li>
-                            <input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_190"
-                                   data-type="qdbpay"
-                                   data-banktypeid="190"
-                                   data-bankcode="b2c">
-                            <label class="payment-icon"
-                                   for="b2cebank_190"><img src="https://p1.meituan.net/pay/cmb.png"
-                                   disabled=""
-                                   alt="招商银行"></label>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_190"
+                              data-type="qdbpay"
+                              data-banktypeid="190"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_190">
+                              <img src="https://p1.meituan.net/pay/cmb.png" disabled alt="招商银行" />
+                            </label>
                           </li>
                           <li>
-                            <input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_191"
-                                   data-type="qdbpay"
-                                   data-banktypeid="191"
-                                   data-bankcode="b2c">
-                            <label class="payment-icon"
-                                   for="b2cebank_191"><img src="https://p1.meituan.net/pay/ccb.png"
-                                   disabled=""
-                                   alt="中国建设银行"></label>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_191"
+                              data-type="qdbpay"
+                              data-banktypeid="191"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_191">
+                              <img src="https://p1.meituan.net/pay/ccb.png" disabled alt="中国建设银行" />
+                            </label>
                           </li>
                           <li>
-                            <input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_192"
-                                   data-type="qdbpay"
-                                   data-banktypeid="192"
-                                   data-bankcode="b2c">
-                            <label class="payment-icon"
-                                   for="b2cebank_192"><img src="https://p1.meituan.net/pay/abc.png"
-                                   disabled=""
-                                   alt="中国农业银行"></label>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_192"
+                              data-type="qdbpay"
+                              data-banktypeid="192"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_192">
+                              <img src="https://p1.meituan.net/pay/abc.png" disabled alt="中国农业银行" />
+                            </label>
                           </li>
                           <li>
-                            <input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_193"
-                                   data-type="qdbpay"
-                                   data-banktypeid="193"
-                                   data-bankcode="b2c">
-                            <label class="payment-icon"
-                                   for="b2cebank_193"><img src="https://p0.meituan.net/pay/boc.png"
-                                   disabled=""
-                                   alt="交通银行"></label>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_193"
+                              data-type="qdbpay"
+                              data-banktypeid="193"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_193">
+                              <img src="https://p0.meituan.net/pay/boc.png" disabled alt="交通银行" />
+                            </label>
                           </li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_194"
-                                   data-type="qdbpay"
-                                   data-banktypeid="194"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_194"><img src="https://p1.meituan.net/pay/bofc.png"
-                                   disabled=""
-                                   alt="中国银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_195"
-                                   data-type="qdbpay"
-                                   data-banktypeid="195"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_195"><img src="https://p0.meituan.net/pay/spdb.png"
-                                   disabled=""
-                                   alt="浦发银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_196"
-                                   data-type="qdbpay"
-                                   data-banktypeid="196"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_196"><img src="https://p1.meituan.net/pay/pspc.png"
-                                   disabled=""
-                                   alt="中国邮政储蓄银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_197"
-                                   data-type="qdbpay"
-                                   data-banktypeid="197"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_197"><img src="https://p1.meituan.net/pay/other.png"
-                                   disabled=""
-                                   alt="其他银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_352"
-                                   data-type="qdbpay"
-                                   data-banktypeid="352"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_352"><img
-                                   src="http://p0.meituan.net/pay/ee150864df5119f003009fa1ae154f902918.png"
-                                   disabled=""
-                                   alt="中国民生银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_400"
-                                   data-type="qdbpay"
-                                   data-banktypeid="400"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_400"><img src="https://p1.meituan.net/pay/gfyh.png"
-                                   disabled=""
-                                   alt="广发银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
-                          <li><input type="radio"
-                                   name="b2cebank"
-                                   id="b2cebank_506"
-                                   data-type="qdbpay"
-                                   data-banktypeid="506"
-                                   data-bankcode="b2c"><label class="payment-icon"
-                                   for="b2cebank_506"><img
-                                   src="http://p0.meituan.net/pay/d727f7b4c245a263b73b31871fa301fe2643.png"
-                                   disabled=""
-                                   alt="北京银行"></label><span class="payment-weak-tip"
-                                  style="visibility:hidden;"></span></li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_194"
+                              data-type="qdbpay"
+                              data-banktypeid="194"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_194">
+                              <img src="https://p1.meituan.net/pay/bofc.png" disabled alt="中国银行" />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_195"
+                              data-type="qdbpay"
+                              data-banktypeid="195"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_195">
+                              <img src="https://p0.meituan.net/pay/spdb.png" disabled alt="浦发银行" />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_196"
+                              data-type="qdbpay"
+                              data-banktypeid="196"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_196">
+                              <img
+                                src="https://p1.meituan.net/pay/pspc.png"
+                                disabled
+                                alt="中国邮政储蓄银行"
+                              />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_197"
+                              data-type="qdbpay"
+                              data-banktypeid="197"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_197">
+                              <img src="https://p1.meituan.net/pay/other.png" disabled alt="其他银行" />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_352"
+                              data-type="qdbpay"
+                              data-banktypeid="352"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_352">
+                              <img
+                                src="http://p0.meituan.net/pay/ee150864df5119f003009fa1ae154f902918.png"
+                                disabled
+                                alt="中国民生银行"
+                              />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_400"
+                              data-type="qdbpay"
+                              data-banktypeid="400"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_400">
+                              <img src="https://p1.meituan.net/pay/gfyh.png" disabled alt="广发银行" />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
+                          <li>
+                            <input
+                              type="radio"
+                              name="b2cebank"
+                              id="b2cebank_506"
+                              data-type="qdbpay"
+                              data-banktypeid="506"
+                              data-bankcode="b2c"
+                            />
+                            <label class="payment-icon" for="b2cebank_506">
+                              <img
+                                src="http://p0.meituan.net/pay/d727f7b4c245a263b73b31871fa301fe2643.png"
+                                disabled
+                                alt="北京银行"
+                              />
+                            </label>
+                            <span class="payment-weak-tip" style="visibility:hidden;"></span>
+                          </li>
                         </ul>
-                        <!-- 支付金额 -->{
+                        <!-- 支付金额 -->
+                        {
                         <div class="money clearFix">
-                          <div class="m1 ">
-                            <span>支付￥
+                          <div class="m1">
+                            <span>
+                              支付￥
                               <i>{{this.totalPrice}}</i>
                             </span>
                           </div>
@@ -255,40 +274,37 @@
                 <ul class="paymenttips">
                   <li>支付帮助</li>
                   <li>
-                    <a href="">意见反馈</a>
+                    <a href>意见反馈</a>
                   </li>
                 </ul>
               </div>
-
             </div>
           </div>
         </div>
       </div>
-
     </div>
   </div>
 </template>
-<script> 
-import { reqPayStatus } from '@/api'
-import QRCode from 'qrcode'
+<script>
+import { reqPayStatus } from "@/api";
+import QRCode from "qrcode";
 export default {
   name: 'SubmitOrder',
-  props: ['foodName', 'totalPrice', 'orderId'],
+  props: ['foodName', 'totalPrice', 'orderId','shopName'],
   data () {
     return {
       flag: false,
-      h: '',
-      m: '',
-      s: '',
-    }
+      h: "",
+      m: "",
+      s: "",
+    };
   },
-  mounted () {
+  mounted() {
     this.countTime();
-
   },
   methods: {
     //倒计时的函数
-    countTime () {
+    countTime() {
       //获取当前时间
       var date = new Date();
       var now = date.getTime();
@@ -297,30 +313,44 @@ export default {
       // var leftTime2 = new Date('24:00:00').getTime()
       var end = endDate.getTime();
       //时间差
-      var leftTime = end - now
+      var leftTime = end - now;
       //定义变量 d,h,m,s保存倒计时的时间
       if (leftTime >= 0) {
         this.h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
         this.m = Math.floor(leftTime / 1000 / 60 % 60);
         this.s = Math.floor(leftTime / 1000 % 60);
+      }else{
+        this.$router.replace('/overtime')
       }
       // console.log(this.s);
       //递归每秒调用countTime方法，显示动态时间效果
       setTimeout(this.countTime, 1000);
     },
-    toBack () {
+    //返回
+    toBack() {
       //console.log('qqqqq')
-      this.$router.go(-1)
+      this.$router.go(-1);
     },
-    toPayment () {
-
+    //去支付
+    toPayment(){
+      //生成订单对象
+      let info = {
+        "orderid": this.orderId,
+        "stringOrderId": ""+Date.parse(new Date()),
+        "showstatus": "待使用",
+        "dealpic": "https://p0.meituan.net/deal/9298bbc7abbe4b4edf77fe3dac81b05083223.jpg@0_20_702_425a%7C388h_640w_2e_90Q%7C112w_112h_1e_1c",
+        foodName:this.foodName,
+        totalPrice:this.totalPrice,
+        shopName:this.shopName,
+        count:1
+      }
       let url = "https://qr.alipay.com/bax06971pq7dmuisupj460fc "
-      //let url = 'https://baidu.com'
-      //问题是没有这个借口这个怎么搞？？？
-      //用来生成二维码图片的地址
-      QRCode.toDataURL(url).then((imgurl) => {
-        //二维码生成成功了
-        this.$alert(`<div class="modal-box" style="display:flex;width:300px;height:300px">
+         //let url = 'https://baidu.com'
+          //问题是没有这个借口这个怎么搞？？？
+          //用来生成二维码图片的地址
+        QRCode.toDataURL(url).then((imgurl)=>{
+            //二维码生成成功了
+            this.$alert(`<div class="modal-box" style="display:flex;width:300px;height:300px">
            <div class="modal-left" style="box-sizing: border-box;
             margin: 10%; width:180px >
                <p><span>请使用 
@@ -347,52 +377,10 @@ export default {
                         <img style="width:175px;height:300px" src="https://mpay.meituan.com/resource/cashier/img/weixin-qrcode.1xf1oN.jpg" alt="微信扫码"> 
                     </div>
         </div>`, '', {
-          dangerouslyUseHTMLString: true,
-          customClass: "app"
-        })
-          .then(() => { // 这个是点击了对话框的确定按钮
-            // 清除定时器
-            clearInterval(this.timeId)
-            // 关闭二维码
-            this.$msgbox.close()
-            // 提示消息
-            this.$message({
-              message: '支付成功了',
-              type: 'success',
-            })
-            // 路由的跳转
-            this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-          })
-          .catch((error) => { // 点击了对话框的取消
-            //this.$message.error('')
-          })
-        //     this.timeId = setInterval(() => {
-        //         let a = 1
-        //         if (a==1) {
-        //           //清除定时器
-        //           clearInterval(this.timeId)
-        //           // 关闭二维码
-        //           this.$msgbox.close()
-        //           // 提示消息
-        //           this.$message({
-        //             message: '支付成功了',
-        //             type: 'success',
-        //           })
-        //           // 路由的跳转
-        //           this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-        //        }
-        //   }, 3000)
-        //console.log('进到这个判断')
-        this.timeId = setInterval(async () => {
-          //console.log('进到这个判断')
-          // 定时器中每隔3秒就获取一次支付的状态
-          try {
-
-            let result = await reqPayStatus(this.orderId)
-            // console.log('进到这个判断')
-            console.log(result)
-            if (result.code === 200) {
-              console.log(result.code)
+           dangerouslyUseHTMLString: true,
+           customClass:"app"
+           })
+             .then(() => { // 这个是点击了对话框的确定按钮
               // 清除定时器
               clearInterval(this.timeId)
               // 关闭二维码
@@ -402,50 +390,55 @@ export default {
                 message: '支付成功了',
                 type: 'success',
               })
-              // 路由的跳转
-              this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
-            }
-          } catch {
-            this.$message({
-              message: '获取订单失败了',
-              type: 'warning',
-            })
-          }
-        }, 3000)
-      })
 
-        .catch((err) => {
-          alert('二维码生成失败了')
+              // 路由的跳转
+             this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+            })
+            .catch((error) => { // 点击了对话框的取消
+              this.$message.error('订单提交失败了')
+                 clearInterval(this.timeId)         
+            })
+            //开启定时器
+             this.timeId = setInterval(async() => {
+             try{ 
+                 let result = await reqPayStatus('10')
+                  if (result.code === 200) {
+                    //提交订单对象
+                  this.$store.commit('getFoodOrderList',info)
+                  clearInterval(this.timeId)
+                  this.$msgbox.close()
+                  this.$message({
+                    message: '支付成功了',
+                    type: 'success',
+                  })
+                   this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+                }
+            }catch{
+                this.$message({
+                  message: '获取订单失败了',
+                  type: 'warning',
+                })
+              }
+             }, 3000)
+            }) 
+        .catch((err)=>{
+            alert('二维码生成失败了')
         })
     },
-    back () {
-      this.$router.go(-1)
-    }
+    back() {
+      this.$router.go(-1);
+    },
   },
-}
+};
 </script>
 <style lang='less' rel='stylesheet/less' scope>
 .apple {
   //width: 100%;
   background: #eee;
   height: 598px;
-  //border:1px solid red;
-  //    &::before{
-  //     content: '';
-  //     display: block;
-  //     clear: both;
-  // }
   padding: 20px 0 40px;
   .modal-box {
-    // display: flex;
     width: 300px;
-    //     height: 300px;
-    //    margin: -219px 0 0 -358px;
-    //     top: 50%;
-    //     left: 50%;
-    //    z-index: 101;
-    //     overflow: hidden;
-    //position: absolute;
     border: 6px solid #bbb;
     background-color: #fff;
     -webkit-animation: scale-in both cubic-bezier(0.4, 0, 0, 1.5) 0.3s;
@@ -453,10 +446,10 @@ export default {
     .modal-left {
       box-sizing: border-box;
       margin: 10%;
-      // float: left;
       width: 250px;
       padding: 20px 50px 25px 45px;
-      border:1px solid black span {
+      border:1px solid black;
+       span {
         vertical-align: middle;
       }
       .orange {
@@ -493,9 +486,6 @@ export default {
     margin: 0 auto;
     width: 1180px;
     height: 494.4px;
-    //background: #fff;
-    //border:1px solid green;
-    //background-origin: content-box;
     .first-container {
       height: 40px;
       line-height: 40px;
@@ -515,7 +505,6 @@ export default {
     }
     .second-container {
       height: 434.4px;
-      //background:red;
       .project {
         padding: 20;
         height: 28.8px;
@@ -564,13 +553,6 @@ export default {
               // height: 80px;
               .paymentmunu {
                 float: left;
-                // li{
-                //     float: left;
-                //     height: 20px;
-                //     padding: 9px 15px;
-                //     background: green;
-                //     font-size: 14px;
-                // }
                 .ip {
                   width: 1108px;
                   height: 236pxpx;
@@ -579,9 +561,6 @@ export default {
                     width: 1108px;
                     height: 52px;
                     padding-top: 13px;
-                    //line-height: 52px;
-                    // margin-top:30px;
-                    // background: pink;
                     ul {
                       position: relative;
                       li {
@@ -601,7 +580,6 @@ export default {
                   .money {
                     width: 100%;
                     height: 99.6px;
-                    // background: red;
                     margin-top: 50px;
                     margin-bottom: 30px;
                     overflow: hidden;
@@ -609,34 +587,24 @@ export default {
                     .m1 {
                       color: coral;
                       height: 44.8px;
-                      // background: pink;
                       float: right;
                       margin-right: 20px;
                       line-height: 44.8px;
-                      //overflow: hidden;
-                      // span{
-                      //    // color: tomato;
-                      // }
                       i {
                         font-size: 24px;
                       }
                     }
                     .m2 {
                       position: absolute;
-                      //margin-top:24px;
                       right: 21px;
                       bottom: 0;
-                      // width: 192px;
                       height: 44.8px;
-                      //background: yellow;
                       line-height: 44.8px;
-                      //margin-bottom: 30px;
                       span {
                         width: 72px;
                         height: 44.8px;
                         font-size: 12px;
                         display: inline-block;
-                        //background: blue;
                       }
                       button {
                         width: 100px;
@@ -656,19 +624,15 @@ export default {
                   border: 0;
                   .cendiv {
                     height: 183.6px;
-                    //  background: red;
                     margin-top: 8px;
                     padding: 8px;
                     .payment-bank-tip {
                       height: 17.6px;
-                      // background: yellow;
                       padding-bottom: 10px;
                     }
                     ul {
                       width: 100%;
                       height: 156px;
-                      // background: green;
-                      // float: left;
                       li {
                         float: left;
                         width: 214px;
@@ -683,38 +647,30 @@ export default {
                     .money {
                       width: 100%;
                       height: 99.6px;
-                      // background: red;
                       margin-top: 50px;
                       overflow: hidden;
                       position: relative;
                       .m1 {
                         color: coral;
                         height: 44.8px;
-                        // background: pink;
                         float: right;
                         margin-right: 20px;
                         line-height: 44.8px;
-                        //overflow: hidden;
-
                         i {
                           font-size: 24px;
                         }
                       }
                       .m2 {
                         position: absolute;
-                        //margin-top:24px;
                         right: 21px;
                         bottom: 0;
-                        // width: 192px;
                         height: 44.8px;
-                        //background: yellow;
                         line-height: 44.8px;
                         span {
                           width: 72px;
                           height: 44.8px;
                           font-size: 12px;
                           display: inline-block;
-                          //background: blue;
                         }
                         button {
                           width: 100px;
@@ -733,7 +689,6 @@ export default {
               .paymenttips {
                 position: absolute;
                 right: 0;
-                //float: right;
                 z-index: 9;
                 li {
                   float: left;

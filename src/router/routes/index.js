@@ -13,6 +13,8 @@ import PaySuccess from '../../pages/PaySuccess'
 
 // 引入Home
 import Home from '../../pages/Home/index.vue'
+//引入订单超时
+import Overtime from '@/pages/Overtime'
 
 //引入民宿
 import minsu from '@/pages/minsu/minsu.vue'
@@ -28,7 +30,6 @@ import Order from '@/pages/Order'
 import Enshrine from '@/pages/Enshrine'
 import Ticket from '@/pages/Ticket'
 import User from '@/pages/User'
-import store from '@/store'
 
 export default [
   //注册Login路由组件
@@ -65,16 +66,14 @@ export default [
       hidHeader: true
     },
     props: (route) => ({
-      shopId: route.query.shopId,
+      // shopId: route.query.shopId,
       foodId: route.query.foodId,
     }),
     // 路由独享守卫
     // 只有detail页面携带了foodId 才可以跳转这个界面
     beforeEnter: (to, from, next) => {
       const { foodId } = to.query
-      console.log("foodId", +foodId)
       if (foodId) {
-        console.log("携带了foodId")
         next()
       } else {
         console.log("从哪里来" + from.path)
@@ -94,7 +93,8 @@ export default [
     props: (route) => ({
       foodName: route.query.foodName,
       totalPrice: route.query.totalPrice,
-      orderId:route.query.orderId
+      orderId:route.query.orderId,
+      shopName:route.query.shopName
     }),
     //判断是否由cart页面跳转
     beforeEnter: (to, from, next) => {
@@ -147,6 +147,15 @@ export default [
   {
     path: "/mytuan",
     component: MyTuan,
+    //判断是否由美食页面跳转
+    beforeEnter: (to, from, next) => {
+      let userInfo = JSON.parse(localStorage.getItem('MTuserInfo'))
+      if(userInfo){
+        next()
+      }else{
+        next('/login')
+      }
+    },
     meta: {
       hidFooter: true,
       hidHeader: true
@@ -226,4 +235,9 @@ export default [
     path: "/minsu",
     component: minsu,
   },
+  //订单超时取消
+  {
+    path:'/overtime',
+    component:Overtime
+  }
 ]

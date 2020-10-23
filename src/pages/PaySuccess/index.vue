@@ -10,13 +10,17 @@
            </h3>
            <p class="result__orders" data-reactid="12">
            您可以随时进入“
-             <a href="/mytuan/order" target="_blank" data-reactid="14">我的订单</a>
+<<<<<<< HEAD
+             <a href="" target="_blank" data-reactid="14" @click="toOrder">我的订单</a>
+=======
+             <router-link to="/mytuan/order" data-reactid="14">我的订单</router-link>
+>>>>>>> 6ead5d8298a4eb1063a74871683cf3595bf012cf
             ”查看美团劵密码，到店出示美团券密码即可消费。
              </p><p class="result__growth" data-reactid="16">
              本次购买获得1点
-               <a href="/account/growth" class="result__growth--growth" data-reactid="20">成长值</a>。
+               <a href="/mytuan" class="result__growth--growth" data-reactid="20">成长值</a>。
                </p><div class="result__btn" id="yui_3_16_0_1_1526265340853_371" data-reactid="22">
-                 <a class="btn-normal result__btn-orders" href="/mytuan" target="_blank" id="yui_3_16_0_1_1526265340853_370" data-mod-mtt="1.order/return.0.0.jh5mz646" data-reactid="23">
+                 <a @click="toOrder" class="btn-normal result__btn-orders" href="" target="_blank" id="yui_3_16_0_1_1526265340853_370" data-mod-mtt="1.order/return.0.0.jh5mz646" data-reactid="23">
                  查看已购买团购
                  </a>
                  </div>
@@ -111,7 +115,10 @@ export default {
 
   },
   methods:{
-    
+    toOrder(){
+      //this.$router.push(`/paysuccess/?foodName=${this.foodName}&totalPrice=${this.totalPrice}`)
+      this.$router.push('/mytuan/order')
+    }
   },
   computed:{
      //获取商品信息对象
