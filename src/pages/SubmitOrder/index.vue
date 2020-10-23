@@ -54,7 +54,7 @@
                           <div class="f1">
                             <el-tabs type="border-card" class="paymentmunu">
                             <el-tab-pane>
-                             <span slot="label"></i> 支付宝/微信</span>
+                             <span slot="label"> 支付宝/微信</span>
                                <div class="ip">
                                      <div class="f2">
                                      <ul>
@@ -153,344 +153,332 @@
 <script>
 //import QRCode from 'qrcode'
 export default {
-  name:'SubmitOrder',
-  props:['foodName','totalPrice'],
-  data(){
-      return{
-         h:'',
-         m:'',
-         s:'',
-      }
+  name: "SubmitOrder",
+  props: ["foodName", "totalPrice"],
+  data() {
+    return {
+      h: "",
+      m: "",
+      s: "",
+    };
   },
-  mounted(){
-      this.countTime()
+  mounted() {
+    this.countTime();
   },
-  methods:{
-      //倒计时的函数
-      countTime(){
-            //获取当前时间
-                var date = new Date();
-                var now = date.getTime();
-                //设置截止时间
-                var endDate = new Date("2020-10-22 12:23:23");
-               // var leftTime2 = new Date('24:00:00').getTime()
-                var end = endDate.getTime();
-                //时间差
-                var leftTime = end - now
-                //定义变量 d,h,m,s保存倒计时的时间
-                if (leftTime >= 0) {
-                    this.h = Math.floor(leftTime / 1000 / 60 / 60 % 24);
-                    this.m = Math.floor(leftTime / 1000 / 60 % 60);
-                    this.s = Math.floor(leftTime / 1000 % 60);
-                }
-               // console.log(this.s);
-                //递归每秒调用countTime方法，显示动态时间效果
-                setTimeout(this.countTime, 1000);
+  methods: {
+    //倒计时的函数
+    countTime() {
+      //获取当前时间
+      var date = new Date();
+      var now = date.getTime();
+      //设置截止时间
+      var endDate = new Date("2020-10-22 12:23:23");
+      // var leftTime2 = new Date('24:00:00').getTime()
+      var end = endDate.getTime();
+      //时间差
+      var leftTime = end - now;
+      //定义变量 d,h,m,s保存倒计时的时间
+      if (leftTime >= 0) {
+        this.h = Math.floor((leftTime / 1000 / 60 / 60) % 24);
+        this.m = Math.floor((leftTime / 1000 / 60) % 60);
+        this.s = Math.floor((leftTime / 1000) % 60);
       }
-      },
-  }
+      // console.log(this.s);
+      //递归每秒调用countTime方法，显示动态时间效果
+      setTimeout(this.countTime, 1000);
+    },
+  },
+};
 </script>
 <style lang='less' rel='stylesheet/less' scoped>
-    .container{
-        //width: 100%;
-        background: #eee;
-        height: 662px;
-        //border:1px solid red;
-        //    &::before{
-        //     content: '';
-        //     display: block;
-        //     clear: both;
-        // }
-        padding: 20px 0 40px;
-        //二维码盒子的样式
-        .modal-box {
-        width: 716px;
-        height: 438px;
-        margin: -219px 0 0 -358px;
-        top: 50%;
-        left: 50%;
-        z-index: 101;
-        overflow: hidden;
-        position: absolute;
-        border: 6px solid #bbb;
-        background-color: #fff;
-       -webkit-animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
-       animation: scale-in both cubic-bezier(.4,0,0,1.5) .3s;
-       }
-        .top{
-            margin: 0 auto;
-            width: 1180px;
-            height:494.4px ;
-            //background: #fff;
-            //border:1px solid green;
-            //background-origin: content-box;
-            .first-container{
-                height: 40px;
-                line-height: 40px;
-                margin-bottom: 20px;
-                background-color: #fff;
-                box-shadow: 0 3px 5px 0 rgba(0,0,0,.1);
-                border-radius: 4px;
-                text-align: center;
-                font-size: 14px;
-                color: #666;
-                .iconfont{
-                   color:#f60;
-                }
-                .cd{
-                    color: #f60;
-                }
-            }
-            .second-container{
-                height: 434.4px;
-                //background:red;
-                .project{
-                    padding: 20;
-                    height: 28.8px;
-                    background: #fff;
-                    border-radius: 4px;
-                    border: 1px solid #ddd ;
-                    padding: 20px;
-                    .one{
-                           font-size: 20px;
-                            color: #222;
-                            width: 600px;
-                            float: left;
-                    }
-                    .two{
-                        float: right;
-                        color: #f60;
-                        height: 22px;
-                        line-height: 22px;
-                        span{
-                            font-size: 30px;
-                            height: 30px;
-                            line-height: 30px;
-                        }
-                    }
-                }
-                .payment{
-                    margin-top:20px;
-                    width: 1138px;
-                    height: 500px;
-                    padding: 0 20px 50px;
-                    //border: 1px solid black;
-                    background: #fff;
-                    .paycon{
-                        width: 100%;
-                        height: 271.6px;
-                        margin-top:5px;
-                        padding-top:10px;
-                       // background: red;
-                        .paymenttype{
-                            height: 112px;
-                            background: yellow;
-                            .f1{
-                                margin-top: 20px;
-                                position: relative;
-                                height: 40px;
-                               // height: 80px;
-                                .paymentmunu{
-                                    float: left;
-                                    // li{
-                                    //     float: left;
-                                    //     height: 20px;
-                                    //     padding: 9px 15px;
-                                    //     background: green;
-                                    //     font-size: 14px;
-                                    // }
-                                    .ip{
-                                        width: 1108px;
-                                        height: 236pxpx;
-                                        border: 0;
-                                         .f2{
-                                        width: 1108px;
-                                         height: 52px;
-                                         padding-top: 13px;
-                                         //line-height: 52px;
-                                        // margin-top:30px;
-                                        // background: pink;
-                                          ul{
-                                             position: relative;
-                                             li{
-                                                float: left;
-                                                height: 100%;
-                                               label{
-                                                height: 100%;
-                                                margin: 5px;
-
-                                               }
-                                               input{
-                                                   height: 38px;
-                                                   line-height: 38px;
-                                               }
-                                             }
-
-                                         }    
-                                    }
-                                        .money{
-                                             width: 100%;
-                                             height: 99.6px;
-                                            // background: red;
-                                             margin-top:50px;
-                                             margin-bottom: 30px;
-                                            overflow: hidden;
-                                            position: relative;
-                                             .m1{
-                                                color:coral;
-                                                height: 44.8px;
-                                               // background: pink;
-                                                float: right;
-                                                margin-right: 20px;
-                                                line-height: 44.8px;
-                                                //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
-                                                i{
-                                                    font-size:24px;
-
-                                                }
-                                             }
-                                             .m2{
-                                               position: absolute;
-                                                //margin-top:24px;
-                                                right: 21px;
-                                                bottom: 0;
-                                                // width: 192px;
-                                                 height: 44.8px;
-                                                 //background: yellow;
-                                                 line-height: 44.8px;
-                                                 //margin-bottom: 30px;
-                                                 span{
-                                                     width: 72px;
-                                                     height: 44.8px;
-                                                     font-size: 12px;
-                                                     display: inline-block;
-                                                     //background: blue;
-                                                 }
-                                                 button{
-                                                     width: 100px;
-                                                     height: 40.8px;
-                                                     background: orange;
-                                                     border-radius: 20px;
-                                                     margin-left: 20px;
-                                                     border:0;
-                                                     color:#fff;
-                                                     
-                                                 }
-                                             }
-                                         }
-                                    
-                                    
-                                    }
-                                    .ipi{
-                                        width: 1108px;
-                                        height: 370.2px; 
-                                        border: 0;
-                                        .cendiv{
-                                         height: 183.6px;
-                                       //  background: red;
-                                         margin-top: 8px;
-                                        padding: 8px;
-                                            .payment-bank-tip{
-                                                width: ;
-                                                height: 17.6px;
-                                               // background: yellow;
-                                                padding-bottom:10px;
-                                            }
-                                            ul{
-                                                width: 100%;
-                                                height: 156px;
-                                               // background: green;
-                                               // float: left;
-                                                li{
-                                                    float: left;
-                                                    width: 214px;
-                                                    height: 42px;
-                                                    margin-bottom: 10px;
-                                                    input{
-                                                        height:30px ;
-                                                        line-height: 30px;
-                                                    }
-                                                }
-                                            }
-                                            .money{
-                                             width: 100%;
-                                             height: 99.6px;
-                                            // background: red;
-                                             margin-top:50px;
-                                            overflow: hidden;
-                                            position: relative;
-                                             .m1{
-                                                color:coral;
-                                                height: 44.8px;
-                                               // background: pink;
-                                                float: right;
-                                                margin-right: 20px;
-                                                line-height: 44.8px;
-                                                //overflow: hidden;
-                                                span{
-                                                   // color: tomato;
-                                                }
-                                                i{
-                                                    font-size:24px;
-
-                                                }
-                                             }
-                                             .m2{
-                                               position: absolute;
-                                                //margin-top:24px;
-                                                right: 21px;
-                                                bottom: 0;
-                                                // width: 192px;
-                                                 height: 44.8px;
-                                                 //background: yellow;
-                                                 line-height: 44.8px;
-                                                 span{
-                                                     width: 72px;
-                                                     height: 44.8px;
-                                                     font-size: 12px;
-                                                     display: inline-block;
-                                                     //background: blue;
-                                                 }
-                                                 button{
-                                                     width: 100px;
-                                                     height: 40.8px;
-                                                     background: orange;
-                                                     border-radius: 20px;
-                                                     margin-left: 20px;
-                                                     border:0;
-                                                     color:#fff
-                                                 }
-                                             }
-                                         }
-                                        }
-                                    }
-
-                                }
-                                .paymenttips{
-                                    position: absolute;
-                                    right: 0;
-                                    //float: right;
-                                    z-index: 9;
-                                    li{
-                                       float: left;
-                                        height: 20px;
-                                        line-height: 40px;
-                                        font-size:12px;
-                                        padding:9px 15px
-                                       
-                                    }
-
-                                }
-                            }
-                           
-                        }
-                    }
-
-                }
-            }
-        }   
+.container {
+  //width: 100%;
+  background: #eee;
+  height: 662px;
+  //border:1px solid red;
+  //    &::before{
+  //     content: '';
+  //     display: block;
+  //     clear: both;
+  // }
+  padding: 20px 0 40px;
+  //二维码盒子的样式
+  .modal-box {
+    width: 716px;
+    height: 438px;
+    margin: -219px 0 0 -358px;
+    top: 50%;
+    left: 50%;
+    z-index: 101;
+    overflow: hidden;
+    position: absolute;
+    border: 6px solid #bbb;
+    background-color: #fff;
+    -webkit-animation: scale-in both cubic-bezier(0.4, 0, 0, 1.5) 0.3s;
+    animation: scale-in both cubic-bezier(0.4, 0, 0, 1.5) 0.3s;
+  }
+  .top {
+    margin: 0 auto;
+    width: 1180px;
+    height: 494.4px;
+    //background: #fff;
+    //border:1px solid green;
+    //background-origin: content-box;
+    .first-container {
+      height: 40px;
+      line-height: 40px;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      text-align: center;
+      font-size: 14px;
+      color: #666;
+      .iconfont {
+        color: #f60;
+      }
+      .cd {
+        color: #f60;
+      }
     }
+    .second-container {
+      height: 434.4px;
+      //background:red;
+      .project {
+        padding: 20;
+        height: 28.8px;
+        background: #fff;
+        border-radius: 4px;
+        border: 1px solid #ddd;
+        padding: 20px;
+        .one {
+          font-size: 20px;
+          color: #222;
+          width: 600px;
+          float: left;
+        }
+        .two {
+          float: right;
+          color: #f60;
+          height: 22px;
+          line-height: 22px;
+          span {
+            font-size: 30px;
+            height: 30px;
+            line-height: 30px;
+          }
+        }
+      }
+      .payment {
+        margin-top: 20px;
+        width: 1138px;
+        height: 500px;
+        padding: 0 20px 50px;
+        //border: 1px solid black;
+        background: #fff;
+        .paycon {
+          width: 100%;
+          height: 271.6px;
+          margin-top: 5px;
+          padding-top: 10px;
+          // background: red;
+          .paymenttype {
+            height: 112px;
+            background: yellow;
+            .f1 {
+              margin-top: 20px;
+              position: relative;
+              height: 40px;
+              // height: 80px;
+              .paymentmunu {
+                float: left;
+                // li{
+                //     float: left;
+                //     height: 20px;
+                //     padding: 9px 15px;
+                //     background: green;
+                //     font-size: 14px;
+                // }
+                .ip {
+                  width: 1108px;
+                  height: 236pxpx;
+                  border: 0;
+                  .f2 {
+                    width: 1108px;
+                    height: 52px;
+                    padding-top: 13px;
+                    //line-height: 52px;
+                    // margin-top:30px;
+                    // background: pink;
+                    ul {
+                      position: relative;
+                      li {
+                        float: left;
+                        height: 100%;
+                        label {
+                          height: 100%;
+                          margin: 5px;
+                        }
+                        input {
+                          height: 38px;
+                          line-height: 38px;
+                        }
+                      }
+                    }
+                  }
+                  .money {
+                    width: 100%;
+                    height: 99.6px;
+                    // background: red;
+                    margin-top: 50px;
+                    margin-bottom: 30px;
+                    overflow: hidden;
+                    position: relative;
+                    .m1 {
+                      color: coral;
+                      height: 44.8px;
+                      // background: pink;
+                      float: right;
+                      margin-right: 20px;
+                      line-height: 44.8px;
+                      //overflow: hidden;
+                    //   span {
+                    //     // color: tomato;
+                    //   }
+                      i {
+                        font-size: 24px;
+                      }
+                    }
+                    .m2 {
+                      position: absolute;
+                      //margin-top:24px;
+                      right: 21px;
+                      bottom: 0;
+                      // width: 192px;
+                      height: 44.8px;
+                      //background: yellow;
+                      line-height: 44.8px;
+                      //margin-bottom: 30px;
+                      span {
+                        width: 72px;
+                        height: 44.8px;
+                        font-size: 12px;
+                        display: inline-block;
+                        //background: blue;
+                      }
+                      button {
+                        width: 100px;
+                        height: 40.8px;
+                        background: orange;
+                        border-radius: 20px;
+                        margin-left: 20px;
+                        border: 0;
+                        color: #fff;
+                      }
+                    }
+                  }
+                }
+                .ipi {
+                  width: 1108px;
+                  height: 370.2px;
+                  border: 0;
+                  .cendiv {
+                    height: 183.6px;
+                    //  background: red;
+                    margin-top: 8px;
+                    padding: 8px;
+                    .payment-bank-tip {
+                    //   width: ;
+                      height: 17.6px;
+                      // background: yellow;
+                      padding-bottom: 10px;
+                    }
+                    ul {
+                      width: 100%;
+                      height: 156px;
+                      // background: green;
+                      // float: left;
+                      li {
+                        float: left;
+                        width: 214px;
+                        height: 42px;
+                        margin-bottom: 10px;
+                        input {
+                          height: 30px;
+                          line-height: 30px;
+                        }
+                      }
+                    }
+                    .money {
+                      width: 100%;
+                      height: 99.6px;
+                      // background: red;
+                      margin-top: 50px;
+                      overflow: hidden;
+                      position: relative;
+                      .m1 {
+                        color: coral;
+                        height: 44.8px;
+                        // background: pink;
+                        float: right;
+                        margin-right: 20px;
+                        line-height: 44.8px;
+                        //overflow: hidden;
+                        // span {
+                        //   // color: tomato;
+                        // }
+                        i {
+                          font-size: 24px;
+                        }
+                      }
+                      .m2 {
+                        position: absolute;
+                        //margin-top:24px;
+                        right: 21px;
+                        bottom: 0;
+                        // width: 192px;
+                        height: 44.8px;
+                        //background: yellow;
+                        line-height: 44.8px;
+                        span {
+                          width: 72px;
+                          height: 44.8px;
+                          font-size: 12px;
+                          display: inline-block;
+                          //background: blue;
+                        }
+                        button {
+                          width: 100px;
+                          height: 40.8px;
+                          background: orange;
+                          border-radius: 20px;
+                          margin-left: 20px;
+                          border: 0;
+                          color: #fff;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+              .paymenttips {
+                position: absolute;
+                right: 0;
+                //float: right;
+                z-index: 9;
+                li {
+                  float: left;
+                  height: 20px;
+                  line-height: 40px;
+                  font-size: 12px;
+                  padding: 9px 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
 </style>
