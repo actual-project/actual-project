@@ -8,7 +8,7 @@
         <a href="javascript:;">北京美食</a>
       </div>
       <div class="left">
-        <!-- 选择区域 -->
+        <!-- 选择的区域 -->
         <div class="select">
           <div class="container clearFix">
             <!-- 已选条件 -->
@@ -317,9 +317,9 @@ export default {
       window.event ? (window.event.cancelBubble = true) : e.stopPropagation();
       this.selected.push(item);
       this.cid = id;
-      if (this.selected.length > 1) {
-        this.selected.splice(0, 1);
-      }
+      // if (this.selected.length > 1) {
+      //   this.selected.splice(0, 1);
+      // }
     },
     //删除已选条件
     remove(index) {
